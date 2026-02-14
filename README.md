@@ -10,6 +10,18 @@ Welcome! I'm a passionate **.NET Full-Stack Developer** transforming complex vis
 
 ## 🛠️ My .NET Expertise & How I Can Help 🛠️
 
+<p align="center">
+  <img src="https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=c-sharp&logoColor=white" alt="C#" />
+  <img src="https://img.shields.io/badge/.NET-512BD4?style=for-the-badge&logo=dotnet&logoColor=white" alt=".NET" />
+  <img src="https://img.shields.io/badge/Azure-0078D4?style=for-the-badge&logo=microsoft-azure&logoColor=white" alt="Azure" />
+  <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker" />
+  <img src="https://img.shields.io/badge/SQL_Server-CC2927?style=for-the-badge&logo=microsoft-sql-server&logoColor=white" alt="SQL Server" />
+  <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React" />
+  <img src="https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white" alt="Angular" />
+  <img src="https://img.shields.io/badge/Vue.js-4FC08D?style=for-the-badge&logo=vue.js&logoColor=white" alt="Vue.js" />
+</p>
+
+
 I specialize in the **Microsoft ecosystem** and related technologies:
 
 *   **Backend:** Building scalable **ASP.NET Core (MVC, Web API)** applications (.NET 6/7/8+) with clean **C#**, optimized **Entity Framework Core** (SQL Server, PostgreSQL), and robust API design.
@@ -44,16 +56,32 @@ When we work together, you can expect me to:
 
 Facing a challenge? Need to architect a new feature? Let's connect and leverage the power of .NET to create exceptional solutions.
 
-**Reach out – I'm ready to help!**
+## 📫 Connect with Me
 
-*(🔗 Add your LinkedIn, Portfolio, Blog, or preferred contact links here!)*
+<p align="center">
+  <a href="https://linkedin.com/in/phuongfullstack" target="_blank">
+    <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
+  </a>
+  <a href="mailto:contact@phuongfullstack.com" target="_blank">
+    <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" />
+  </a>
+  <a href="https://phuongfullstack.com" target="_blank">
+    <img src="https://img.shields.io/badge/Website-000000?style=for-the-badge&logo=About.me&logoColor=white" alt="Website" />
+  </a>
+</p>
 
-<!-- Optional GitHub Stats/Badges -->
-<!-- <p align="center">
+## 📊 GitHub Stats
+
+<p align="center">
   <img src="https://github-readme-stats.vercel.app/api?username=phuongfullstack&show_icons=true&theme=dracula&rank_icon=github&border_radius=10" alt="phuongfullstack :: GitHub Stats" />
   <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=phuongfullstack&layout=compact&theme=dracula&border_radius=10" alt="phuongfullstack :: Top Langs" />
-</p> -->
-<!-- <p align="center"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=phuongfullstack&theme=radical&no-frame=true&row=1&column=7" alt="phuongfullstack Trophies" /></a> </p> -->
+</p>
+<p align="center">
+  <a href="https://github.com/ryo-ma/github-profile-trophy">
+    <img src="https://github-profile-trophy.vercel.app/?username=phuongfullstack&theme=radical&no-frame=true&row=1&column=7" alt="phuongfullstack Trophies" />
+  </a>
+</p>
+
 
 ---
 *Last Updated: 2025-04-20 10:19:52 UTC*
