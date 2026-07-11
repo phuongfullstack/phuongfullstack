@@ -56,21 +56,22 @@
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--background-dark) 100%);
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); /* Modern blue gradient */
             color: var(--text-light);
-            padding: 6em 0 4em 0;
+            padding: 8em 0 6em 0;
             text-align: center;
             position: relative;
             overflow: hidden;
         }
 
-        .hero::before { /* Subtle background pattern */
+        .hero::before {
             content: '';
             position: absolute;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            opacity: 0.5;
+            background-image: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.6;
         }
 
         .hero-content {
@@ -149,17 +150,17 @@
         .expertise-card {
             background-color: var(--card-background);
             padding: 2em;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
             text-align: center;
-            transition: var(--transition-speed);
-            border-top: 5px solid transparent; /* Placeholder for hover effect */
+            border: 1px solid rgba(0,0,0,0.05);
         }
 
         .expertise-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--box-shadow-hover);
-            border-top-color: var(--primary-color);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+            border-color: var(--primary-color);
         }
 
         .expertise-card .icon {
@@ -196,15 +197,17 @@
         .approach-item {
             background: var(--card-background);
             padding: 1.5em;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
             display: flex;
             align-items: flex-start; /* Align icon nicely */
-            transition: var(--transition-speed);
+            transition: all 0.4s ease;
+            border-left: 4px solid transparent;
         }
          .approach-item:hover {
-             transform: scale(1.03);
-             box-shadow: var(--box-shadow-hover);
+             transform: translateX(5px);
+             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+             border-left-color: var(--primary-color);
          }
 
         .approach-item .icon {
@@ -227,14 +230,24 @@
              color: var(--text-muted);
         }
 
-        /* Footer */
+
+        /* Contact Section */
+        #contact {
+            background-color: var(--card-background);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            padding: 4em 2em;
+            margin-top: 4em;
+        }
+/* Footer */
         .footer {
             background-color: var(--background-dark);
             color: var(--text-light);
             text-align: center;
-            padding: 2em 0;
-            margin-top: 4em;
-            font-size: 0.9rem;
+            padding: 3em 0;
+            margin-top: 5em;
+            font-size: 0.95rem;
+            border-top: 4px solid var(--primary-color);
         }
         .footer p {
             margin-bottom: 0.5em;
@@ -283,9 +296,62 @@
             }
         }
 
+
+        /* Navigation Bar */
+        .navbar {
+            background-color: var(--background-dark);
+            padding: 1em 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--box-shadow);
+        }
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar-brand {
+            color: var(--text-light);
+            font-family: var(--heading-font);
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+        .navbar-brand .highlight {
+            color: var(--secondary-color);
+        }
+        .navbar-nav {
+            list-style: none;
+            display: flex;
+            gap: 1.5em;
+        }
+        .navbar-nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition-speed);
+        }
+        .navbar-nav a:hover {
+            color: var(--secondary-color);
+        }
+
     </style>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
+
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="navbar-brand">Phuong<span class="highlight">.</span></a>
+            <ul class="navbar-nav">
+                <li><a href="#expertise">Expertise</a></li>
+                <li><a href="#approach">Approach</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
 
     <header class="hero">
         <div class="hero-content container">
@@ -297,34 +363,34 @@
 
     <main>
         <section id="expertise" class="section container">
-            <h2 class="section-title">My Expertise</h2>
+            <h2 class="section-title" data-aos="fade-up">My Expertise</h2>
             <div class="expertise-grid">
-                <div class="expertise-card">
+                <div class="expertise-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="icon"><i class="fas fa-laptop-code"></i></div>
                     <h3>Frontend Development</h3>
                     <p>Building intuitive & engaging UIs with Blazor, React, Angular, Vue, HTML5, CSS3, JS/TS.</p>
                 </div>
-                <div class="expertise-card">
+                <div class="expertise-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="icon"><i class="fas fa-server"></i></div>
                     <h3>Backend .NET Mastery</h3>
                     <p>Architecting scalable ASP.NET Core APIs, clean C# code, optimized EF Core (SQL/NoSQL).</p>
                 </div>
-                <div class="expertise-card">
+                <div class="expertise-card" data-aos="fade-up" data-aos-delay="300">
                     <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
                     <h3>DevOps & Cloud</h3>
                     <p>Streamlining CI/CD (Azure DevOps/GitHub Actions), Docker containerization & Azure deployment.</p>
                 </div>
-                <div class="expertise-card">
+                <div class="expertise-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="icon"><i class="fas fa-tachometer-alt"></i></div>
                     <h3>Performance Tuning</h3>
                     <p>Optimizing database queries, implementing caching, lazy loading & async patterns.</p>
                 </div>
-                <div class="expertise-card">
+                <div class="expertise-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="icon"><i class="fas fa-shield-alt"></i></div>
                     <h3>Application Security</h3>
                     <p>Implementing robust security practices (AuthN/AuthZ, XSS, CSRF, SQLi prevention).</p>
                 </div>
-                 <div class="expertise-card">
+                 <div class="expertise-card" data-aos="fade-up" data-aos-delay="300">
                     <div class="icon"><i class="fas fa-project-diagram"></i></div>
                     <h3>Solution Architecture</h3>
                     <p>Designing end-to-end solutions that meet business goals and technical requirements.</p>
@@ -334,37 +400,37 @@
 
         <section id="approach" class="section" style="background-color: #eef;"> <!-- Subtle background change -->
             <div class="container">
-                <h2 class="section-title">My Collaborative Approach</h2>
+                <h2 class="section-title" data-aos="fade-up">My Collaborative Approach</h2>
                 <ul class="approach-list">
-                    <li class="approach-item">
+                    <li class="approach-item" data-aos="fade-right">
                         <i class="fas fa-comments icon"></i>
                         <div class="content"><strong>Explain concepts clearly:</strong> <span>Breaking down complex topics into understandable insights.</span></div>
                     </li>
-                    <li class="approach-item">
+                    <li class="approach-item" data-aos="fade-right">
                         <i class="fas fa-balance-scale-right icon"></i>
                         <div class="content"><strong>Suggest options (pros/cons):</strong> <span>Empowering you with informed choices through clear analysis.</span></div>
                     </li>
-                    <li class="approach-item">
+                    <li class="approach-item" data-aos="fade-right">
                         <i class="fas fa-code icon"></i>
                         <div class="content"><strong>Provide quality code:</strong> <span>Delivering complete, readable, and well-commented solutions (front & back).</span></div>
                     </li>
-                    <li class="approach-item">
+                    <li class="approach-item" data-aos="fade-right">
                         <i class="fas fa-vials icon"></i>
                          <div class="content"><strong>Suggest testing strategies:</strong> <span>Advising on effective QA with tools like xUnit, NUnit, Moq.</span></div>
                     </li>
-                    <li class="approach-item">
+                    <li class="approach-item" data-aos="fade-right">
                         <i class="fas fa-rocket icon"></i>
                         <div class="content"><strong>Advise on performance:</strong> <span>Guiding optimization for speed (query opt., caching, lazy loading).</span></div>
                     </li>
-                    <li class="approach-item">
+                    <li class="approach-item" data-aos="fade-right">
                         <i class="fas fa-user-shield icon"></i>
                         <div class="content"><strong>Highlight security:</strong> <span>Proactively addressing vulnerabilities (XSS, CSRF, SQLi).</span></div>
                     </li>
-                     <li class="approach-item">
+                     <li class="approach-item" data-aos="fade-right">
                         <i class="fas fa-question-circle icon"></i>
                         <div class="content"><strong>Ask clarifying questions:</strong> <span>Ensuring full requirement alignment before implementation.</span></div>
                     </li>
-                     <li class="approach-item">
+                     <li class="approach-item" data-aos="fade-right">
                         <i class="fas fa-handshake icon"></i>
                         <div class="content"><strong>Professional & Friendly Tone:</strong> <span>Maintaining positive, collaborative communication, ready to elaborate.</span></div>
                     </li>
@@ -374,7 +440,7 @@
 
         <!-- Optional Contact Section -->
          <section id="contact" class="section container" style="text-align: center;">
-             <h2 class="section-title">Let's Build Something Exceptional</h2>
+             <h2 class="section-title" data-aos="fade-up">Let's Build Something Exceptional</h2>
              <p style="max-width: 600px; margin: 0 auto 2em auto; color: var(--text-muted);">
                  Whether you need help with a specific challenge, architectural guidance, or end-to-end development, I'm ready to partner with you.
              </p>
@@ -397,5 +463,15 @@
         <p>Last Updated: 2025-04-20 10:23:34 UTC</p>
     </footer>
 
+
+    <!-- AOS Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+    </script>
 </body>
 </html>
