@@ -4,224 +4,170 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Phuong — .NET Full-Stack Developer</title>
-<meta name="description" content="Phuong (@phuongfullstack) — full-stack engineer, seven years on .NET — Angular front-ends and cloud-native delivery on Azure and AWS." />
+<meta name="description" content="Phuong — full-stack engineer, eight years on .NET. Backend systems, Angular front-ends, and cloud-native delivery on Azure and AWS." />
 <meta name="color-scheme" content="light dark" />
 <meta property="og:title" content="Phuong — .NET Full-Stack Developer" />
-<meta property="og:description" content="Full-stack engineer, seven years on .NET — Angular front-ends and cloud-native delivery on Azure and AWS." />
+<meta property="og:description" content="Full-stack engineer, eight years on .NET. Backend systems, Angular front-ends, cloud-native delivery on Azure and AWS." />
 <meta property="og:type" content="website" />
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%235B2BD9'/><text x='16' y='23' font-family='sans-serif' font-size='19' font-weight='700' fill='%23fff' text-anchor='middle'>P</text></svg>" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23fff'/><text x='16' y='24' font-family='Georgia,serif' font-size='24' fill='%235B2BD9' text-anchor='middle'>P</text></svg>" />
 <script>document.documentElement.classList.add('js')</script>
 <style>
 /* ── Design tokens ─────────────────────────────────────────────────────────
-   Mirrors assets/tokens.json. Change both together.                        */
+   Mirrors assets/tokens.json. Change both together. No web fonts: the page
+   uses system stacks so nothing outside this repository can fail to load.  */
 :root{
-  --bg:#FFFFFF; --bg-subtle:#F7F7F9; --bg-inset:#F0F0F4;
-  --border:#E3E3E9; --border-strong:#CFCFD8;
-  --text:#16161D; --text-muted:#5C5C6B; --text-faint:#8A8A9A;
-  --accent:#5B2BD9; --accent-hover:#4A1FC0; --accent-subtle:#F2EDFF;
+  --bg:#FFFFFF; --bg-subtle:#FAFAF8; --bg-inset:#F2F1ED;
+  --border:#E6E4DE; --border-strong:#CFCCC4;
+  --text:#111111; --text-muted:#56534D; --text-faint:#8C887F;
+  --accent:#5B2BD9; --accent-hover:#4A1FC0; --accent-subtle:#F1EBFF;
   --on-accent:#FFFFFF;
 
-  --sans:'Inter',Segoe UI,-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;
-  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --serif:ui-serif,Georgia,'Iowan Old Style','Palatino Linotype','Times New Roman',serif;
+  --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,'DejaVu Sans Mono',monospace;
 
-  --r-sm:6px; --r-md:10px; --r-lg:14px; --r-xl:20px;
   --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px;
-  --s6:32px; --s7:48px; --s8:64px; --s9:96px; --s10:128px;
+  --s6:32px; --s7:48px; --s8:64px; --s9:96px; --s10:140px;
 
-  --wrap:1080px; --prose:64ch;
+  --wrap:1080px; --prose:62ch; --col:210px;
   --ease:cubic-bezier(.22,.61,.36,1);
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
-    --bg:#0C0C10; --bg-subtle:#16161D; --bg-inset:#1A1A21;
-    --border:#26262F; --border-strong:#3A3A47;
-    --text:#ECECF1; --text-muted:#9E9EB0; --text-faint:#6E6E80;
-    --accent:#A78BFA; --accent-hover:#C4B5FD; --accent-subtle:#1E1533;
-    --on-accent:#16161D;
+    --bg:#0E0E11; --bg-subtle:#16161A; --bg-inset:#1C1C21;
+    --border:#2A2A30; --border-strong:#3D3D45;
+    --text:#F2F1EE; --text-muted:#A3A099; --text-faint:#736F68;
+    --accent:#A78BFA; --accent-hover:#C4B5FD; --accent-subtle:#1C1533;
+    --on-accent:#16161A;
   }
 }
 :root[data-theme="dark"]{
-  --bg:#0C0C10; --bg-subtle:#16161D; --bg-inset:#1A1A21;
-  --border:#26262F; --border-strong:#3A3A47;
-  --text:#ECECF1; --text-muted:#9E9EB0; --text-faint:#6E6E80;
-  --accent:#A78BFA; --accent-hover:#C4B5FD; --accent-subtle:#1E1533;
-  --on-accent:#16161D;
+  --bg:#0E0E11; --bg-subtle:#16161A; --bg-inset:#1C1C21;
+  --border:#2A2A30; --border-strong:#3D3D45;
+  --text:#F2F1EE; --text-muted:#A3A099; --text-faint:#736F68;
+  --accent:#A78BFA; --accent-hover:#C4B5FD; --accent-subtle:#1C1533;
+  --on-accent:#16161A;
 }
 
-/* ── Base ─────────────────────────────────────────────────────────────── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:88px}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:80px}
 body{
   font-family:var(--sans);background:var(--bg);color:var(--text);
-  font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;
-  overflow-x:hidden;
+  font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden;
 }
 img,svg{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
-:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:var(--r-sm)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 
 .wrap{width:100%;max-width:var(--wrap);margin-inline:auto;padding-inline:var(--s5)}
-.skip{
-  position:absolute;left:var(--s4);top:-100px;z-index:100;
-  background:var(--accent);color:var(--on-accent);
-  padding:var(--s3) var(--s4);border-radius:var(--r-md);font-weight:600;
-  transition:top .2s var(--ease);
-}
+.skip{position:absolute;left:var(--s4);top:-100px;z-index:100;background:var(--accent);
+  color:var(--on-accent);padding:var(--s3) var(--s4);font-weight:600;transition:top .2s var(--ease)}
 .skip:focus{top:var(--s4)}
 
-/* ── Typography ───────────────────────────────────────────────────────── */
-h1,h2,h3{line-height:1.12;letter-spacing:-.022em;font-weight:700}
-h1{font-size:clamp(2.75rem,8vw,4.75rem);letter-spacing:-.035em}
-h2{font-size:clamp(1.65rem,3.4vw,2.25rem)}
-h3{font-size:1.0625rem;font-weight:600;letter-spacing:-.01em}
-p{color:var(--text-muted)}
-.lead{font-size:clamp(1.0625rem,1.8vw,1.25rem);max-width:var(--prose);color:var(--text-muted)}
-.eyebrow{
-  font-family:var(--mono);font-size:.72rem;font-weight:600;
-  letter-spacing:.2em;text-transform:uppercase;color:var(--accent);
+/* ── Type ─────────────────────────────────────────────────────────────── */
+.display{
+  font-family:var(--serif);font-weight:400;line-height:.95;letter-spacing:-.035em;
+  font-size:clamp(4rem,13vw,8.5rem);
 }
-.rule{width:56px;height:3px;border-radius:2px;background:var(--accent);margin:var(--s5) 0}
+h2{font-family:var(--serif);font-weight:400;letter-spacing:-.02em;line-height:1.1;
+  font-size:clamp(2rem,4.5vw,3rem)}
+h3{font-size:1rem;font-weight:600;letter-spacing:-.005em}
+p{color:var(--text-muted)}
+.lead{font-size:clamp(1.0625rem,1.7vw,1.1875rem);max-width:var(--prose);color:var(--text-muted)}
+.lbl{font-family:var(--mono);font-size:.6875rem;font-weight:600;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--text-faint)}
+.lbl.is-accent{color:var(--accent)}
+.hair{border:0;border-top:1px solid var(--border)}
 
 /* ── Header ───────────────────────────────────────────────────────────── */
-.site-header{
-  position:sticky;top:0;z-index:50;
-  background:color-mix(in srgb,var(--bg) 82%,transparent);
-  backdrop-filter:saturate(1.6) blur(12px);
-  border-bottom:1px solid transparent;transition:border-color .25s var(--ease);
-}
+.site-header{position:sticky;top:0;z-index:50;background:var(--bg);
+  border-bottom:1px solid transparent;transition:border-color .25s var(--ease)}
 .site-header[data-stuck="true"]{border-bottom-color:var(--border)}
-.site-header .wrap{display:flex;align-items:center;gap:var(--s5);height:68px}
-.brand{font-weight:700;letter-spacing:-.03em;font-size:1.0625rem}
+.site-header .wrap{display:flex;align-items:center;gap:var(--s5);height:64px}
+.brand{font-family:var(--serif);font-size:1.25rem;letter-spacing:-.02em}
 .brand span{color:var(--accent)}
 .nav{margin-left:auto;display:flex;align-items:center;gap:var(--s5)}
-.nav a{font-size:.9375rem;font-weight:500;color:var(--text-muted);transition:color .18s var(--ease)}
+.nav a{font-size:.875rem;color:var(--text-muted);transition:color .18s var(--ease)}
 .nav a:hover{color:var(--text)}
-@media (max-width:640px){.nav a:not(.btn){display:none}}
-.theme-toggle{
-  display:grid;place-items:center;width:36px;height:36px;flex:none;
-  border:1px solid var(--border);border-radius:var(--r-md);
-  background:var(--bg-subtle);color:var(--text-muted);cursor:pointer;
-  transition:color .18s var(--ease),border-color .18s var(--ease);
-}
+@media (max-width:640px){.nav a{display:none}}
+.theme-toggle{display:grid;place-items:center;width:32px;height:32px;flex:none;
+  border:1px solid var(--border);background:transparent;color:var(--text-muted);cursor:pointer;
+  transition:color .18s var(--ease),border-color .18s var(--ease)}
 .theme-toggle:hover{color:var(--text);border-color:var(--border-strong)}
 .theme-toggle .moon{display:none}
-:root[data-theme="dark"] .theme-toggle .sun,
-:root:not([data-theme="light"]) .theme-toggle .sun{display:none}
-:root[data-theme="dark"] .theme-toggle .moon,
-:root:not([data-theme="light"]) .theme-toggle .moon{display:block}
-@media (prefers-color-scheme:light){
-  :root:not([data-theme="dark"]) .theme-toggle .sun{display:block}
-  :root:not([data-theme="dark"]) .theme-toggle .moon{display:none}
+:root[data-theme="dark"] .theme-toggle .sun{display:none}
+:root[data-theme="dark"] .theme-toggle .moon{display:block}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .theme-toggle .sun{display:none}
+  :root:not([data-theme="light"]) .theme-toggle .moon{display:block}
 }
 
 /* ── Buttons ──────────────────────────────────────────────────────────── */
-.btn{
-  display:inline-flex;align-items:center;gap:var(--s2);
-  padding:11px var(--s5);border-radius:var(--r-md);
-  font-size:.9375rem;font-weight:600;letter-spacing:-.01em;
-  border:1px solid transparent;cursor:pointer;
-  transition:background .18s var(--ease),border-color .18s var(--ease),transform .18s var(--ease);
-}
+.btn{display:inline-flex;align-items:center;gap:var(--s2);padding:10px var(--s5);
+  font-size:.9375rem;font-weight:600;border:1px solid var(--accent);cursor:pointer;
+  transition:background .18s var(--ease),color .18s var(--ease)}
 .btn-primary{background:var(--accent);color:var(--on-accent)}
-.btn-primary:hover{background:var(--accent-hover)}
+.btn-primary:hover{background:var(--accent-hover);border-color:var(--accent-hover)}
 .btn-ghost{border-color:var(--border-strong);color:var(--text)}
-.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
-.btn:active{transform:translateY(1px)}
-.btn svg{width:17px;height:17px;flex:none}
+.btn-ghost:hover{border-color:var(--text);}
+.btn svg{width:16px;height:16px;flex:none}
 
 /* ── Hero ─────────────────────────────────────────────────────────────── */
-.hero{padding:clamp(var(--s8),11vw,var(--s10)) 0 var(--s9)}
-.hero .wrap{
-  display:grid;gap:var(--s7);
-  grid-template-columns:minmax(0,1fr) minmax(0,300px);align-items:center;
-}
-@media (max-width:860px){
-  .hero .wrap{grid-template-columns:1fr}
-  .hero-mark{display:none}
-}
-.hero h1{margin-top:var(--s4)}
-.hero .lead{margin-top:var(--s5)}
-.hero-actions{display:flex;flex-wrap:wrap;gap:var(--s3);margin-top:var(--s6)}
-.hero-mark{justify-self:center;width:100%;max-width:280px;color:var(--accent)}
-.hero-mark .ring{fill:none;stroke:currentColor;stroke-width:1.5}
-.hero-mark .spin{transform-origin:center;animation:spin 90s linear infinite}
-.hero-mark .pulse{animation:pulse 3.2s ease-in-out infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.hero{padding:clamp(var(--s8),10vw,var(--s10)) 0 var(--s9)}
+.hero-meta{display:flex;justify-content:space-between;align-items:baseline;
+  padding-bottom:var(--s4);border-bottom:1px solid var(--border)}
+.hero .display{margin:var(--s6) 0 var(--s5)}
+.hero-rule{border:0;border-top:1px solid var(--border);margin-bottom:var(--s6)}
+.hero-actions{display:flex;flex-wrap:wrap;gap:var(--s3);margin-top:var(--s7)}
 
 /* ── Sections ─────────────────────────────────────────────────────────── */
-.section{padding:var(--s9) 0;border-top:1px solid var(--border)}
-.section-head{margin-bottom:var(--s7);max-width:var(--prose)}
-.section-head h2{margin-top:var(--s3)}
-.section-head p{margin-top:var(--s4)}
-.num{font-family:var(--mono);font-size:.72rem;font-weight:600;color:var(--text-faint);letter-spacing:.16em}
+.section{padding:var(--s9) 0}
+.section-head{display:grid;grid-template-columns:var(--col) 1fr;gap:var(--s5);
+  padding-top:var(--s5);border-top:1px solid var(--border);margin-bottom:var(--s7)}
+.section-head h2{margin-bottom:var(--s3)}
+.section-head p{max-width:var(--prose)}
+@media (max-width:720px){.section-head{grid-template-columns:1fr;gap:var(--s3)}}
 
-/* ── Chips ────────────────────────────────────────────────────────────── */
-.chip-group+.chip-group{margin-top:var(--s5)}
-.chip-label{
-  font-family:var(--mono);font-size:.68rem;font-weight:600;letter-spacing:.18em;
-  color:var(--text-faint);text-transform:uppercase;display:block;margin-bottom:var(--s3);
-}
-.chips{display:flex;flex-wrap:wrap;gap:var(--s2)}
-.chip{
-  padding:7px 14px;border-radius:var(--r-sm);font-size:.875rem;font-weight:500;
-  background:var(--bg-subtle);border:1px solid var(--border-strong);color:var(--text-muted);
-}
-.chip.is-core{
-  background:var(--accent-subtle);border-color:color-mix(in srgb,var(--accent) 55%,transparent);
-  color:var(--accent);font-weight:600;
+/* ── Spec rows: a mono label column and prose on the right ────────────── */
+.rows{border-top:1px solid var(--border)}
+.row{display:grid;grid-template-columns:var(--col) 1fr;gap:var(--s5);
+  padding:var(--s5) 0;border-bottom:1px solid var(--border)}
+.row .lbl{padding-top:3px}
+.row-body h3{margin-bottom:var(--s1)}
+.row-body p{font-size:.9375rem}
+.row-tech{font-size:1.0625rem;color:var(--text-muted)}
+.row-tech.is-core{color:var(--text);font-weight:600}
+.row-tech b{font-weight:inherit;color:inherit}
+@media (max-width:720px){
+  .row{grid-template-columns:1fr;gap:var(--s2)}
+  .row-tech{font-size:1rem}
 }
 
-/* ── Cards ────────────────────────────────────────────────────────────── */
-.grid{display:grid;gap:var(--s4);grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
-.card{
-  padding:var(--s5);border:1px solid var(--border);border-radius:var(--r-lg);
-  background:var(--bg-subtle);
-  transition:border-color .2s var(--ease),transform .2s var(--ease);
-}
-.card:hover{border-color:var(--border-strong);transform:translateY(-2px)}
-.card .icon{
-  width:38px;height:38px;display:grid;place-items:center;margin-bottom:var(--s4);
-  border-radius:var(--r-md);background:var(--accent-subtle);color:var(--accent);
-}
-.card .icon svg{width:19px;height:19px}
-.card h3{margin-bottom:var(--s2)}
-.card p{font-size:.9375rem}
-
-/* ── Practice list ────────────────────────────────────────────────────── */
-.practices{list-style:none;display:grid;gap:var(--s5);counter-reset:p}
-@media (min-width:760px){.practices{grid-template-columns:1fr 1fr;gap:var(--s5) var(--s7)}}
-.practices li{display:grid;grid-template-columns:auto 1fr;gap:var(--s4);counter-increment:p}
-.practices li::before{
-  content:counter(p,decimal-leading-zero);
-  font-family:var(--mono);font-size:.72rem;font-weight:600;color:var(--accent);
-  padding-top:5px;letter-spacing:.06em;
-}
-.practices strong{display:block;font-weight:600;margin-bottom:2px;letter-spacing:-.01em}
+/* ── Numbered practices ───────────────────────────────────────────────── */
+.practices{list-style:none;border-top:1px solid var(--border);counter-reset:p}
+.practices li{display:grid;grid-template-columns:var(--col) 1fr;gap:var(--s5);
+  padding:var(--s5) 0;border-bottom:1px solid var(--border);counter-increment:p}
+.practices li::before{content:counter(p,decimal-leading-zero);
+  font-family:var(--mono);font-size:.6875rem;font-weight:600;letter-spacing:.2em;
+  color:var(--accent);padding-top:5px}
+.practices strong{display:block;font-weight:600;margin-bottom:var(--s1)}
 .practices span{color:var(--text-muted);font-size:.9375rem}
+@media (max-width:720px){.practices li{grid-template-columns:1fr;gap:var(--s2)}}
 
-/* ── Contact ──────────────────────────────────────────────────────────── */
+/* ── Contact & footer ─────────────────────────────────────────────────── */
 .contact-actions{display:flex;flex-wrap:wrap;gap:var(--s3);margin-top:var(--s6)}
-
-/* ── Footer ───────────────────────────────────────────────────────────── */
-.site-footer{
-  border-top:1px solid var(--border);padding:var(--s6) 0;
-  display:flex;flex-wrap:wrap;gap:var(--s4);align-items:center;
-  font-size:.875rem;color:var(--text-faint);
-}
+.site-footer{border-top:1px solid var(--border);padding:var(--s6) 0;display:flex;
+  flex-wrap:wrap;gap:var(--s4);align-items:center;font-size:.8125rem;color:var(--text-faint)}
 .site-footer .links{margin-left:auto;display:flex;gap:var(--s4)}
 .site-footer a:hover{color:var(--text)}
 
-/* ── Reveal on scroll ─────────────────────────────────────────────────── */
-.js .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+/* ── Reveal (progressive enhancement: hidden only when JS is running) ── */
+.js .reveal{opacity:0;transform:translateY(10px);
+  transition:opacity .6s var(--ease),transform .6s var(--ease)}
 .js .reveal.is-in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .js .reveal{opacity:1;transform:none;transition:none}
-  .spin,.pulse{animation:none}
   *{transition-duration:.01ms!important}
 }
 </style>
@@ -233,14 +179,15 @@ p{color:var(--text-muted)}
   <div class="wrap">
     <a class="brand" href="#">Phuong<span>.</span></a>
     <nav class="nav" aria-label="Primary">
+      <a href="#stack">Stack</a>
       <a href="#work">Work</a>
-      <a href="#practice">How I work</a>
+      <a href="#practice">Approach</a>
       <a href="#contact">Contact</a>
-      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch colour theme">
-        <svg class="sun" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2M12 19.4v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M2.6 12h2M19.4 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>
-        <svg class="moon" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.2A8.2 8.2 0 0 1 9.8 4a8.2 8.2 0 1 0 10.2 10.2Z"/></svg>
-      </button>
     </nav>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch colour theme">
+      <svg class="sun" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2M12 19.4v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M2.6 12h2M19.4 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>
+      <svg class="moon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.2A8.2 8.2 0 0 1 9.8 4a8.2 8.2 0 1 0 10.2 10.2Z"/></svg>
+    </button>
   </div>
 </header>
 
@@ -248,63 +195,50 @@ p{color:var(--text-muted)}
 
   <section class="hero">
     <div class="wrap">
-      <div>
-        <p class="eyebrow">Full-stack developer</p>
-        <h1>Phuong</h1>
-        <div class="rule"></div>
-        <p class="lead">
-          Seven years building on <strong>.NET</strong> across healthcare, fintech, fund
-          management and education — backend systems, Angular front-ends, and cloud-native
-          delivery on Azure and AWS. Most of my attention goes to the parts that are easy to
-          get wrong: query performance, cache invalidation, and authorisation.
-        </p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#contact">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6.5h18v11H3z"/><path d="m3 7 9 6 9-6"/></svg>
-            Get in touch
-          </a>
-          <a class="btn btn-ghost" href="https://github.com/phuongfullstack">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48l-.01-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85l-.01 2.75c0 .26.18.58.69.48A10 10 0 0 0 12 2Z"/></svg>
-            GitHub
-          </a>
-        </div>
+      <div class="hero-meta">
+        <span class="lbl">Full-stack developer</span>
+        <span class="lbl is-accent">8 years</span>
       </div>
-      <svg class="hero-mark" viewBox="0 0 280 280" aria-hidden="true">
-        <g class="spin">
-          <rect class="ring" x="16" y="16" width="248" height="248" rx="60" opacity=".10"/>
-          <rect class="ring" x="45" y="45" width="190" height="190" rx="46" opacity=".16" transform="rotate(4 140 140)"/>
-          <rect class="ring" x="74" y="74" width="132" height="132" rx="32" opacity=".26" transform="rotate(8 140 140)"/>
-          <rect class="ring" x="103" y="103" width="74" height="74" rx="18" opacity=".42" transform="rotate(12 140 140)"/>
-        </g>
-        <circle class="pulse" cx="140" cy="140" r="7" fill="currentColor"/>
-      </svg>
+      <h1 class="display">Phuong</h1>
+      <hr class="hero-rule" />
+      <p class="lead">
+        Eight years building on <strong>.NET</strong> — backend systems, Angular front-ends,
+        and cloud-native delivery on Azure and AWS. Most of my attention goes to the parts
+        that are easy to get wrong: query performance, cache invalidation, and authorisation.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#contact">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6.5h18v11H3z"/><path d="m3 7 9 6 9-6"/></svg>
+          Get in touch
+        </a>
+        <a class="btn btn-ghost" href="https://github.com/phuongfullstack">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48l-.01-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85l-.01 2.75c0 .26.18.58.69.48A10 10 0 0 0 12 2Z"/></svg>
+          GitHub
+        </a>
+      </div>
     </div>
   </section>
 
   <section class="section" id="stack">
     <div class="wrap">
       <div class="section-head reveal">
-        <span class="num">01</span>
-        <h2>Stack</h2>
-        <p>What I reach for first, and what I reach for when the job calls for it.</p>
+        <span class="lbl">01 — Stack</span>
+        <div>
+          <h2>What I build with</h2>
+          <p>What I reach for first, and what I reach for when the job calls for it.</p>
+        </div>
       </div>
-      <div class="reveal">
-        <div class="chip-group">
-          <span class="chip-label">Core</span>
-          <div class="chips"><span class="chip is-core">C#</span><span class="chip is-core">.NET</span><span class="chip is-core">ASP.NET Core</span><span class="chip is-core">EF Core</span></div>
-        </div>
-        <div class="chip-group">
-          <span class="chip-label">Frontend</span>
-          <div class="chips"><span class="chip">Angular</span><span class="chip">TypeScript</span><span class="chip">Vue</span><span class="chip">Svelte</span><span class="chip">React</span><span class="chip">WPF</span></div>
-        </div>
-        <div class="chip-group">
-          <span class="chip-label">Data</span>
-          <div class="chips"><span class="chip">SQL Server</span><span class="chip">PostgreSQL</span><span class="chip">MongoDB</span><span class="chip">Cosmos DB</span><span class="chip">Redis</span></div>
-        </div>
-        <div class="chip-group">
-          <span class="chip-label">Cloud &amp; ops</span>
-          <div class="chips"><span class="chip">Azure</span><span class="chip">AWS</span><span class="chip">Docker</span><span class="chip">Terraform</span><span class="chip">GitHub Actions</span><span class="chip">RabbitMQ</span></div>
-        </div>
+      <div class="rows reveal">
+        <div class="row"><span class="lbl">Core</span>
+          <div class="row-tech is-core">C# · .NET · ASP.NET Core · EF Core</div></div>
+        <div class="row"><span class="lbl">Frontend</span>
+          <div class="row-tech">Angular · TypeScript · Vue · Svelte · React · WPF</div></div>
+        <div class="row"><span class="lbl">Data</span>
+          <div class="row-tech">SQL Server · PostgreSQL · MongoDB · Cosmos DB · Redis</div></div>
+        <div class="row"><span class="lbl">Cloud &amp; ops</span>
+          <div class="row-tech">Azure · AWS · Docker · Terraform · GitHub Actions · RabbitMQ</div></div>
+        <div class="row"><span class="lbl">Quality</span>
+          <div class="row-tech">xUnit · NUnit · Moq · Testcontainers · BenchmarkDotNet</div></div>
       </div>
     </div>
   </section>
@@ -312,41 +246,31 @@ p{color:var(--text-muted)}
   <section class="section" id="work">
     <div class="wrap">
       <div class="section-head reveal">
-        <span class="num">02</span>
-        <h2>What I work on</h2>
-        <p>Six areas that cover most of what a .NET application needs between an idea and production.</p>
+        <span class="lbl">02 — Work</span>
+        <div>
+          <h2>What I work on</h2>
+          <p>Six areas that cover most of what a .NET application needs between an idea and production.</p>
+        </div>
       </div>
-      <div class="grid">
-        <article class="card reveal">
-          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></div>
-          <h3>Frontend</h3>
-          <p>Angular by default, plus Vue, Svelte and React — wired to .NET APIs with typed clients from OpenAPI. WPF where the product is a desktop app.</p>
-        </article>
-        <article class="card reveal">
-          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01"/></svg></div>
-          <h3>Backend</h3>
-          <p>ASP.NET Core Web API and MVC on modern .NET — minimal APIs, middleware, background services, versioned contracts.</p>
-        </article>
-        <article class="card reveal">
-          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a4 4 0 0 1-.5-7.97 5.5 5.5 0 0 1 10.6-1.2A3.75 3.75 0 0 1 17.5 18Z"/><path d="M12 12v5M9.8 14.2 12 12l2.2 2.2"/></svg></div>
-          <h3>Cloud &amp; DevOps</h3>
-          <p>Docker multi-stage builds, GitHub Actions and Azure DevOps pipelines, deployed to App Service, Functions or Container Apps.</p>
-        </article>
-        <article class="card reveal">
-          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 18a8 8 0 1 1 16 0"/><path d="m12 14 4-4"/></svg></div>
-          <h3>Performance</h3>
-          <p>Index and query tuning from execution plans, killing N+1, caching that actually invalidates, numbers from BenchmarkDotNet.</p>
-        </article>
-        <article class="card reveal">
-          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 5 6v6c0 4.2 2.9 7.6 7 9 4.1-1.4 7-4.8 7-9V6Z"/><path d="m9.3 12 1.9 1.9 3.5-3.6"/></svg></div>
-          <h3>Security</h3>
-          <p>ASP.NET Core Identity, JWT and cookie auth, policy-based authorisation, and defence against XSS, CSRF, SQLi and IDOR.</p>
-        </article>
-        <article class="card reveal">
-          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v6.2L5.2 17A2 2 0 0 0 6.9 20h10.2a2 2 0 0 0 1.7-3L14 9.2V3Z"/><path d="M9 3h6M8.2 14h7.6"/></svg></div>
-          <h3>Testing</h3>
-          <p>xUnit and NUnit with Moq, integration tests through <code>WebApplicationFactory</code> and Testcontainers against a real database.</p>
-        </article>
+      <div class="rows reveal">
+        <div class="row"><span class="lbl">Backend</span><div class="row-body">
+          <h3>ASP.NET Core, EF Core, API design</h3>
+          <p>Minimal APIs, middleware and background services on modern .NET. EF Core against SQL Server and PostgreSQL — migrations, compiled queries, split queries. Versioned contracts with validation and ProblemDetails.</p></div></div>
+        <div class="row"><span class="lbl">Frontend</span><div class="row-body">
+          <h3>Angular first, and whatever the product needs</h3>
+          <p>Angular by default, plus Vue, Svelte and React, wired to .NET APIs with typed clients generated from OpenAPI. WPF where the product is a desktop application.</p></div></div>
+        <div class="row"><span class="lbl">Cloud &amp; DevOps</span><div class="row-body">
+          <h3>Azure and AWS, built and shipped repeatably</h3>
+          <p>Docker multi-stage builds, GitHub Actions and Azure DevOps pipelines, infrastructure described in Terraform, deployed to App Service, Functions or Container Apps.</p></div></div>
+        <div class="row"><span class="lbl">Performance</span><div class="row-body">
+          <h3>The part most people skip</h3>
+          <p>Index and query tuning driven by execution plans, killing N+1 before it reaches production, caching layers that actually invalidate, and numbers from BenchmarkDotNet rather than impressions.</p></div></div>
+        <div class="row"><span class="lbl">Security</span><div class="row-body">
+          <h3>Secure by default</h3>
+          <p>ASP.NET Core Identity, JWT and cookie auth, policy-based authorisation, and defence against XSS, CSRF, SQL injection and IDOR. Secrets in Key Vault, not in configuration files.</p></div></div>
+        <div class="row"><span class="lbl">Testing</span><div class="row-body">
+          <h3>So refactors aren't scary</h3>
+          <p>xUnit and NUnit with Moq for units, integration tests through <code>WebApplicationFactory</code> and Testcontainers against a real database, all wired into CI so a red build blocks the merge.</p></div></div>
       </div>
     </div>
   </section>
@@ -354,51 +278,31 @@ p{color:var(--text-muted)}
   <section class="section" id="practice">
     <div class="wrap">
       <div class="section-head reveal">
-        <span class="num">03</span>
-        <h2>How I work</h2>
-        <p>Engineering habits, not personality traits.</p>
+        <span class="lbl">03 — Approach</span>
+        <div>
+          <h2>How I work</h2>
+          <p>Engineering habits, not personality traits.</p>
+        </div>
       </div>
       <ul class="practices reveal">
         <li><div><strong>Measure before optimising</strong><span>An execution plan or a benchmark comes before the rewrite. "Feels slow" is a starting point, not a diagnosis.</span></div></li>
         <li><div><strong>Small changes, green pipeline</strong><span>Focused pull requests with tests that run in CI, so a red build stops a regression instead of a reviewer having to catch it.</span></div></li>
         <li><div><strong>Boring technology where it counts</strong><span>Proven framework features over clever abstractions in the parts of a system that are expensive to get wrong.</span></div></li>
         <li><div><strong>Write down the why</strong><span>Comments and commit messages explain the reasoning, because the code already explains the what.</span></div></li>
-        <li><div><strong>Secure by default</strong><span>Parameterise every query, authorise every handler, keep secrets in Key Vault — not as a hardening pass at the end.</span></div></li>
+        <li><div><strong>Secure by default</strong><span>Parameterise every query, authorise every handler, keep secrets out of configuration — not as a hardening pass at the end.</span></div></li>
         <li><div><strong>Leave it runnable</strong><span>A README that works from a clean clone, and deployment that survives someone else pressing the button.</span></div></li>
       </ul>
     </div>
   </section>
 
-  <!--
-  Selected work — điền 2–4 dự án thật vào đây rồi bỏ comment.
-  Mỗi card cần: tên, một câu về vấn đề nó giải quyết, stack, và link.
-  Để nguyên trong comment nếu chưa có gì: section trống còn tệ hơn không có.
-
-  <section class="section" id="projects">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <span class="num">04</span>
-        <h2>Selected work</h2>
-      </div>
-      <div class="grid">
-        <a class="card reveal" href="https://github.com/phuongfullstack/REPO-NAME">
-          <h3>Repo name</h3>
-          <p>Một câu mô tả vấn đề nó giải quyết.</p>
-          <div class="chips" style="margin-top:var(--s4)">
-            <span class="chip">ASP.NET Core</span><span class="chip">EF Core</span><span class="chip">Azure</span>
-          </div>
-        </a>
-      </div>
-    </div>
-  </section>
-  -->
-
   <section class="section" id="contact">
     <div class="wrap">
       <div class="section-head reveal">
-        <span class="num">04</span>
-        <h2>Let's talk</h2>
-        <p>Happy to talk about .NET architecture, a query that got slow, or a project you're planning.</p>
+        <span class="lbl">04 — Contact</span>
+        <div>
+          <h2>Let's talk</h2>
+          <p>Happy to talk about .NET architecture, a query that got slow, or a project you're planning.</p>
+        </div>
       </div>
       <div class="contact-actions reveal">
         <a class="btn btn-primary" href="mailto:nhatphuongb1@gmail.com?subject=Hello%20from%20your%20site">
@@ -427,8 +331,6 @@ p{color:var(--text-muted)}
 <script>
 (function () {
   'use strict';
-
-  // Theme: follow the system unless the visitor has chosen otherwise.
   var root = document.documentElement;
   try {
     var saved = localStorage.getItem('theme');
@@ -445,13 +347,11 @@ p{color:var(--text-muted)}
 
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Hairline under the header only once the page has scrolled.
   var header = document.getElementById('siteHeader');
   var onScroll = function () { header.dataset.stuck = window.scrollY > 8; };
   addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
-  // Reveal on scroll, skipped entirely when the visitor asked for less motion.
   var items = document.querySelectorAll('.reveal');
   if (matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
     items.forEach(function (el) { el.classList.add('is-in'); });
@@ -463,11 +363,8 @@ p{color:var(--text-muted)}
       entry.target.classList.add('is-in');
       io.unobserve(entry.target);
     });
-  }, { rootMargin: '0px 0px -8% 0px', threshold: .08 });
-  items.forEach(function (el, i) {
-    el.style.transitionDelay = (i % 6) * 55 + 'ms';
-    io.observe(el);
-  });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: .05 });
+  items.forEach(function (el) { io.observe(el); });
 })();
 </script>
 </body>

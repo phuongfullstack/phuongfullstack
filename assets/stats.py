@@ -15,7 +15,7 @@ import sys
 import urllib.error
 import urllib.request
 
-from generate import MONO, R, SANS, T, card, esc
+from generate import esc, label, rule, sheet
 
 API = "https://api.github.com/graphql"
 
@@ -130,70 +130,58 @@ def compact(n):
 
 
 def render_stats(data, out):
-    """A KPI row — five headline numbers. Not a chart: five magnitudes with no
-    shared scale have nothing to compare against each other."""
-    W, PAD = 1280, 56
+    """A KPI row. Five headline numbers with no shared scale have nothing to
+    compare against each other, so this is figures, not a chart."""
+    W, PAD = 1280, 64
     tiles = [(compact(data["repos"]), "REPOSITORIES"),
              (compact(data["stars"]), "TOTAL STARS"),
              (compact(data["commits"]), "COMMITS / YEAR"),
              (compact(data["prs"]), "PULL REQUESTS"),
              (compact(data["followers"]), "FOLLOWERS")]
     col = (W - PAD * 2) / len(tiles)
-    H = 176
-    parts = [f'    <text x="{PAD}" y="{PAD + 4}" font-family="{MONO}" font-size="11.5"'
-             f' font-weight="600" fill="{T["text-faint"]}" letter-spacing="2.6">GITHUB</text>']
-    for i, (value, label) in enumerate(tiles):
+    H = 206
+    parts = [label(PAD, 40, "GITHUB"), rule(PAD, W - PAD, 58)]
+    for i, (value, lab) in enumerate(tiles):
         x = PAD + col * i
         parts.append(
-            f'    <text x="{x:.0f}" y="{H - 62}" font-family="{SANS}" font-size="40"'
-            f' font-weight="700" fill="{T["text"]}" letter-spacing="-1.4">{esc(value)}</text>'
-            f'<text x="{x:.0f}" y="{H - 38}" font-family="{MONO}" font-size="11"'
-            f' font-weight="600" fill="{T["text-faint"]}" letter-spacing="1.8">{esc(label)}</text>')
-        if i:
-            parts.append(f'    <rect x="{x - 24:.0f}" y="{H - 104}" width="1" height="56"'
-                         f' fill="{T["border"]}"/>')
+            f'    <text class="serif acc" x="{x:.0f}" y="132" font-size="46"'
+            f' letter-spacing="-1.6">{esc(value)}</text>'
+            f'<text class="mono lbl fai" x="{x:.0f}" y="158">{esc(lab)}</text>')
+    parts.append(rule(PAD, W - PAD, H - 32))
     alt = "GitHub statistics: " + ", ".join(f"{v} {l.lower()}" for v, l in tiles)
-    out.write_text(card(W, H, "\n".join(parts), label=alt))
+    out.write_text(sheet(W, H, "\n".join(parts), label=alt))
 
 
 def render_languages(data, out):
-    """Ranked horizontal bars off one baseline. The reader's job here is to
-    compare magnitudes, which a common baseline does far better than a stacked
-    bar; one series carries its identity in the row label, so a single accent
-    is correct and no legend is needed. Colouring by rank would repaint every
-    bar whenever the ranking shifts."""
-    W, PAD = 1280, 56
+    """Ranked bars off one baseline. The reader's job is comparing magnitudes,
+    which a common baseline does far better than a stacked bar; one series
+    carries its identity in the row label, so a single accent is right and no
+    legend is needed. Colouring by rank would repaint every bar as the ranking
+    shifts."""
+    W, PAD = 1280, 64
     rows = data["languages"]
     total = sum(size for _, size in rows) or 1
-    label_w, pct_w, pitch, bar_h = 168, 62, 34, 14
-    base_x = PAD + label_w
+    col, pct_w, pitch, bar_h = 210, 70, 40, 10
+    base_x = PAD + col
     track = W - PAD - pct_w - base_x
-    top = PAD + 34
-    H = top + len(rows) * pitch + PAD - (pitch - bar_h) + 6
+    top = 96
+    H = top + len(rows) * pitch + 28
 
-    parts = [f'    <text x="{PAD}" y="{PAD + 4}" font-family="{MONO}" font-size="11.5"'
-             f' font-weight="600" fill="{T["text-faint"]}" letter-spacing="2.6">MOST USED LANGUAGES</text>']
+    parts = [label(PAD, 40, "MOST USED LANGUAGES"), rule(PAD, W - PAD, 58)]
     biggest = rows[0][1] if rows else 1
     for i, (name, size) in enumerate(rows):
         y = top + i * pitch
         pct = size / total * 100
-        w = max(4.0, track * (size / biggest))
-        r = min(4.0, w)
-        # square where it meets the baseline, rounded at the data end
-        path = (f"M{base_x} {y} H{base_x + w - r:.1f} A{r} {r} 0 0 1 {base_x + w:.1f} {y + r:.1f}"
-                f" V{y + bar_h - r:.1f} A{r} {r} 0 0 1 {base_x + w - r:.1f} {y + bar_h}"
-                f" H{base_x} Z")
+        w = max(3.0, track * (size / biggest))
         parts.append(
-            f'    <text x="{PAD}" y="{y + bar_h - 2}" font-family="{SANS}" font-size="13.5"'
-            f' font-weight="500" fill="{T["text"]}">{esc(name)}</text>'
-            f'<path d="{path}" fill="{T["accent"]}"/>'
-            f'<text x="{base_x + w + 12:.1f}" y="{y + bar_h - 2}" font-family="{MONO}"'
-            f' font-size="12" font-weight="500" fill="{T["text-muted"]}">{pct:.1f}%</text>')
-
+            f'    <text class="sans ink" x="{PAD}" y="{y + bar_h}" font-size="14">{esc(name)}</text>'
+            f'<rect class="acc" x="{base_x}" y="{y}" width="{w:.1f}" height="{bar_h}"/>'
+            f'<text class="mono mut" x="{base_x + w + 14:.1f}" y="{y + bar_h}"'
+            f' font-size="12">{pct:.1f}%</text>')
+    parts.append(rule(PAD, W - PAD, H - 18))
     alt = "Most used languages: " + ", ".join(
         f"{n} {s / total * 100:.1f}%" for n, s in rows)
-    out.write_text(card(W, round(H), "\n".join(parts), label=alt))
-
+    out.write_text(sheet(W, round(H), "\n".join(parts), label=alt))
 
 
 MONTHS = ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"]
@@ -201,22 +189,18 @@ WEEKDAYS = ["S", "M", "T", "W", "T", "F", "S"]
 
 
 def render_activity(data, out):
-    """Two panels on one card.
-
-    Left: contributions over the last twelve months. The job is a trend over
-    time, so it is a line with a wash of area underneath — one series, so no
-    legend, and only the peak is labelled rather than every point.
-
-    Right: the same year folded onto the weekdays. That job is comparing
-    magnitudes, so it is columns off a common baseline."""
-    W, PAD = 1280, 56
-    H = 300
+    """Two panels. Left: contributions over the last twelve months — a trend
+    over time, so a line with a wash beneath, and only the peak labelled.
+    Right: the same year folded onto weekdays — a magnitude comparison, so
+    columns off a common baseline."""
+    W, PAD = 1280, 64
+    H = 292
     days = data.get("calendar") or []
     if not days:
-        out.write_text(card(W, 120,
-            f'    <text x="{PAD}" y="70" font-family="{SANS}" font-size="15"'
-            f' fill="{T["text-faint"]}">No contribution data available.</text>',
-            label="No contribution data available"))
+        body = (label(PAD, 40, "ACTIVITY") + "\n"
+                + f'    <text class="sans fai" x="{PAD}" y="82" font-size="15">'
+                  f'No contribution data available.</text>')
+        out.write_text(sheet(W, 120, body, label="No contribution data available"))
         return
 
     buckets, by_weekday = {}, [0] * 7
@@ -227,69 +211,58 @@ def render_activity(data, out):
     months = [ym for ym, _ in ordered]
     by_month = [v for _, v in ordered]
 
-    split = 760
-    plot_top, plot_bottom = PAD + 52, H - PAD - 26
+    split = 780
+    plot_top, plot_bottom = 106, H - 56
     plot_h = plot_bottom - plot_top
 
-    parts = [
-        f'    <text x="{PAD}" y="{PAD + 4}" font-family="{MONO}" font-size="11.5"'
-        f' font-weight="600" fill="{T["text-faint"]}" letter-spacing="2.6">CONTRIBUTIONS / LAST 12 MONTHS</text>',
-        f'    <text x="{split + 40}" y="{PAD + 4}" font-family="{MONO}" font-size="11.5"'
-        f' font-weight="600" fill="{T["text-faint"]}" letter-spacing="2.6">BY WEEKDAY</text>',
-    ]
+    parts = [label(PAD, 40, "CONTRIBUTIONS / LAST 12 MONTHS"),
+             label(split + 40, 40, "BY WEEKDAY"),
+             rule(PAD, W - PAD, 58)]
 
-    # ── left panel: trend ────────────────────────────────────────────────
     peak = max(by_month) or 1
     left, right = PAD, split - 40
     step = (right - left) / max(1, len(by_month) - 1)
-    pts = [(left + i * step, plot_bottom - (v / peak) * plot_h) for i, v in enumerate(by_month)]
-    line = " ".join(("M" if i == 0 else "L") + f"{x:.1f} {y:.1f}" for i, (x, y) in enumerate(pts))
+    pts = [(left + i * step, plot_bottom - (v / peak) * plot_h)
+           for i, v in enumerate(by_month)]
+    line = " ".join(("M" if i == 0 else "L") + f"{x:.1f} {y:.1f}"
+                    for i, (x, y) in enumerate(pts))
     area = line + f" L{pts[-1][0]:.1f} {plot_bottom} L{pts[0][0]:.1f} {plot_bottom} Z"
-
-    parts.append(f'    <path d="{area}" fill="{T["accent"]}" fill-opacity="0.10"/>')
-    parts.append(f'    <line x1="{left}" y1="{plot_bottom}" x2="{right:.1f}" y2="{plot_bottom}"'
-                 f' stroke="{T["border"]}" stroke-width="1"/>')
-    parts.append(f'    <path d="{line}" fill="none" stroke="{T["accent"]}" stroke-width="2"'
+    parts.append(f'    <path class="acc" d="{area}" fill-opacity="0.10"/>')
+    parts.append(rule(left, right, plot_bottom))
+    parts.append(f'    <path class="accs" d="{line}" stroke-width="2"'
                  f' stroke-linejoin="round" stroke-linecap="round"/>')
 
     hi = by_month.index(peak)
     hx, hy = pts[hi]
-    parts.append(f'    <circle cx="{hx:.1f}" cy="{hy:.1f}" r="4.5" fill="{T["accent"]}"'
-                 f' stroke="{T["bg"]}" stroke-width="2"/>')
-    parts.append(f'    <text x="{hx:.1f}" y="{hy - 14:.1f}" text-anchor="middle"'
-                 f' font-family="{MONO}" font-size="12" font-weight="600"'
-                 f' fill="{T["text"]}">{peak}</text>')
+    parts.append(f'    <circle class="acc" cx="{hx:.1f}" cy="{hy:.1f}" r="3.5"/>')
+    parts.append(f'    <text class="mono ink" x="{hx:.1f}" y="{hy - 12:.1f}"'
+                 f' text-anchor="middle" font-size="12">{peak}</text>')
     for i, (x, _) in enumerate(pts):
-        initial = MONTHS[int(months[i][5:7]) - 1]
-        parts.append(f'    <text x="{x:.1f}" y="{plot_bottom + 20}" text-anchor="middle"'
-                     f' font-family="{MONO}" font-size="11" fill="{T["text-faint"]}">{initial}</text>')
+        parts.append(f'    <text class="mono fai" x="{x:.1f}" y="{plot_bottom + 22}"'
+                     f' text-anchor="middle" font-size="11">'
+                     f'{MONTHS[int(months[i][5:7]) - 1]}</text>')
 
-    # ── right panel: weekday columns ─────────────────────────────────────
     wmax = max(by_weekday) or 1
     wleft, wright = split + 40, W - PAD
     slot = (wright - wleft) / 7
-    bar_w = min(24.0, slot - 14)
+    bar_w = min(22.0, slot - 16)
     for i, v in enumerate(by_weekday):
-        h = max(3.0, (v / wmax) * plot_h)
+        h = max(2.0, (v / wmax) * plot_h)
         x = wleft + slot * i + (slot - bar_w) / 2
-        y = plot_bottom - h
-        r = min(4.0, h)
-        path = (f"M{x:.1f} {plot_bottom} V{y + r:.1f} A{r} {r} 0 0 1 {x + r:.1f} {y:.1f}"
-                f" H{x + bar_w - r:.1f} A{r} {r} 0 0 1 {x + bar_w:.1f} {y + r:.1f}"
-                f" V{plot_bottom} Z")
-        peak_day = v == wmax
-        parts.append(f'    <path d="{path}" fill="{T["accent"]}"'
-                     f' fill-opacity="{1 if peak_day else 0.42}"/>')
-        parts.append(f'    <text x="{x + bar_w/2:.1f}" y="{plot_bottom + 20}" text-anchor="middle"'
-                     f' font-family="{MONO}" font-size="11" fill="{T["text-faint"]}">{WEEKDAYS[i]}</text>')
-    parts.append(f'    <line x1="{wleft:.1f}" y1="{plot_bottom}" x2="{wright}" y2="{plot_bottom}"'
-                 f' stroke="{T["border"]}" stroke-width="1"/>')
+        parts.append(
+            f'    <rect class="acc" x="{x:.1f}" y="{plot_bottom - h:.1f}"'
+            f' width="{bar_w}" height="{h:.1f}"'
+            f' fill-opacity="{1 if v == wmax else 0.38}"/>'
+            f'<text class="mono fai" x="{x + bar_w/2:.1f}" y="{plot_bottom + 22}"'
+            f' text-anchor="middle" font-size="11">{WEEKDAYS[i]}</text>')
+    parts.append(rule(wleft, wright, plot_bottom))
+    parts.append(rule(PAD, W - PAD, H - 22))
 
     alt = ("Contributions by month: "
            + ", ".join(f"{months[i]} {v}" for i, v in enumerate(by_month))
            + ". By weekday: "
            + ", ".join(f"{WEEKDAYS[i]} {v}" for i, v in enumerate(by_weekday)))
-    out.write_text(card(W, H, "\n".join(parts), label=alt))
+    out.write_text(sheet(W, H, "\n".join(parts), label=alt))
 
 
 def main():

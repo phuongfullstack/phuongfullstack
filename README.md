@@ -1,14 +1,12 @@
-<img src="assets/hero.svg" width="100%" alt="Phuong — full-stack developer. ASP.NET Core, Angular, EF Core. Azure, AWS, Docker, Terraform." />
+<img src="assets/hero.svg" width="100%" alt="Phuong — full-stack developer, 8 years. ASP.NET Core, Angular, EF Core. Azure, AWS, Docker, Terraform." />
 
-Full-stack engineer, seven years on **.NET** — backend systems, Angular front-ends, and cloud-native delivery on Azure and AWS.
+Full-stack engineer, eight years on **.NET** — backend systems, Angular front-ends, and cloud-native delivery on Azure and AWS.
 
-<img src="assets/experience.svg" width="100%" alt="Seven years, fifteen projects, four companies, largest team twelve. Timeline: Enclave 2019-2021, Axon Active 2021-2022, FPT Software 2022-2024, Propel Ventures 2024-2025. Domains: healthcare, fintech, fund management, education, property tax, real estate, gaming." />
-
-<img src="assets/stack.svg" width="100%" alt="Core: C#, .NET, ASP.NET Core, EF Core. Frontend: Angular, TypeScript, Vue, Svelte, React, WPF. Data: SQL Server, PostgreSQL, MongoDB, Cosmos DB, Redis. Cloud and ops: Azure, AWS, Docker, Terraform, GitHub Actions, RabbitMQ." />
+<img src="assets/stack.svg" width="100%" alt="Core: C#, .NET, ASP.NET Core, EF Core. Frontend: Angular, TypeScript, Vue, Svelte, React, WPF. Data: SQL Server, PostgreSQL, MongoDB, Cosmos DB, Redis. Cloud and ops: Azure, AWS, Docker, Terraform, GitHub Actions, RabbitMQ. Quality: xUnit, NUnit, Moq, Testcontainers, BenchmarkDotNet." />
 
 ## How I build it
 
-<img src="assets/architecture.svg" width="100%" alt="Request path from an Angular SPA through ASP.NET Core to EF Core and SQL Server, with Redis as a cache aside the application. Delivery: GitHub Actions builds, tests and scans, producing a container image deployed to Azure Container Apps." />
+<img src="assets/architecture.svg" width="100%" alt="Request path: Angular SPA to ASP.NET Core to EF Core to SQL Server, with Redis cache-aside and RabbitMQ workers alongside the application. Delivery: GitHub Actions builds, tests and scans into a container image deployed to Azure Container Apps with Terraform." />
 
 ## What I work on
 

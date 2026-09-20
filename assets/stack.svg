@@ -1,47 +1,36 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 462" width="1280" height="462" role="img" aria-label="CORE: C#, .NET, ASP.NET Core, EF Core; FRONTEND: Angular, TypeScript, Vue, Svelte, React, WPF; DATA: SQL Server, PostgreSQL, MongoDB, Cosmos DB, Redis; CLOUD &amp; OPS: Azure, AWS, Docker, Terraform, GitHub Actions, RabbitMQ">
-  <defs>
-    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-      <path d="M40 0 L0 0 0 40" fill="none" stroke="#26262F" stroke-width="1" opacity="0.55"/>
-    </pattern>
-    <radialGradient id="glow" cx="0.82" cy="0.12" r="0.65">
-      <stop offset="0%" stop-color="#A78BFA" stop-opacity="0.20"/>
-      <stop offset="60%" stop-color="#A78BFA" stop-opacity="0.04"/>
-      <stop offset="100%" stop-color="#A78BFA" stop-opacity="0"/>
-    </radialGradient>
-    <clipPath id="cardclip">
-      <rect x="0" y="0" width="1280" height="462" rx="20"/>
-    </clipPath>
-  </defs>
-  <g clip-path="url(#cardclip)">
-    <rect width="1280" height="462" fill="#0C0C10"/>
-    <rect width="1280" height="462" fill="url(#grid)"/>
-    <rect width="1280" height="462" fill="url(#glow)"/>
-    <text x="56" y="66" font-family="JetBrains Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,DejaVu Sans Mono,monospace" font-size="11.5" font-weight="600" fill="#6E6E80" letter-spacing="2.6">CORE</text>
-    <g><rect x="56.0" y="82" width="49.1" height="36" rx="8" fill="#1E1533" stroke="#A78BFA" stroke-opacity="0.55" stroke-width="1"/><text x="80.5" y="104.9" text-anchor="middle" font-family="Inter,Segoe UI,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,sans-serif" font-size="14" font-weight="600" fill="#C4B5FD">C#</text></g>
-    <g><rect x="114.1" y="82" width="64.2" height="36" rx="8" fill="#1E1533" stroke="#A78BFA" stroke-opacity="0.55" stroke-width="1"/><text x="146.2" y="104.9" text-anchor="middle" font-family="Inter,Segoe UI,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,sans-serif" font-size="14" font-weight="600" fill="#C4B5FD">.NET</text></g>
-    <g><rect x="187.3" y="82" width="124.7" height="36" rx="8" fill="#1E1533" stroke="#A78BFA" stroke-opacity="0.55" stroke-width="1"/><text x="249.7" y="104.9" text-anchor="middle" font-family="Inter,Segoe UI,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,sans-serif" font-size="14" font-weight="600" fill="#C4B5FD">ASP.NET Core</text></g>
-    <g><rect x="321.0" y="82" width="86.9" height="36" rx="8" fill="#1E1533" stroke="#A78BFA" stroke-opacity="0.55" stroke-width="1"/><text x="364.4" y="104.9" text-anchor="middle" font-family="Inter,Segoe UI,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,sans-serif" font-size="14" font-weight="600" fill="#C4B5FD">EF Core</text></g>
-    <text x="56" y="162" font-family="JetBrains Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,DejaVu Sans Mono,monospace" font-size="11.5" font-weight="600" fill="#6E6E80" letter-spacing="2.6">FRONTEND</text>
-    <g><rect x="56.0" y="178" width="86.9" height="36" rx="8" fill="#16161D" stroke="#3A3A47" stroke-opacity="1" stroke-width="1"/><text x="99.5" y="200.9" text-anchor="middle" font-family="Inter,Segoe UI,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,sans-serif" font-size="14" font-weight="500" fill="#9E9EB0">Angular</text></g>
-    <g><rect x="151.9" y="178" width="109.6" height="36" rx="8" fill="#16161D" stroke="#3A3A47" stroke-opacity="1" stroke-width="1"/><text x="206.7" y="200.9" text-anchor="middle" font-family="Inter,Segoe UI,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,sans-serif" font-size="14" font-weight="500" fill="#9E9EB0">TypeScript</text></g>
-    <g><rect x="270.5" y="178" width="56.7" height="36" rx="8" fill="#16161D" stroke="#3A3A47" stroke-opacity="1" stroke-width="1"/><text x="298.9" y="200.9" text-anchor="middle" font-family="Inter,Segoe UI,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,sans-serif" font-size="14" font-weight="500" fill="#9E9EB0">Vue</text></g>
-    <g><rect x="336.2" y="178" width="79.4" height="36" rx="8" fill="#16161D" stroke="#3A3A47" stroke-opacity="1" stroke-width="1"/><text x="375.9" y="200.9" text-anchor="middle" font-family="Inter,Segoe UI,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,sans-serif" font-size="14" font-weight="500" fill="#9E9EB0">Svelte</text></g>
-    <g><rect x="424.6" y="178" width="71.8" height="36" rx="8" fill="#16161D" stroke="#3A3A47" stroke-opacity="1" stroke-width="1"/><text x="460.5" y="200.9" text-anchor="middle" font-family="Inter,Segoe UI,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,sans-serif" font-size="14" font-weight="500" fill="#9E9EB0">React</text></g>
-    <g><rect x="505.4" y="178" width="56.7" height="36" rx="8" fill="#16161D" stroke="#3A3A47" stroke-opacity="1" stroke-width="1"/><text x="533.8" y="200.9" text-anchor="middle" font-family="Inter,Segoe UI,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,sans-serif" font-size="14" font-weight="500" fill="#9E9EB0">WPF</text></g>
-    <text x="56" y="258" font-family="JetBrains Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,DejaVu Sans Mono,monospace" font-size="11.5" font-weight="600" fill="#6E6E80" letter-spacing="2.6">DATA</text>
-    <g><rect x="56.0" y="274" width="109.6" height="36" rx="8" fill="#16161D" stroke="#3A3A47" stroke-opacity="1" stroke-width="1"/><text x="110.8" y="296.9" text-anchor="middle" font-family="Inter,Segoe UI,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,sans-serif" font-size="14" font-weight="500" fill="#9E9EB0">SQL Server</text></g>
-    <g><rect x="174.6" y="274" width="109.6" height="36" rx="8" fill="#16161D" stroke="#3A3A47" stroke-opacity="1" stroke-width="1"/><text x="229.4" y="296.9" text-anchor="middle" font-family="Inter,Segoe UI,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,sans-serif" font-size="14" font-weight="500" fill="#9E9EB0">PostgreSQL</text></g>
-    <g><rect x="293.2" y="274" width="86.9" height="36" rx="8" fill="#16161D" stroke="#3A3A47" stroke-opacity="1" stroke-width="1"/><text x="336.6" y="296.9" text-anchor="middle" font-family="Inter,Segoe UI,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,sans-serif" font-size="14" font-weight="500" fill="#9E9EB0">MongoDB</text></g>
-    <g><rect x="389.1" y="274" width="102.0" height="36" rx="8" fill="#16161D" stroke="#3A3A47" stroke-opacity="1" stroke-width="1"/><text x="440.1" y="296.9" text-anchor="middle" font-family="Inter,Segoe UI,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,sans-serif" font-size="14" font-weight="500" fill="#9E9EB0">Cosmos DB</text></g>
-    <g><rect x="500.1" y="274" width="71.8" height="36" rx="8" fill="#16161D" stroke="#3A3A47" stroke-opacity="1" stroke-width="1"/><text x="536.0" y="296.9" text-anchor="middle" font-family="Inter,Segoe UI,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,sans-serif" font-size="14" font-weight="500" fill="#9E9EB0">Redis</text></g>
-    <text x="56" y="354" font-family="JetBrains Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,DejaVu Sans Mono,monospace" font-size="11.5" font-weight="600" fill="#6E6E80" letter-spacing="2.6">CLOUD &amp; OPS</text>
-    <g><rect x="56.0" y="370" width="71.8" height="36" rx="8" fill="#16161D" stroke="#3A3A47" stroke-opacity="1" stroke-width="1"/><text x="91.9" y="392.9" text-anchor="middle" font-family="Inter,Segoe UI,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,sans-serif" font-size="14" font-weight="500" fill="#9E9EB0">Azure</text></g>
-    <g><rect x="136.8" y="370" width="56.7" height="36" rx="8" fill="#16161D" stroke="#3A3A47" stroke-opacity="1" stroke-width="1"/><text x="165.2" y="392.9" text-anchor="middle" font-family="Inter,Segoe UI,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,sans-serif" font-size="14" font-weight="500" fill="#9E9EB0">AWS</text></g>
-    <g><rect x="202.5" y="370" width="79.4" height="36" rx="8" fill="#16161D" stroke="#3A3A47" stroke-opacity="1" stroke-width="1"/><text x="242.2" y="392.9" text-anchor="middle" font-family="Inter,Segoe UI,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,sans-serif" font-size="14" font-weight="500" fill="#9E9EB0">Docker</text></g>
-    <g><rect x="290.9" y="370" width="102.0" height="36" rx="8" fill="#16161D" stroke="#3A3A47" stroke-opacity="1" stroke-width="1"/><text x="341.9" y="392.9" text-anchor="middle" font-family="Inter,Segoe UI,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,sans-serif" font-size="14" font-weight="500" fill="#9E9EB0">Terraform</text></g>
-    <g><rect x="401.9" y="370" width="139.8" height="36" rx="8" fill="#16161D" stroke="#3A3A47" stroke-opacity="1" stroke-width="1"/><text x="471.8" y="392.9" text-anchor="middle" font-family="Inter,Segoe UI,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,sans-serif" font-size="14" font-weight="500" fill="#9E9EB0">GitHub Actions</text></g>
-    <g><rect x="550.7" y="370" width="94.5" height="36" rx="8" fill="#16161D" stroke="#3A3A47" stroke-opacity="1" stroke-width="1"/><text x="598.0" y="392.9" text-anchor="middle" font-family="Inter,Segoe UI,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,sans-serif" font-size="14" font-weight="500" fill="#9E9EB0">RabbitMQ</text></g>
-  </g>
-  <rect x="0.5" y="0.5" width="1279" height="461" rx="20"
-        fill="none" stroke="#26262F" stroke-width="1"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 452" width="1280" height="452" role="img" aria-label="CORE: C#, .NET, ASP.NET Core, EF Core; FRONTEND: Angular, TypeScript, Vue, Svelte, React, WPF; DATA: SQL Server, PostgreSQL, MongoDB, Cosmos DB, Redis; CLOUD &amp; OPS: Azure, AWS, Docker, Terraform, GitHub Actions, RabbitMQ; QUALITY: xUnit, NUnit, Moq, Testcontainers, BenchmarkDotNet">
+  <style>
+    svg { --bg:#FFFFFF; --border:#E6E4DE; --border-strong:#CFCCC4; --text:#111111; --text-muted:#56534D; --text-faint:#8C887F; --accent:#5B2BD9; }
+    @media (prefers-color-scheme: dark) { svg { --bg:#0E0E11; --border:#2A2A30; --border-strong:#3D3D45; --text:#F2F1EE; --text-muted:#A3A099; --text-faint:#736F68; --accent:#A78BFA; } }
+    .bg   { fill: var(--bg); }
+    .ink  { fill: var(--text); }
+    .mut  { fill: var(--text-muted); }
+    .fai  { fill: var(--text-faint); }
+    .acc  { fill: var(--accent); }
+    .hair { stroke: var(--border); stroke-width: 1; fill: none; }
+    .edge { stroke: var(--border-strong); stroke-width: 1; fill: none; }
+    .accs { stroke: var(--accent); stroke-width: 1.5; fill: none; }
+    .serif { font-family: ui-serif,Georgia,Iowan Old Style,Palatino Linotype,Times New Roman,serif; }
+    .sans  { font-family: Inter,-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif; }
+    .mono  { font-family: ui-monospace,SFMono-Regular,Menlo,Consolas,DejaVu Sans Mono,monospace; }
+    .lbl  { font-size: 11px; font-weight: 600; letter-spacing: 2.4px; }
+  </style>
+  <rect class="bg" width="1280" height="452"/>
+    <text class="mono lbl fai" x="64" y="40">STACK</text>
+    <line class="hair" x1="64" y1="78" x2="1216" y2="78"/>
+    <text class="mono lbl fai" x="64" y="112">CORE</text>
+    <text class="sans ink" x="274" y="114" font-size="17" font-weight="600">C#  ·  .NET  ·  ASP.NET Core  ·  EF Core</text>
+    <line class="hair" x1="64" y1="140" x2="1216" y2="140"/>
+    <text class="mono lbl fai" x="64" y="174">FRONTEND</text>
+    <text class="sans mut" x="274" y="176" font-size="17" font-weight="400">Angular  ·  TypeScript  ·  Vue  ·  Svelte  ·  React  ·  WPF</text>
+    <line class="hair" x1="64" y1="202" x2="1216" y2="202"/>
+    <text class="mono lbl fai" x="64" y="236">DATA</text>
+    <text class="sans mut" x="274" y="238" font-size="17" font-weight="400">SQL Server  ·  PostgreSQL  ·  MongoDB  ·  Cosmos DB  ·  Redis</text>
+    <line class="hair" x1="64" y1="264" x2="1216" y2="264"/>
+    <text class="mono lbl fai" x="64" y="298">CLOUD &amp; OPS</text>
+    <text class="sans mut" x="274" y="300" font-size="17" font-weight="400">Azure  ·  AWS  ·  Docker  ·  Terraform  ·  GitHub Actions  ·  RabbitMQ</text>
+    <line class="hair" x1="64" y1="326" x2="1216" y2="326"/>
+    <text class="mono lbl fai" x="64" y="360">QUALITY</text>
+    <text class="sans mut" x="274" y="362" font-size="17" font-weight="400">xUnit  ·  NUnit  ·  Moq  ·  Testcontainers  ·  BenchmarkDotNet</text>
+    <line class="hair" x1="64" y1="388" x2="1216" y2="388"/>
 </svg>
