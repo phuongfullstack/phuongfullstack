@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 514" width="1280" height="514" role="img" aria-label="How I build: request path from browser or Blazor through ASP.NET Core to EF Core and SQL Server, with Redis as a cache aside the application. Delivery: GitHub Actions builds, tests and scans, producing a container image deployed to Azure Container Apps.">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0 L0 0 0 40" fill="none" stroke="#26262F" stroke-width="1" opacity="0.55"/>
+    </pattern>
+    <radialGradient id="glow" cx="0.82" cy="0.12" r="0.65">
+      <stop offset="0%" stop-color="#A78BFA" stop-opacity="0.20"/>
+      <stop offset="60%" stop-color="#A78BFA" stop-opacity="0.04"/>
+      <stop offset="100%" stop-color="#A78BFA" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="cardclip">
+      <rect x="0" y="0" width="1280" height="514" rx="20"/>
+    </clipPath>
+    <marker id="arrowN" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#3A3A47"/></marker>
+    <marker id="arrowA" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#A78BFA"/></marker>
+  </defs>
+  <g clip-path="url(#cardclip)">
+    <rect width="1280" height="514" fill="#0C0C10"/>
+    <rect width="1280" height="514" fill="url(#grid)"/>
+    <rect width="1280" height="514" fill="url(#glow)"/>
+    <text x="56" y="60" font-family="JetBrains Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,DejaVu Sans Mono,monospace" font-size="11.5" font-weight="600" fill="#6E6E80" letter-spacing="2.6">REQUEST PATH</text>
+    <g><rect x="56.0" y="148" width="256.0" height="64" rx="10" fill="#16161D" stroke="#3A3A47" stroke-opacity="1" stroke-width="1"/><text x="184" y="177.0" text-anchor="middle" font-family="Inter,Segoe UI,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,sans-serif" font-size="14.5" font-weight="600" fill="#ECECF1">Browser / Blazor</text><text x="184" y="196.0" text-anchor="middle" font-family="JetBrains Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,DejaVu Sans Mono,monospace" font-size="10.5" fill="#6E6E80" letter-spacing="0.6">razor components</text></g>
+    <g><rect x="360.0" y="148" width="256.0" height="64" rx="10" fill="#1E1533" stroke="#A78BFA" stroke-opacity="0.6" stroke-width="1"/><text x="488" y="177.0" text-anchor="middle" font-family="Inter,Segoe UI,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,sans-serif" font-size="14.5" font-weight="600" fill="#C4B5FD">ASP.NET Core</text><text x="488" y="196.0" text-anchor="middle" font-family="JetBrains Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,DejaVu Sans Mono,monospace" font-size="10.5" fill="#6E6E80" letter-spacing="0.6">middleware · endpoints</text></g>
+    <line x1="316" y1="180" x2="352" y2="180" stroke="#A78BFA" stroke-width="1.5" marker-end="url(#arrowA)"/>
+    <g><rect x="664.0" y="148" width="256.0" height="64" rx="10" fill="#16161D" stroke="#3A3A47" stroke-opacity="1" stroke-width="1"/><text x="792" y="177.0" text-anchor="middle" font-family="Inter,Segoe UI,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,sans-serif" font-size="14.5" font-weight="600" fill="#ECECF1">EF Core</text><text x="792" y="196.0" text-anchor="middle" font-family="JetBrains Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,DejaVu Sans Mono,monospace" font-size="10.5" fill="#6E6E80" letter-spacing="0.6">compiled queries</text></g>
+    <line x1="620" y1="180" x2="656" y2="180" stroke="#A78BFA" stroke-width="1.5" marker-end="url(#arrowA)"/>
+    <g><rect x="968.0" y="148" width="256.0" height="64" rx="10" fill="#16161D" stroke="#3A3A47" stroke-opacity="1" stroke-width="1"/><text x="1096" y="177.0" text-anchor="middle" font-family="Inter,Segoe UI,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,sans-serif" font-size="14.5" font-weight="600" fill="#ECECF1">SQL Server</text><text x="1096" y="196.0" text-anchor="middle" font-family="JetBrains Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,DejaVu Sans Mono,monospace" font-size="10.5" fill="#6E6E80" letter-spacing="0.6">indexed · pooled</text></g>
+    <line x1="924" y1="180" x2="960" y2="180" stroke="#3A3A47" stroke-width="1.5" marker-end="url(#arrowN)"/>
+    <g><rect x="360.0" y="252" width="256.0" height="52" rx="10" fill="#16161D" stroke="#3A3A47" stroke-opacity="1" stroke-width="1"/><text x="488" y="275.0" text-anchor="middle" font-family="Inter,Segoe UI,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,sans-serif" font-size="14.5" font-weight="600" fill="#ECECF1">Redis</text><text x="488" y="294.0" text-anchor="middle" font-family="JetBrains Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,DejaVu Sans Mono,monospace" font-size="10.5" fill="#6E6E80" letter-spacing="0.6">cache-aside</text></g>
+    <line x1="488" y1="218" x2="488" y2="244" stroke="#A78BFA" stroke-width="1.5" marker-end="url(#arrowA)" marker-start="url(#arrowA)"/>
+    <text x="56" y="362" font-family="JetBrains Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,DejaVu Sans Mono,monospace" font-size="11.5" font-weight="600" fill="#6E6E80" letter-spacing="2.6">DELIVERY</text>
+    <g><rect x="56.0" y="394" width="357.3333333333333" height="64" rx="10" fill="#16161D" stroke="#3A3A47" stroke-opacity="1" stroke-width="1"/><text x="235" y="423.0" text-anchor="middle" font-family="Inter,Segoe UI,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,sans-serif" font-size="14.5" font-weight="600" fill="#ECECF1">GitHub Actions</text><text x="235" y="442.0" text-anchor="middle" font-family="JetBrains Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,DejaVu Sans Mono,monospace" font-size="10.5" fill="#6E6E80" letter-spacing="0.6">build · test · scan</text></g>
+    <g><rect x="461.3333333333333" y="394" width="357.3333333333333" height="64" rx="10" fill="#16161D" stroke="#3A3A47" stroke-opacity="1" stroke-width="1"/><text x="640" y="423.0" text-anchor="middle" font-family="Inter,Segoe UI,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,sans-serif" font-size="14.5" font-weight="600" fill="#ECECF1">Container image</text><text x="640" y="442.0" text-anchor="middle" font-family="JetBrains Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,DejaVu Sans Mono,monospace" font-size="10.5" fill="#6E6E80" letter-spacing="0.6">multi-stage build</text></g>
+    <line x1="417" y1="426" x2="453" y2="426" stroke="#3A3A47" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#arrowN)"/>
+    <g><rect x="866.6666666666666" y="394" width="357.3333333333333" height="64" rx="10" fill="#1E1533" stroke="#A78BFA" stroke-opacity="0.6" stroke-width="1"/><text x="1045" y="423.0" text-anchor="middle" font-family="Inter,Segoe UI,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,sans-serif" font-size="14.5" font-weight="600" fill="#C4B5FD">Azure</text><text x="1045" y="442.0" text-anchor="middle" font-family="JetBrains Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,DejaVu Sans Mono,monospace" font-size="10.5" fill="#6E6E80" letter-spacing="0.6">container apps</text></g>
+    <line x1="823" y1="426" x2="859" y2="426" stroke="#3A3A47" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#arrowN)"/>
+  </g>
+  <rect x="0.5" y="0.5" width="1279" height="513" rx="20"
+        fill="none" stroke="#26262F" stroke-width="1"/>
+</svg>

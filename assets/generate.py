@@ -205,10 +205,101 @@ def build_stack(path="stack.svg"):
     (OUT / path).write_text(card(W, round(H), "\n".join(blocks), label=alt))
 
 
+
+def _box(x, y, w, h, title, sub, *, accent=False):
+    fill = T["accent-subtle"] if accent else T["bg-subtle"]
+    stroke = T["accent"] if accent else T["border-strong"]
+    ink = T["accent-hover"] if accent else T["text"]
+    return (f'    <g><rect x="{x}" y="{y}" width="{w}" height="{h}" rx="{R["md"]}"'
+            f' fill="{fill}" stroke="{stroke}" stroke-opacity="{0.6 if accent else 1}"'
+            f' stroke-width="1"/>'
+            f'<text x="{x + w/2:.0f}" y="{y + h/2 - 3}" text-anchor="middle"'
+            f' font-family="{SANS}" font-size="14.5" font-weight="600" fill="{ink}">{esc(title)}</text>'
+            f'<text x="{x + w/2:.0f}" y="{y + h/2 + 16}" text-anchor="middle"'
+            f' font-family="{MONO}" font-size="10.5" fill="{T["text-faint"]}"'
+            f' letter-spacing="0.6">{esc(sub)}</text></g>')
+
+
+def _arrow(x1, y1, x2, y2, *, accent=False, both=False, dashed=False):
+    marker = "arrowA" if accent else "arrowN"
+    attrs = f' marker-end="url(#{marker})"'
+    if both:
+        attrs += f' marker-start="url(#{marker})"'
+    dash = ' stroke-dasharray="5 4"' if dashed else ""
+    stroke = T["accent"] if accent else T["border-strong"]
+    return (f'    <line x1="{x1:.0f}" y1="{y1:.0f}" x2="{x2:.0f}" y2="{y2:.0f}"'
+            f' stroke="{stroke}" stroke-width="1.5"{dash}{attrs}/>')
+
+
+def build_architecture(path="architecture.svg"):
+    """What a typical application I build actually looks like. A profile can
+    list technologies; a diagram shows how they fit together, which is the
+    part an employer is actually trying to work out."""
+    W, PAD = 1280, 56
+    avail = W - PAD * 2
+
+    gap, bh = 48, 64
+    bw = (avail - gap * 3) / 4
+    row1 = PAD + 92
+    xs = [PAD + (bw + gap) * i for i in range(4)]
+
+    cache_y, cache_h = row1 + bh + 40, 52
+    lane2 = cache_y + cache_h + 58
+    bw2 = (avail - gap * 2) / 3
+    xs2 = [PAD + (bw2 + gap) * i for i in range(3)]
+    row2 = lane2 + 32
+    H = row2 + bh + PAD
+
+    def label(x, y, text):
+        return (f'    <text x="{x}" y="{y}" font-family="{MONO}" font-size="11.5"'
+                f' font-weight="600" fill="{T["text-faint"]}" letter-spacing="2.6">{text}</text>')
+
+    parts = [label(PAD, PAD + 4, "REQUEST PATH")]
+    boxes = [("Browser / Blazor", "razor components"),
+             ("ASP.NET Core", "middleware · endpoints"),
+             ("EF Core", "compiled queries"),
+             ("SQL Server", "indexed · pooled")]
+    for i, (title, sub) in enumerate(boxes):
+        parts.append(_box(xs[i], row1, bw, bh, title, sub, accent=(i == 1)))
+        if i:
+            parts.append(_arrow(xs[i] - gap + 4, row1 + bh / 2, xs[i] - 8,
+                                row1 + bh / 2, accent=(i <= 2)))
+
+    # cache-aside hangs off the application, not off the database
+    cx = xs[1] + bw / 2
+    parts.append(_box(xs[1], cache_y, bw, cache_h, "Redis", "cache-aside"))
+    parts.append(_arrow(cx, row1 + bh + 6, cx, cache_y - 8, accent=True, both=True))
+
+    parts.append(label(PAD, lane2, "DELIVERY"))
+    ship = [("GitHub Actions", "build · test · scan"),
+            ("Container image", "multi-stage build"),
+            ("Azure", "container apps")]
+    for i, (title, sub) in enumerate(ship):
+        parts.append(_box(xs2[i], row2, bw2, bh, title, sub, accent=(i == 2)))
+        if i:
+            parts.append(_arrow(xs2[i] - gap + 4, row2 + bh / 2, xs2[i] - 8,
+                                row2 + bh / 2, dashed=True))
+
+    defs = (f'    <marker id="arrowN" viewBox="0 0 10 10" refX="8" refY="5"'
+            f' markerWidth="5" markerHeight="5" orient="auto-start-reverse">'
+            f'<path d="M0 0 L10 5 L0 10 Z" fill="{T["border-strong"]}"/></marker>\n'
+            f'    <marker id="arrowA" viewBox="0 0 10 10" refX="8" refY="5"'
+            f' markerWidth="5" markerHeight="5" orient="auto-start-reverse">'
+            f'<path d="M0 0 L10 5 L0 10 Z" fill="{T["accent"]}"/></marker>\n')
+
+    alt = ("How I build: request path from browser or Blazor through ASP.NET Core "
+           "to EF Core and SQL Server, with Redis as a cache aside the application. "
+           "Delivery: GitHub Actions builds, tests and scans, producing a container "
+           "image deployed to Azure Container Apps.")
+    (OUT / path).write_text(card(W, round(H), "\n".join(parts),
+                                 label=alt, extra_defs=defs))
+
+
 if __name__ == "__main__":
     for f in OUT.glob("*.svg"):
         f.unlink()
     build_hero()
     build_stack()
+    build_architecture()
     for f in sorted(OUT.glob("*.svg")):
         print(f"{f.name:14} {f.stat().st_size:>6} bytes")
