@@ -52,8 +52,9 @@ def _demo_calendar():
         weekday = (i + 2) % 7
         season = 1.0 + 0.45 * math.sin(i / 58.0)
         base = 1.4 if weekday in (0, 6) else 5.2
+        month = 9 + i // 30          # a window starting in October, as a real one would
         days.append({"weekday": weekday,
-                     "month": (i // 30) % 12,
+                     "ym": f"{2025 + month // 12}-{month % 12 + 1:02d}",
                      "count": max(0, round(base * season + (i % 5) - 2))})
     return days
 
@@ -99,7 +100,7 @@ def fetch(login, token):
                 for day in week["contributionDays"]:
                     calendar.append({
                         "weekday": day["weekday"],
-                        "month": int(day["date"][5:7]) - 1,
+                        "ym": day["date"][:7],
                         "count": day["contributionCount"],
                     })
         repos = user["repositories"]
@@ -218,11 +219,13 @@ def render_activity(data, out):
             label="No contribution data available"))
         return
 
-    by_month = [0] * 12
-    by_weekday = [0] * 7
+    buckets, by_weekday = {}, [0] * 7
     for d in days:
-        by_month[d["month"]] += d["count"]
+        buckets[d["ym"]] = buckets.get(d["ym"], 0) + d["count"]
         by_weekday[d["weekday"]] += d["count"]
+    ordered = sorted(buckets.items())[-12:]
+    months = [ym for ym, _ in ordered]
+    by_month = [v for _, v in ordered]
 
     split = 760
     plot_top, plot_bottom = PAD + 52, H - PAD - 26
@@ -238,7 +241,7 @@ def render_activity(data, out):
     # ── left panel: trend ────────────────────────────────────────────────
     peak = max(by_month) or 1
     left, right = PAD, split - 40
-    step = (right - left) / 11
+    step = (right - left) / max(1, len(by_month) - 1)
     pts = [(left + i * step, plot_bottom - (v / peak) * plot_h) for i, v in enumerate(by_month)]
     line = " ".join(("M" if i == 0 else "L") + f"{x:.1f} {y:.1f}" for i, (x, y) in enumerate(pts))
     area = line + f" L{pts[-1][0]:.1f} {plot_bottom} L{pts[0][0]:.1f} {plot_bottom} Z"
@@ -257,8 +260,9 @@ def render_activity(data, out):
                  f' font-family="{MONO}" font-size="12" font-weight="600"'
                  f' fill="{T["text"]}">{peak}</text>')
     for i, (x, _) in enumerate(pts):
+        initial = MONTHS[int(months[i][5:7]) - 1]
         parts.append(f'    <text x="{x:.1f}" y="{plot_bottom + 20}" text-anchor="middle"'
-                     f' font-family="{MONO}" font-size="11" fill="{T["text-faint"]}">{MONTHS[i]}</text>')
+                     f' font-family="{MONO}" font-size="11" fill="{T["text-faint"]}">{initial}</text>')
 
     # ── right panel: weekday columns ─────────────────────────────────────
     wmax = max(by_weekday) or 1
@@ -282,7 +286,7 @@ def render_activity(data, out):
                  f' stroke="{T["border"]}" stroke-width="1"/>')
 
     alt = ("Contributions by month: "
-           + ", ".join(f"{MONTHS[i]} {v}" for i, v in enumerate(by_month))
+           + ", ".join(f"{months[i]} {v}" for i, v in enumerate(by_month))
            + ". By weekday: "
            + ", ".join(f"{WEEKDAYS[i]} {v}" for i, v in enumerate(by_weekday)))
     out.write_text(card(W, H, "\n".join(parts), label=alt))

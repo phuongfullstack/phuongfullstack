@@ -20,6 +20,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Platane/snk is a Docker action and runs as root, so a dist/ that it
+      # creates is root-owned and the later Python step — which runs as the
+      # runner user — cannot write into it. Create it first so it belongs to
+      # the runner; root can write into it either way.
+      - name: Prepare output directory
+        run: mkdir -p dist
+
       # Colours mirror assets/tokens.json: neutral empty cells ramping up to
       # the accent purple.
       - name: Contribution snake
