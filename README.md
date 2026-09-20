@@ -1,78 +1,178 @@
-# Hi, I'm Phuong 👋
+<div align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:512BD4,50:0078D4,100:50E3C2&height=200&section=header&text=Phuong&fontSize=72&fontColor=ffffff&fontAlignY=34&desc=.NET%20Full-Stack%20Developer&descSize=20&descAlignY=54&animation=fadeIn" alt="Phuong — .NET Full-Stack Developer" />
+</div>
 
-**.NET full-stack developer** — I build web applications on ASP.NET Core: APIs and data access on the backend, Blazor or a JS framework on the frontend, containerised and shipped to Azure.
+<div align="center">
+  <a href="https://git.io/typing-svg">
+    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=1200&color=0078D4&center=true&vCenter=true&width=640&lines=ASP.NET+Core+%E2%80%A2+Blazor+%E2%80%A2+EF+Core;Azure+%E2%80%A2+Docker+%E2%80%A2+GitHub+Actions;Performance+tuning+%26+secure+by+default" alt="ASP.NET Core, Blazor, EF Core — Azure, Docker, GitHub Actions — performance tuning and secure by default" />
+  </a>
+</div>
 
-Most of my work sits in the Microsoft ecosystem, with a particular interest in the parts that are easy to get wrong: query performance, caching strategy, and authentication/authorisation.
+<div align="center">
+  <a href="https://linkedin.com/in/phuongfullstack"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
+  <a href="mailto:contact@phuongfullstack.com"><img src="https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" /></a>
+  <a href="https://phuongfullstack.com"><img src="https://img.shields.io/badge/Website-000000?style=for-the-badge&logo=aboutdotme&logoColor=white" alt="Website" /></a>
+  <img src="https://komarev.com/ghpvc/?username=phuongfullstack&style=for-the-badge&color=512BD4&label=PROFILE+VIEWS" alt="Profile views" />
+</div>
+
+<br />
+
+```csharp
+public sealed record Developer(string Name, string Role)
+{
+    public static Developer Me => new("Phuong", ".NET Full-Stack Developer");
+
+    public IReadOnlyList<string> Focus =>
+    [
+        "ASP.NET Core APIs that stay fast as the data grows",
+        "Blazor & TypeScript front-ends that don't fight the backend",
+        "Azure deployments you can redeploy on a Friday"
+    ];
+
+    public string Philosophy => "Measure first. Cache second. Never trust user input.";
+}
+```
+
+<br />
+
+<div align="center">
+
+### 🧰 Tech Stack
+
+<img src="https://skillicons.dev/icons?i=cs,dotnet,blazor,ts,js,react,angular,vue&theme=dark" alt="C#, .NET, Blazor, TypeScript, JavaScript, React, Angular, Vue" />
+<br />
+<img src="https://skillicons.dev/icons?i=azure,docker,kubernetes,githubactions,git,redis,postgres,tailwind&theme=dark" alt="Azure, Docker, Kubernetes, GitHub Actions, Git, Redis, PostgreSQL, Tailwind" />
+
+</div>
 
 ---
 
-## Tech stack
+## 🔍 What I work on
 
-<p>
-  <img src="https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=c-sharp&logoColor=white" alt="C#" />
-  <img src="https://img.shields.io/badge/.NET-512BD4?style=for-the-badge&logo=dotnet&logoColor=white" alt=".NET" />
-  <img src="https://img.shields.io/badge/Blazor-512BD4?style=for-the-badge&logo=blazor&logoColor=white" alt="Blazor" />
-  <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
-  <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React" />
-  <img src="https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white" alt="Angular" />
-</p>
-<p>
-  <img src="https://img.shields.io/badge/SQL_Server-CC2927?style=for-the-badge&logo=microsoft-sql-server&logoColor=white" alt="SQL Server" />
-  <img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL" />
-  <img src="https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white" alt="Redis" />
-  <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker" />
-  <img src="https://img.shields.io/badge/Azure-0078D4?style=for-the-badge&logo=microsoftazure&logoColor=white" alt="Azure" />
-  <img src="https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white" alt="GitHub Actions" />
-</p>
+<details open>
+<summary><b>⚙️ Backend &nbsp;—&nbsp; ASP.NET Core, EF Core, API design</b></summary>
+<br />
 
----
+- **ASP.NET Core** (Web API & MVC) on modern .NET — minimal APIs, middleware, background services
+- **EF Core** against SQL Server and PostgreSQL — migrations, compiled queries, split queries, killing N+1
+- **API design** — versioning, FluentValidation, ProblemDetails, OpenAPI contracts that clients can trust
 
-## What I work on
+</details>
 
-| Area | Details |
-| --- | --- |
-| **Backend** | ASP.NET Core (Web API, MVC) on modern .NET · EF Core against SQL Server and PostgreSQL · REST API design, validation, versioning |
-| **Frontend** | Blazor Server/WASM, or React / Angular / Vue talking to .NET APIs · HTML5, CSS3, TypeScript |
-| **Cloud & DevOps** | Docker · CI/CD with GitHub Actions and Azure DevOps · Azure App Service, Functions, Container Apps |
-| **Performance** | Query and index tuning, fixing N+1 and over-eager includes, output and distributed caching (`IDistributedCache`, Redis) |
-| **Security** | ASP.NET Core Identity, JWT and cookie auth, policy-based authorisation · guarding against XSS, CSRF and injection |
-| **Testing** | xUnit / NUnit, Moq, integration tests with `WebApplicationFactory` and Testcontainers |
+<details>
+<summary><b>🎨 Frontend &nbsp;—&nbsp; Blazor, React, Angular, Vue</b></summary>
+<br />
+
+- **Blazor** Server & WebAssembly — component design, render modes, JS interop
+- **React / Angular / Vue** wired to .NET APIs with typed clients generated from OpenAPI
+- HTML5, CSS3, **TypeScript**, responsive layouts and accessible markup
+
+</details>
+
+<details>
+<summary><b>☁️ Cloud &amp; DevOps &nbsp;—&nbsp; Azure, Docker, CI/CD</b></summary>
+<br />
+
+- **Azure** — App Service, Functions, Container Apps, Key Vault, Application Insights
+- **Docker** multi-stage builds; slim runtime images, health checks, sane layer caching
+- **CI/CD** with GitHub Actions and Azure DevOps — build, test, scan, deploy on every push
+
+</details>
+
+<details>
+<summary><b>⚡ Performance &nbsp;—&nbsp; the part most people skip</b></summary>
+<br />
+
+- Query and **index tuning** driven by execution plans, not guesswork
+- Fixing **N+1** and over-eager `Include` chains before they reach production
+- **Caching** layers that actually invalidate: output caching, `IDistributedCache`, Redis
+- Benchmarking with **BenchmarkDotNet** so "faster" is a number, not a feeling
+
+</details>
+
+<details>
+<summary><b>🛡️ Security &nbsp;—&nbsp; secure by default</b></summary>
+<br />
+
+- **ASP.NET Core Identity**, JWT and cookie auth, policy-based authorisation
+- Defence against **XSS, CSRF, SQL injection** and IDOR — parameterised everything, authorise every handler
+- Secrets in **Key Vault**, never in `appsettings.json`
+
+</details>
+
+<details>
+<summary><b>🧪 Testing &nbsp;—&nbsp; so refactors aren't scary</b></summary>
+<br />
+
+- **xUnit / NUnit** with **Moq** or NSubstitute for unit tests
+- Integration tests via **`WebApplicationFactory`** and **Testcontainers** against a real database
+- Tests wired into CI — a red build blocks the merge
+
+</details>
 
 <!--
-## Featured projects
+## 🚀 Featured projects
 
-Điền vài repo tiêu biểu vào bảng dưới rồi bỏ comment block này.
-Nếu chưa có gì để khoe, cứ để nguyên trong comment — một bảng trống
+Điền 2–4 repo tiêu biểu vào đây rồi bỏ comment block này.
+Card bên dưới tự render tên repo, mô tả và ngôn ngữ — chỉ cần đổi `repo=`.
+Nếu chưa có gì để khoe thì cứ để nguyên trong comment: một section trống
 còn tệ hơn là không có section.
 
-| Project | What it does | Stack |
-| --- | --- | --- |
-| [repo-name](https://github.com/phuongfullstack/repo-name) | Một câu mô tả vấn đề nó giải quyết. | ASP.NET Core, EF Core, Azure |
+<div align="center">
+  <a href="https://github.com/phuongfullstack/REPO-NAME">
+    <img src="https://github-readme-stats.vercel.app/api/pin/?username=phuongfullstack&repo=REPO-NAME&theme=tokyonight&hide_border=true&border_radius=10" alt="REPO-NAME" />
+  </a>
+  <a href="https://github.com/phuongfullstack/OTHER-REPO">
+    <img src="https://github-readme-stats.vercel.app/api/pin/?username=phuongfullstack&repo=OTHER-REPO&theme=tokyonight&hide_border=true&border_radius=10" alt="OTHER-REPO" />
+  </a>
+</div>
 -->
 
 ---
 
-## GitHub
+## 📊 GitHub
 
-<p>
-  <img src="https://github-readme-stats.vercel.app/api?username=phuongfullstack&show_icons=true&theme=dracula&rank_icon=github&border_radius=10&hide_border=true" alt="GitHub stats for phuongfullstack" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=phuongfullstack&layout=compact&theme=dracula&border_radius=10&hide_border=true&langs_count=8" alt="Most used languages by phuongfullstack" />
-</p>
+<div align="center">
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api?username=phuongfullstack&show_icons=true&rank_icon=github&hide_border=true&border_radius=10&theme=tokyonight" />
+  <source media="(prefers-color-scheme: light)" srcset="https://github-readme-stats.vercel.app/api?username=phuongfullstack&show_icons=true&rank_icon=github&hide_border=true&border_radius=10&theme=default" />
+  <img src="https://github-readme-stats.vercel.app/api?username=phuongfullstack&show_icons=true&rank_icon=github&hide_border=true&border_radius=10&theme=tokyonight" alt="GitHub stats for phuongfullstack" />
+</picture>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api/top-langs/?username=phuongfullstack&layout=compact&langs_count=8&hide_border=true&border_radius=10&theme=tokyonight" />
+  <source media="(prefers-color-scheme: light)" srcset="https://github-readme-stats.vercel.app/api/top-langs/?username=phuongfullstack&layout=compact&langs_count=8&hide_border=true&border_radius=10&theme=default" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=phuongfullstack&layout=compact&langs_count=8&hide_border=true&border_radius=10&theme=tokyonight" alt="Most used languages by phuongfullstack" />
+</picture>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://streak-stats.demolab.com?user=phuongfullstack&hide_border=true&border_radius=10&theme=tokyonight" />
+  <source media="(prefers-color-scheme: light)" srcset="https://streak-stats.demolab.com?user=phuongfullstack&hide_border=true&border_radius=10&theme=default" />
+  <img src="https://streak-stats.demolab.com?user=phuongfullstack&hide_border=true&border_radius=10&theme=tokyonight" alt="Contribution streak for phuongfullstack" />
+</picture>
+
+</div>
+
+### 🐍 Contribution graph
+
+<div align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/phuongfullstack/phuongfullstack/output/github-snake-dark.svg" />
+    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/phuongfullstack/phuongfullstack/output/github-snake.svg" />
+    <img src="https://raw.githubusercontent.com/phuongfullstack/phuongfullstack/output/github-snake.svg" alt="Snake eating the contribution graph of phuongfullstack" />
+  </picture>
+</div>
 
 ---
 
-## Get in touch
+<div align="center">
 
-Happy to talk about .NET architecture, a tricky performance problem, or a project you're planning.
+## 💬 Get in touch
 
-<p>
-  <a href="https://linkedin.com/in/phuongfullstack">
-    <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
-  </a>
-  <a href="mailto:contact@phuongfullstack.com">
-    <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" />
-  </a>
-  <a href="https://phuongfullstack.com">
-    <img src="https://img.shields.io/badge/Website-000000?style=for-the-badge&logo=aboutdotme&logoColor=white" alt="Website" />
-  </a>
-</p>
+Happy to talk about .NET architecture, a query that got slow, or a project you're planning.
+
+<a href="https://linkedin.com/in/phuongfullstack"><img src="https://img.shields.io/badge/Message_me_on_LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="Message me on LinkedIn" /></a>
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:50E3C2,50:0078D4,100:512BD4&height=120&section=footer" alt="" />
+
+</div>
