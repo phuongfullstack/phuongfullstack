@@ -1,168 +1,214 @@
 #!/usr/bin/env python3
-"""Generate the self-hosted SVG assets used by README.md.
+"""Build the SVG artwork used by README.md.
 
-Everything here is plain SVG + SMIL so it renders (and animates) through
-GitHub's image proxy without depending on any third-party service.
+Design notes
+------------
+The old artwork was a three-colour wave gradient plus fourteen brand-coloured
+pills. That reads as decoration, not design: fourteen competing hues give the
+eye nowhere to land. This version keeps ONE accent and builds hierarchy out of
+typography, weight and border instead — core skills get the accent, everything
+else recedes into a neutral chip.
+
+Both files are dark self-contained cards with rounded corners, so they look
+deliberate on GitHub's light *and* dark themes without needing two variants.
+
+Everything is plain SVG + SMIL, so it animates through GitHub's image proxy
+and still renders completely when animation is ignored.
 
     python3 assets/generate.py
 """
+import json
 from pathlib import Path
 
 OUT = Path(__file__).parent
-SANS = "Segoe UI,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,sans-serif"
-MONO = "ui-monospace,SFMono-Regular,Menlo,Consolas,DejaVu Sans Mono,monospace"
+T = json.loads((OUT / "tokens.json").read_text())["color"]["dark"]
+R = json.loads((OUT / "tokens.json").read_text())["radius"]
 
-PURPLE, BLUE, TEAL = "#512BD4", "#0078D4", "#50E3C2"
+SANS = ("Inter,Segoe UI,-apple-system,BlinkMacSystemFont,"
+        "Helvetica Neue,Arial,sans-serif")
+MONO = ("JetBrains Mono,ui-monospace,SFMono-Regular,Menlo,"
+        "Consolas,DejaVu Sans Mono,monospace")
 
-
-def wave(y, amp, fill, opacity, dur, width=1200, height=200):
-    """One horizontal wave band, slowly drifting sideways forever."""
-    seg = width / 2
-    d = (f"M0 {y} "
-         f"q {seg/4} {-amp} {seg/2} 0 t {seg/2} 0 t {seg/2} 0 t {seg/2} 0 "
-         f"t {seg/2} 0 t {seg/2} 0 "
-         f"L{width*2} {height} L0 {height} Z")
-    return (f'<g opacity="{opacity}">'
-            f'<path d="{d}" fill="{fill}">'
-            f'<animateTransform attributeName="transform" type="translate" '
-            f'values="0 0;{-seg} 0" dur="{dur}s" repeatCount="indefinite"/>'
-            f'</path></g>')
+MONO_CH = 0.6005   # advance width of the mono stack, in em
+SANS_CH = 0.5400   # average advance of the sans stack at weight 500, in em
 
 
-def banner(path, *, flip=False, height=200, title=None, subtitle=None):
-    w = 1200
-    stops = f'<stop offset="0%" stop-color="{PURPLE}"/><stop offset="55%" stop-color="{BLUE}"/><stop offset="100%" stop-color="{TEAL}"/>'
-    waves = "".join([
-        wave(height * 0.62, 26, "#ffffff", 0.10, 18, height=height),
-        wave(height * 0.74, 20, "#ffffff", 0.12, 26, height=height),
-        wave(height * 0.86, 16, "#ffffff", 0.10, 34, height=height),
-    ])
-    body = f'''<rect width="{w}" height="{height}" fill="url(#grad)"/>
-  <rect width="{w}" height="{height}" fill="url(#dots)"/>
-  {waves}'''
-    if flip:
-        body = f'<g transform="translate(0,{height}) scale(1,-1)">{body}</g>'
+def esc(s):
+    return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
-    text = ""
-    if title:
-        text = f'''<g opacity="1" text-anchor="middle" fill="#ffffff">
-    <animate attributeName="opacity" values="0;1" dur="1.1s" begin="0.15s" fill="freeze"/>
-    <text x="{w/2}" y="96" font-family="{SANS}" font-size="64" font-weight="700"
-          letter-spacing="1" style="paint-order:stroke">{title}</text>
-    <text x="{w/2}" y="138" font-family="{SANS}" font-size="20" font-weight="500"
-          letter-spacing="6" fill-opacity="0.92">{subtitle}</text>
-  </g>'''
 
-    label = f"{title} — {subtitle}" if title else "decorative wave"
-    svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {height}" width="{w}" height="{height}" role="img" aria-label="{label}">
+def card(width, height, body, *, label, extra_defs=""):
+    """A dark rounded card with a hairline border, a faint grid and a soft
+    accent glow in the top-right. The shared shell for every asset."""
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}" width="{width}" height="{height}" role="img" aria-label="{esc(label)}">
   <defs>
-    <linearGradient id="grad" x1="0" y1="0" x2="1" y2="1">{stops}</linearGradient>
-    <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
-      <circle cx="2.5" cy="2.5" r="1.3" fill="#ffffff" fill-opacity="0.15"/>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0 L0 0 0 40" fill="none" stroke="{T['border']}" stroke-width="1" opacity="0.55"/>
     </pattern>
-  </defs>
-  {body}
-  {text}
+    <radialGradient id="glow" cx="0.82" cy="0.12" r="0.65">
+      <stop offset="0%" stop-color="{T['accent']}" stop-opacity="0.20"/>
+      <stop offset="60%" stop-color="{T['accent']}" stop-opacity="0.04"/>
+      <stop offset="100%" stop-color="{T['accent']}" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="cardclip">
+      <rect x="0" y="0" width="{width}" height="{height}" rx="{R['xl']}"/>
+    </clipPath>
+{extra_defs}  </defs>
+  <g clip-path="url(#cardclip)">
+    <rect width="{width}" height="{height}" fill="{T['bg']}"/>
+    <rect width="{width}" height="{height}" fill="url(#grid)"/>
+    <rect width="{width}" height="{height}" fill="url(#glow)"/>
+{body}
+  </g>
+  <rect x="0.5" y="0.5" width="{width-1}" height="{height-1}" rx="{R['xl']}"
+        fill="none" stroke="{T['border']}" stroke-width="1"/>
 </svg>
 '''
-    (OUT / path).write_text(svg)
 
 
-def typing(path, lines, *, width=660, size=20, color=BLUE,
-           type_s=1.6, hold_s=1.9, erase_s=0.7):
-    """Typewriter cycle: each line types in, holds, erases. Monospace keeps
-    the character maths exact, so the caret always lands on the last glyph."""
-    ch = size * 0.6005  # advance width of the monospace stack at this size
+def typing_block(lines, x, y, *, size=19, color=None, type_s=1.7, hold_s=2.0,
+                 erase_s=0.8):
+    """Left-aligned typewriter cycle. The first line is drawn in full in the
+    base state so a renderer that ignores SMIL still shows a complete tagline
+    rather than an empty row."""
+    color = color or T["text-muted"]
+    ch = size * MONO_CH
     per = type_s + hold_s + erase_s
     total = per * len(lines)
-    height = size + 18
-    baseline = size + 4
-
-    parts = []
+    kt = ";".join(f"{v:.4f}" for v in
+                  (0, type_s / per, (type_s + hold_s) / per, 1))
+    out = []
     for i, line in enumerate(lines):
         w = len(line) * ch
-        x0 = round((width - w) / 2, 2)
         begin = round(per * i, 2)
-        kt = [0, type_s / per, (type_s + hold_s) / per, 1]
-        keytimes = ";".join(f"{k:.4f}" for k in kt)
-        # clip rect reveals the text; caret rides its right-hand edge
-        base_w = f"{w:.1f}" if i == 0 else "0"
-        base_op = "1" if i == 0 else "0"
-        parts.append(f'''  <clipPath id="c{i}"><rect x="{x0}" y="0" height="{height}" width="{base_w}">
-    <animate attributeName="width" values="0;{w:.1f};{w:.1f};0" keyTimes="{keytimes}"
-             dur="{per}s" begin="{begin}s" repeatCount="indefinite" calcMode="linear"/>
-  </rect></clipPath>
-  <g opacity="{base_op}">
-    <animate attributeName="opacity" values="1;1;0;0" keyTimes="0;{(per - 0.001)/total:.4f};{per/total:.4f};1"
-             dur="{total}s" begin="{begin}s" repeatCount="indefinite"/>
-    <text x="{x0}" y="{baseline}" font-family="{MONO}" font-size="{size}" font-weight="600"
-          fill="{color}" clip-path="url(#c{i})" xml:space="preserve">{line}</text>
-    <rect y="{baseline - size + 2}" width="2.5" height="{size}" fill="{color}" x="{x0 + w if i == 0 else x0:.1f}">
-      <animate attributeName="x" values="{x0};{x0 + w:.1f};{x0 + w:.1f};{x0}" keyTimes="{keytimes}"
+        first = i == 0
+        out.append(f'''    <clipPath id="t{i}"><rect x="{x}" y="{y - size}" height="{size + 8}" width="{w if first else 0:.1f}">
+      <animate attributeName="width" values="0;{w:.1f};{w:.1f};0" keyTimes="{kt}"
                dur="{per}s" begin="{begin}s" repeatCount="indefinite" calcMode="linear"/>
-      <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>
-    </rect>
-  </g>''')
-
-    alt = " — ".join(lines)
-    svg = (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}" '
-           f'width="{width}" height="{height}" role="img" aria-label="{alt}">\n'
-           + "\n".join(parts) + "\n</svg>\n")
-    (OUT / path).write_text(svg)
-
-
-def _ink(hex_color):
-    r, g, b = (int(hex_color[i:i + 2], 16) for i in (1, 3, 5))
-    return "#0d1117" if (0.299 * r + 0.587 * g + 0.114 * b) > 165 else "#ffffff"
-
-
-def pills(path, rows, *, size=14, height=34, gap=10, pad=15):
-    ch = size * 0.565  # average advance of the bold sans stack
-    laid, widest = [], 0
-    for row in rows:
-        items = [(label, color, round(len(label) * ch + pad * 2, 1)) for label, color in row]
-        total = sum(w for _, _, w in items) + gap * (len(items) - 1)
-        laid.append((items, total))
-        widest = max(widest, total)
-
-    width = round(widest + 8)
-    svg_h = len(rows) * height + (len(rows) - 1) * gap
-    parts, n = [], 0
-    for r, (items, total) in enumerate(laid):
-        x = (width - total) / 2
-        y = r * (height + gap)
-        for label, color, w in items:
-            begin = round(n * 0.06, 2)
-            parts.append(
-                f'  <g opacity="1"><animate attributeName="opacity" values="0;1" dur="0.45s" '
-                f'begin="{begin}s" fill="freeze"/>'
-                f'<rect x="{x:.1f}" y="{y}" width="{w}" height="{height}" rx="{height/2}" fill="{color}"/>'
-                f'<text x="{x + w/2:.1f}" y="{y + height/2 + size*0.36:.1f}" text-anchor="middle" '
-                f'font-family="{SANS}" font-size="{size}" font-weight="600" fill="{_ink(color)}">{label}</text></g>')
-            x += w + gap
-            n += 1
-
-    alt = ", ".join(label for row in rows for label, _ in row)
-    svg = (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {svg_h}" '
-           f'width="{width}" height="{svg_h}" role="img" aria-label="{alt}">\n'
-           + "\n".join(parts) + "\n</svg>\n")
-    (OUT / path).write_text(svg)
+    </rect></clipPath>
+    <g opacity="{1 if first else 0}">
+      <animate attributeName="opacity" values="1;1;0;0"
+               keyTimes="0;{(per - 0.001) / total:.4f};{per / total:.4f};1"
+               dur="{total}s" begin="{begin}s" repeatCount="indefinite"/>
+      <text x="{x}" y="{y}" font-family="{MONO}" font-size="{size}" font-weight="500"
+            fill="{color}" clip-path="url(#t{i})" xml:space="preserve">{esc(line)}</text>
+      <rect x="{(x + w) if first else x:.1f}" y="{y - size + 3}" width="2" height="{size}"
+            fill="{T['accent']}">
+        <animate attributeName="x" values="{x};{x + w:.1f};{x + w:.1f};{x}" keyTimes="{kt}"
+                 dur="{per}s" begin="{begin}s" repeatCount="indefinite" calcMode="linear"/>
+        <animate attributeName="opacity" values="1;0;1" dur="1.1s" repeatCount="indefinite"/>
+      </rect>
+    </g>''')
+    return "\n".join(out)
 
 
-if __name__ == "__main__":
-    banner("header.svg", title="Phuong", subtitle=".NET FULL-STACK DEVELOPER")
-    banner("footer.svg", flip=True, height=120)
-    typing("typing.svg", [
+def build_hero(path="hero.svg"):
+    W, H = 1280, 328
+    PAD = 72
+    lines = [
         "ASP.NET Core / Blazor / EF Core",
         "Azure / Docker / GitHub Actions",
         "Measure first. Cache second.",
-    ])
-    pills("tech-stack.svg", [
-        [("C#", "#239120"), (".NET", "#512BD4"), ("Blazor", "#5C2D91"),
-         ("TypeScript", "#3178C6"), ("React", "#61DAFB"), ("Angular", "#DD0031"), ("Vue", "#4FC08D")],
-        [("Azure", "#0078D4"), ("Docker", "#2496ED"), ("Kubernetes", "#326CE5"),
-         ("GitHub Actions", "#2088FF"), ("SQL Server", "#CC2927"),
-         ("PostgreSQL", "#4169E1"), ("Redis", "#DC382D")],
-    ])
+    ]
+
+    # Concentric rounded squares: an abstract mark that reads as layered
+    # architecture and, unlike a logo or a bracket glyph, does not date.
+    cx, cy = 1058, H / 2
+    rings = []
+    for i, (s, op) in enumerate([(264, 0.09), (202, 0.15), (140, 0.24), (78, 0.40)]):
+        rings.append(
+            f'      <rect x="{cx - s/2}" y="{cy - s/2}" width="{s}" height="{s}" rx="{s*0.24:.0f}"\n'
+            f'            fill="none" stroke="{T["accent"]}" stroke-width="1.5" opacity="{op}"\n'
+            f'            transform="rotate({i * 4} {cx} {cy})"/>')
+    mark = f'''    <g>
+      <animateTransform attributeName="transform" type="rotate"
+                        values="0 {cx} {cy};360 {cx} {cy}" dur="90s" repeatCount="indefinite"/>
+{chr(10).join(rings)}
+    </g>
+    <circle cx="{cx}" cy="{cy}" r="7" fill="{T['accent']}">
+      <animate attributeName="opacity" values="1;0.35;1" dur="3.2s" repeatCount="indefinite"/>
+    </circle>'''
+
+    body = f'''{mark}
+    <text x="{PAD}" y="86" font-family="{MONO}" font-size="13" font-weight="600"
+          fill="{T['accent']}" letter-spacing="3.4">FULL-STACK DEVELOPER</text>
+    <text x="{PAD}" y="166" font-family="{SANS}" font-size="78" font-weight="700"
+          fill="{T['text']}" letter-spacing="-2.4">Phuong</text>
+    <rect x="{PAD}" y="198" width="56" height="3" rx="1.5" fill="{T['accent']}"/>
+{typing_block(lines, PAD, 250)}'''
+
+    (OUT / path).write_text(card(
+        W, H, body,
+        label="Phuong — full-stack developer. " + " ".join(lines)))
+
+
+def chips(groups, *, width=1280, pad=56, size=14, h=36, gap=9, row_gap=10,
+          label_gap=18, group_gap=34):
+    """Two tiers of chips. The accent tier says what I actually build in; the
+    neutral tier says what I also reach for. Fourteen equal candy pills said
+    neither."""
+    ch = size * SANS_CH
+    avail = width - pad * 2
+    blocks, y = [], pad
+
+    for gi, (title, items, accent) in enumerate(groups):
+        if gi:
+            y += group_gap
+        blocks.append(
+            f'    <text x="{pad}" y="{y + 10}" font-family="{MONO}" font-size="11.5"'
+            f' font-weight="600" fill="{T["text-faint"]}" letter-spacing="2.6">{esc(title)}</text>')
+        y += label_gap + 8
+
+        # greedy wrap
+        rows, row, rw = [], [], 0.0
+        for label in items:
+            w = round(len(label) * ch + 34, 1)
+            if row and rw + gap + w > avail:
+                rows.append((row, rw))
+                row, rw = [], 0.0
+            rw += (gap if row else 0) + w
+            row.append((label, w))
+        if row:
+            rows.append((row, rw))
+
+        for row, _ in rows:
+            x = pad
+            for label, w in row:
+                if accent:
+                    fill, stroke, ink = T["accent-subtle"], T["accent"], T["accent-hover"]
+                    sop = 0.55
+                else:
+                    fill, stroke, ink = T["bg-subtle"], T["border-strong"], T["text-muted"]
+                    sop = 1
+                blocks.append(
+                    f'    <g><rect x="{x:.1f}" y="{y}" width="{w}" height="{h}" rx="{R["sm"]+2}"'
+                    f' fill="{fill}" stroke="{stroke}" stroke-opacity="{sop}" stroke-width="1"/>'
+                    f'<text x="{x + w/2:.1f}" y="{y + h/2 + size*0.35:.1f}" text-anchor="middle"'
+                    f' font-family="{SANS}" font-size="{size}" font-weight="{600 if accent else 500}"'
+                    f' fill="{ink}">{esc(label)}</text></g>')
+                x += w + gap
+            y += h + row_gap
+        y -= row_gap
+    return blocks, y + pad
+
+
+def build_stack(path="stack.svg"):
+    groups = [
+        ("CORE", ["C#", ".NET", "ASP.NET Core", "Blazor", "EF Core"], True),
+        ("TOOLBOX", ["TypeScript", "React", "Angular", "Vue", "Azure", "Docker",
+                     "Kubernetes", "GitHub Actions", "SQL Server", "PostgreSQL",
+                     "Redis"], False),
+    ]
+    W = 1280
+    blocks, H = chips(groups, width=W)
+    alt = "; ".join(f"{t}: {', '.join(i)}" for t, i, _ in groups)
+    (OUT / path).write_text(card(W, round(H), "\n".join(blocks), label=alt))
+
+
+if __name__ == "__main__":
+    for f in OUT.glob("*.svg"):
+        f.unlink()
+    build_hero()
+    build_stack()
     for f in sorted(OUT.glob("*.svg")):
-        print(f"{f.name:18} {f.stat().st_size:>6} bytes")
+        print(f"{f.name:14} {f.stat().st_size:>6} bytes")

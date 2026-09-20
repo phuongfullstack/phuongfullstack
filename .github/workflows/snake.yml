@@ -14,14 +14,14 @@ jobs:
     permissions:
       contents: write
     steps:
+      # Colours mirror assets/tokens.json so the graph matches the rest of
+      # the profile: neutral empty cells ramping up to the accent purple.
       - name: Generate snake from the contribution grid
         uses: Platane/snk@v3
-        id: snake
         with:
           github_user_name: ${{ github.repository_owner }}
           outputs: |
-            dist/github-snake.svg
-            dist/github-snake-dark.svg?palette=github-dark
+            dist/github-snake.svg?color_snake=%23A78BFA&color_dots=%2316161D,%232E1F52,%234B2FA0,%237C56E8,%23A78BFA
 
       - name: Publish to the output branch
         uses: crazy-max/ghaction-github-pages@v4

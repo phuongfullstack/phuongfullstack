@@ -1,477 +1,475 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phuong (@phuongfullstack) | Elite .NET Full-Stack Architect</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Phuong — .NET Full-Stack Developer</title>
+<meta name="description" content="Phuong (@phuongfullstack) — full-stack developer building web applications on ASP.NET Core, Blazor and Azure." />
+<meta name="color-scheme" content="light dark" />
+<meta property="og:title" content="Phuong — .NET Full-Stack Developer" />
+<meta property="og:description" content="Full-stack developer building web applications on ASP.NET Core, Blazor and Azure." />
+<meta property="og:type" content="website" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%235B2BD9'/><text x='16' y='23' font-family='sans-serif' font-size='19' font-weight='700' fill='%23fff' text-anchor='middle'>P</text></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" />
+<script>document.documentElement.classList.add('js')</script>
+<style>
+/* ── Design tokens ─────────────────────────────────────────────────────────
+   Mirrors assets/tokens.json. Change both together.                        */
+:root{
+  --bg:#FFFFFF; --bg-subtle:#F7F7F9; --bg-inset:#F0F0F4;
+  --border:#E3E3E9; --border-strong:#CFCFD8;
+  --text:#16161D; --text-muted:#5C5C6B; --text-faint:#8A8A9A;
+  --accent:#5B2BD9; --accent-hover:#4A1FC0; --accent-subtle:#F2EDFF;
+  --on-accent:#FFFFFF;
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  --sans:'Inter',Segoe UI,-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  --r-sm:6px; --r-md:10px; --r-lg:14px; --r-xl:20px;
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px;
+  --s6:32px; --s7:48px; --s8:64px; --s9:96px; --s10:128px;
 
-    <style>
-        :root {
-            --primary-color: #0078D4; /* Microsoft Blue */
-            --secondary-color: #50e3c2; /* A Teal accent */
-            --background-light: #f8f9fa;
-            --background-dark: #2c3e50;
-            --card-background: #ffffff;
-            --text-light: #f8f9fa;
-            --text-dark: #343a40;
-            --text-muted: #6c757d;
-            --heading-font: 'Poppins', sans-serif;
-            --body-font: 'Roboto', sans-serif;
-            --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            --box-shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.15);
-            --border-radius: 8px;
-            --transition-speed: 0.3s ease;
-        }
+  --wrap:1080px; --prose:64ch;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0C0C10; --bg-subtle:#16161D; --bg-inset:#1A1A21;
+    --border:#26262F; --border-strong:#3A3A47;
+    --text:#ECECF1; --text-muted:#9E9EB0; --text-faint:#6E6E80;
+    --accent:#A78BFA; --accent-hover:#C4B5FD; --accent-subtle:#1E1533;
+    --on-accent:#16161D;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0C0C10; --bg-subtle:#16161D; --bg-inset:#1A1A21;
+  --border:#26262F; --border-strong:#3A3A47;
+  --text:#ECECF1; --text-muted:#9E9EB0; --text-faint:#6E6E80;
+  --accent:#A78BFA; --accent-hover:#C4B5FD; --accent-subtle:#1E1533;
+  --on-accent:#16161D;
+}
 
-        *, *::before, *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+/* ── Base ─────────────────────────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:88px}
+body{
+  font-family:var(--sans);background:var(--bg);color:var(--text);
+  font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:var(--r-sm)}
 
-        html {
-            scroll-behavior: smooth;
-        }
+.wrap{width:100%;max-width:var(--wrap);margin-inline:auto;padding-inline:var(--s5)}
+.skip{
+  position:absolute;left:var(--s4);top:-100px;z-index:100;
+  background:var(--accent);color:var(--on-accent);
+  padding:var(--s3) var(--s4);border-radius:var(--r-md);font-weight:600;
+  transition:top .2s var(--ease);
+}
+.skip:focus{top:var(--s4)}
 
-        body {
-            font-family: var(--body-font);
-            line-height: 1.7;
-            background-color: var(--background-light);
-            color: var(--text-dark);
-        }
+/* ── Typography ───────────────────────────────────────────────────────── */
+h1,h2,h3{line-height:1.12;letter-spacing:-.022em;font-weight:700}
+h1{font-size:clamp(2.75rem,8vw,4.75rem);letter-spacing:-.035em}
+h2{font-size:clamp(1.65rem,3.4vw,2.25rem)}
+h3{font-size:1.0625rem;font-weight:600;letter-spacing:-.01em}
+p{color:var(--text-muted)}
+.lead{font-size:clamp(1.0625rem,1.8vw,1.25rem);max-width:var(--prose);color:var(--text-muted)}
+.eyebrow{
+  font-family:var(--mono);font-size:.72rem;font-weight:600;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--accent);
+}
+.rule{width:56px;height:3px;border-radius:2px;background:var(--accent);margin:var(--s5) 0}
 
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 1.5em;
-        }
+/* ── Header ───────────────────────────────────────────────────────────── */
+.site-header{
+  position:sticky;top:0;z-index:50;
+  background:color-mix(in srgb,var(--bg) 82%,transparent);
+  backdrop-filter:saturate(1.6) blur(12px);
+  border-bottom:1px solid transparent;transition:border-color .25s var(--ease);
+}
+.site-header[data-stuck="true"]{border-bottom-color:var(--border)}
+.site-header .wrap{display:flex;align-items:center;gap:var(--s5);height:68px}
+.brand{font-weight:700;letter-spacing:-.03em;font-size:1.0625rem}
+.brand span{color:var(--accent)}
+.nav{margin-left:auto;display:flex;align-items:center;gap:var(--s5)}
+.nav a{font-size:.9375rem;font-weight:500;color:var(--text-muted);transition:color .18s var(--ease)}
+.nav a:hover{color:var(--text)}
+@media (max-width:640px){.nav a:not(.btn){display:none}}
+.theme-toggle{
+  display:grid;place-items:center;width:36px;height:36px;flex:none;
+  border:1px solid var(--border);border-radius:var(--r-md);
+  background:var(--bg-subtle);color:var(--text-muted);cursor:pointer;
+  transition:color .18s var(--ease),border-color .18s var(--ease);
+}
+.theme-toggle:hover{color:var(--text);border-color:var(--border-strong)}
+.theme-toggle .moon{display:none}
+:root[data-theme="dark"] .theme-toggle .sun,
+:root:not([data-theme="light"]) .theme-toggle .sun{display:none}
+:root[data-theme="dark"] .theme-toggle .moon,
+:root:not([data-theme="light"]) .theme-toggle .moon{display:block}
+@media (prefers-color-scheme:light){
+  :root:not([data-theme="dark"]) .theme-toggle .sun{display:block}
+  :root:not([data-theme="dark"]) .theme-toggle .moon{display:none}
+}
 
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); /* Modern blue gradient */
-            color: var(--text-light);
-            padding: 8em 0 6em 0;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
+/* ── Buttons ──────────────────────────────────────────────────────────── */
+.btn{
+  display:inline-flex;align-items:center;gap:var(--s2);
+  padding:11px var(--s5);border-radius:var(--r-md);
+  font-size:.9375rem;font-weight:600;letter-spacing:-.01em;
+  border:1px solid transparent;cursor:pointer;
+  transition:background .18s var(--ease),border-color .18s var(--ease),transform .18s var(--ease);
+}
+.btn-primary{background:var(--accent);color:var(--on-accent)}
+.btn-primary:hover{background:var(--accent-hover)}
+.btn-ghost{border-color:var(--border-strong);color:var(--text)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+.btn:active{transform:translateY(1px)}
+.btn svg{width:17px;height:17px;flex:none}
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background-image: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 1px, transparent 1px);
-            background-size: 20px 20px;
-            opacity: 0.6;
-        }
+/* ── Hero ─────────────────────────────────────────────────────────────── */
+.hero{padding:clamp(var(--s8),11vw,var(--s10)) 0 var(--s9)}
+.hero .wrap{
+  display:grid;gap:var(--s7);
+  grid-template-columns:minmax(0,1fr) minmax(0,300px);align-items:center;
+}
+@media (max-width:860px){
+  .hero .wrap{grid-template-columns:1fr}
+  .hero-mark{display:none}
+}
+.hero h1{margin-top:var(--s4)}
+.hero .lead{margin-top:var(--s5)}
+.hero-actions{display:flex;flex-wrap:wrap;gap:var(--s3);margin-top:var(--s6)}
+.hero-mark{justify-self:center;width:100%;max-width:280px;color:var(--accent)}
+.hero-mark .ring{fill:none;stroke:currentColor;stroke-width:1.5}
+.hero-mark .spin{transform-origin:center;animation:spin 90s linear infinite}
+.hero-mark .pulse{animation:pulse 3.2s ease-in-out infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
 
-        .hero-content {
-            position: relative; /* Above the pattern */
-        }
+/* ── Sections ─────────────────────────────────────────────────────────── */
+.section{padding:var(--s9) 0;border-top:1px solid var(--border)}
+.section-head{margin-bottom:var(--s7);max-width:var(--prose)}
+.section-head h2{margin-top:var(--s3)}
+.section-head p{margin-top:var(--s4)}
+.num{font-family:var(--mono);font-size:.72rem;font-weight:600;color:var(--text-faint);letter-spacing:.16em}
 
-        .hero h1 {
-            font-family: var(--heading-font);
-            font-size: clamp(2.5rem, 6vw, 4rem); /* Responsive font size */
-            margin-bottom: 0.2em;
-            font-weight: 700;
-        }
-         .hero h1 .highlight {
-            color: var(--secondary-color);
-            font-weight: 700; /* Keep highlight bold */
-         }
+/* ── Chips ────────────────────────────────────────────────────────────── */
+.chip-group+.chip-group{margin-top:var(--s5)}
+.chip-label{
+  font-family:var(--mono);font-size:.68rem;font-weight:600;letter-spacing:.18em;
+  color:var(--text-faint);text-transform:uppercase;display:block;margin-bottom:var(--s3);
+}
+.chips{display:flex;flex-wrap:wrap;gap:var(--s2)}
+.chip{
+  padding:7px 14px;border-radius:var(--r-sm);font-size:.875rem;font-weight:500;
+  background:var(--bg-subtle);border:1px solid var(--border-strong);color:var(--text-muted);
+}
+.chip.is-core{
+  background:var(--accent-subtle);border-color:color-mix(in srgb,var(--accent) 55%,transparent);
+  color:var(--accent);font-weight:600;
+}
 
-        .hero p {
-            font-size: clamp(1rem, 2.5vw, 1.3rem);
-            margin-bottom: 1.5em;
-            font-weight: 300;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
+/* ── Cards ────────────────────────────────────────────────────────────── */
+.grid{display:grid;gap:var(--s4);grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.card{
+  padding:var(--s5);border:1px solid var(--border);border-radius:var(--r-lg);
+  background:var(--bg-subtle);
+  transition:border-color .2s var(--ease),transform .2s var(--ease);
+}
+.card:hover{border-color:var(--border-strong);transform:translateY(-2px)}
+.card .icon{
+  width:38px;height:38px;display:grid;place-items:center;margin-bottom:var(--s4);
+  border-radius:var(--r-md);background:var(--accent-subtle);color:var(--accent);
+}
+.card .icon svg{width:19px;height:19px}
+.card h3{margin-bottom:var(--s2)}
+.card p{font-size:.9375rem}
 
-        .cta-button {
-            display: inline-block;
-            background-color: var(--secondary-color);
-            color: var(--background-dark);
-            padding: 0.8em 1.8em;
-            border-radius: 50px; /* Pill shape */
-            text-decoration: none;
-            font-weight: 700;
-            transition: var(--transition-speed);
-            box-shadow: var(--box-shadow);
-        }
+/* ── Practice list ────────────────────────────────────────────────────── */
+.practices{list-style:none;display:grid;gap:var(--s5);counter-reset:p}
+@media (min-width:760px){.practices{grid-template-columns:1fr 1fr;gap:var(--s5) var(--s7)}}
+.practices li{display:grid;grid-template-columns:auto 1fr;gap:var(--s4);counter-increment:p}
+.practices li::before{
+  content:counter(p,decimal-leading-zero);
+  font-family:var(--mono);font-size:.72rem;font-weight:600;color:var(--accent);
+  padding-top:5px;letter-spacing:.06em;
+}
+.practices strong{display:block;font-weight:600;margin-bottom:2px;letter-spacing:-.01em}
+.practices span{color:var(--text-muted);font-size:.9375rem}
 
-        .cta-button:hover {
-            background-color: var(--text-light);
-            transform: translateY(-3px);
-            box-shadow: var(--box-shadow-hover);
-        }
+/* ── Contact ──────────────────────────────────────────────────────────── */
+.contact-actions{display:flex;flex-wrap:wrap;gap:var(--s3);margin-top:var(--s6)}
 
-        /* Sections General Styling */
-        .section {
-            padding: 4em 0;
-        }
+/* ── Footer ───────────────────────────────────────────────────────────── */
+.site-footer{
+  border-top:1px solid var(--border);padding:var(--s6) 0;
+  display:flex;flex-wrap:wrap;gap:var(--s4);align-items:center;
+  font-size:.875rem;color:var(--text-faint);
+}
+.site-footer .links{margin-left:auto;display:flex;gap:var(--s4)}
+.site-footer a:hover{color:var(--text)}
 
-        .section-title {
-            text-align: center;
-            font-family: var(--heading-font);
-            font-size: 2.5rem;
-            margin-bottom: 1.5em;
-            color: var(--primary-color);
-            position: relative;
-        }
-
-        .section-title::after { /* Underline effect */
-            content: '';
-            display: block;
-            width: 80px;
-            height: 4px;
-            background-color: var(--secondary-color);
-            margin: 0.3em auto 0;
-            border-radius: 2px;
-        }
-
-        /* Expertise Section */
-        .expertise-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2em;
-        }
-
-        .expertise-card {
-            background-color: var(--card-background);
-            padding: 2em;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            transition: all 0.4s ease;
-            text-align: center;
-            border: 1px solid rgba(0,0,0,0.05);
-        }
-
-        .expertise-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
-            border-color: var(--primary-color);
-        }
-
-        .expertise-card .icon {
-            font-size: 3rem;
-            color: var(--primary-color);
-            margin-bottom: 0.5em;
-            transition: var(--transition-speed);
-        }
-        .expertise-card:hover .icon {
-            color: var(--secondary-color);
-            transform: scale(1.1);
-        }
-
-        .expertise-card h3 {
-            font-family: var(--heading-font);
-            font-size: 1.4rem;
-            margin-bottom: 0.5em;
-            color: var(--text-dark);
-        }
-
-        .expertise-card p {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-        }
-
-        /* Approach Section */
-        .approach-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 1.5em;
-            list-style: none;
-        }
-
-        .approach-item {
-            background: var(--card-background);
-            padding: 1.5em;
-            border-radius: 12px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
-            display: flex;
-            align-items: flex-start; /* Align icon nicely */
-            transition: all 0.4s ease;
-            border-left: 4px solid transparent;
-        }
-         .approach-item:hover {
-             transform: translateX(5px);
-             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
-             border-left-color: var(--primary-color);
-         }
-
-        .approach-item .icon {
-            font-size: 1.8rem;
-            color: var(--primary-color);
-            margin-right: 1em;
-            margin-top: 0.1em; /* Fine-tune vertical alignment */
-            min-width: 30px; /* Consistent icon spacing */
-            text-align: center;
-        }
-
-        .approach-item .content strong {
-            font-weight: 700;
-            color: var(--text-dark);
-            display: block; /* Ensure strong takes full width */
-            margin-bottom: 0.2em;
-        }
-        .approach-item .content span { /* The descriptive text */
-             font-size: 0.95rem;
-             color: var(--text-muted);
-        }
-
-
-        /* Contact Section */
-        #contact {
-            background-color: var(--card-background);
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            padding: 4em 2em;
-            margin-top: 4em;
-        }
-/* Footer */
-        .footer {
-            background-color: var(--background-dark);
-            color: var(--text-light);
-            text-align: center;
-            padding: 3em 0;
-            margin-top: 5em;
-            font-size: 0.95rem;
-            border-top: 4px solid var(--primary-color);
-        }
-        .footer p {
-            margin-bottom: 0.5em;
-            opacity: 0.8;
-        }
-        .footer a { /* Optional social links */
-            color: var(--secondary-color);
-            margin: 0 0.5em;
-            font-size: 1.5rem;
-            transition: var(--transition-speed);
-        }
-        .footer a:hover {
-            color: var(--text-light);
-            transform: translateY(-2px);
-        }
-
-
-        /* Animations (Subtle Fade-in on Scroll - requires JS, but let's add basic CSS animation) */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Apply animation - Note: This will trigger on load, not scroll without JS */
-        .section-title, .expertise-card, .approach-item {
-             /* animation: fadeInUp 0.6s ease-out forwards; */ /* Commented out - best with JS Intersection Observer */
-             opacity: 1; /* Ensure visible if JS isn't used for scroll */
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .section-title {
-                font-size: 2rem;
-            }
-            .expertise-grid, .approach-list {
-                grid-template-columns: 1fr; /* Stack on smaller screens */
-            }
-            .hero {
-                padding: 4em 0 3em 0;
-            }
-        }
-
-
-        /* Navigation Bar */
-        .navbar {
-            background-color: var(--background-dark);
-            padding: 1em 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: var(--box-shadow);
-        }
-        .navbar .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .navbar-brand {
-            color: var(--text-light);
-            font-family: var(--heading-font);
-            font-size: 1.5rem;
-            font-weight: 700;
-            text-decoration: none;
-        }
-        .navbar-brand .highlight {
-            color: var(--secondary-color);
-        }
-        .navbar-nav {
-            list-style: none;
-            display: flex;
-            gap: 1.5em;
-        }
-        .navbar-nav a {
-            color: var(--text-light);
-            text-decoration: none;
-            font-weight: 600;
-            transition: var(--transition-speed);
-        }
-        .navbar-nav a:hover {
-            color: var(--secondary-color);
-        }
-
-    </style>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+/* ── Reveal on scroll ─────────────────────────────────────────────────── */
+.js .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.js .reveal.is-in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .js .reveal{opacity:1;transform:none;transition:none}
+  .spin,.pulse{animation:none}
+  *{transition-duration:.01ms!important}
+}
+</style>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 
-    <nav class="navbar">
-        <div class="container">
-            <a href="#" class="navbar-brand">Phuong<span class="highlight">.</span></a>
-            <ul class="navbar-nav">
-                <li><a href="#expertise">Expertise</a></li>
-                <li><a href="#approach">Approach</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
+<header class="site-header" id="siteHeader">
+  <div class="wrap">
+    <a class="brand" href="#">Phuong<span>.</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="#work">Work</a>
+      <a href="#practice">How I work</a>
+      <a href="#contact">Contact</a>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch colour theme">
+        <svg class="sun" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2M12 19.4v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M2.6 12h2M19.4 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>
+        <svg class="moon" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.2A8.2 8.2 0 0 1 9.8 4a8.2 8.2 0 1 0 10.2 10.2Z"/></svg>
+      </button>
     </nav>
+  </div>
+</header>
 
+<main id="main">
 
-    <header class="hero">
-        <div class="hero-content container">
-            <h1>Phuong <span class="highlight">(@phuongfullstack)</span></h1>
-            <p>Elite .NET Full-Stack Architect | Crafting Robust, Scalable & Secure Digital Solutions</p>
-            <a href="#contact" class="cta-button">Let's Collaborate</a>
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Full-stack developer</p>
+        <h1>Phuong</h1>
+        <div class="rule"></div>
+        <p class="lead">
+          I build web applications on <strong>ASP.NET Core</strong> — APIs and data access on the
+          backend, Blazor or a JS framework on the front, containerised and shipped to Azure.
+          Most of my attention goes to the parts that are easy to get wrong: query performance,
+          cache invalidation, and authorisation.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#contact">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6.5h18v11H3z"/><path d="m3 7 9 6 9-6"/></svg>
+            Get in touch
+          </a>
+          <a class="btn btn-ghost" href="https://github.com/phuongfullstack">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48l-.01-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85l-.01 2.75c0 .26.18.58.69.48A10 10 0 0 0 12 2Z"/></svg>
+            GitHub
+          </a>
         </div>
-    </header>
+      </div>
+      <svg class="hero-mark" viewBox="0 0 280 280" aria-hidden="true">
+        <g class="spin">
+          <rect class="ring" x="16" y="16" width="248" height="248" rx="60" opacity=".10"/>
+          <rect class="ring" x="45" y="45" width="190" height="190" rx="46" opacity=".16" transform="rotate(4 140 140)"/>
+          <rect class="ring" x="74" y="74" width="132" height="132" rx="32" opacity=".26" transform="rotate(8 140 140)"/>
+          <rect class="ring" x="103" y="103" width="74" height="74" rx="18" opacity=".42" transform="rotate(12 140 140)"/>
+        </g>
+        <circle class="pulse" cx="140" cy="140" r="7" fill="currentColor"/>
+      </svg>
+    </div>
+  </section>
 
-    <main>
-        <section id="expertise" class="section container">
-            <h2 class="section-title" data-aos="fade-up">My Expertise</h2>
-            <div class="expertise-grid">
-                <div class="expertise-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="icon"><i class="fas fa-laptop-code"></i></div>
-                    <h3>Frontend Development</h3>
-                    <p>Building intuitive & engaging UIs with Blazor, React, Angular, Vue, HTML5, CSS3, JS/TS.</p>
-                </div>
-                <div class="expertise-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="icon"><i class="fas fa-server"></i></div>
-                    <h3>Backend .NET Mastery</h3>
-                    <p>Architecting scalable ASP.NET Core APIs, clean C# code, optimized EF Core (SQL/NoSQL).</p>
-                </div>
-                <div class="expertise-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
-                    <h3>DevOps & Cloud</h3>
-                    <p>Streamlining CI/CD (Azure DevOps/GitHub Actions), Docker containerization & Azure deployment.</p>
-                </div>
-                <div class="expertise-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="icon"><i class="fas fa-tachometer-alt"></i></div>
-                    <h3>Performance Tuning</h3>
-                    <p>Optimizing database queries, implementing caching, lazy loading & async patterns.</p>
-                </div>
-                <div class="expertise-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="icon"><i class="fas fa-shield-alt"></i></div>
-                    <h3>Application Security</h3>
-                    <p>Implementing robust security practices (AuthN/AuthZ, XSS, CSRF, SQLi prevention).</p>
-                </div>
-                 <div class="expertise-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="icon"><i class="fas fa-project-diagram"></i></div>
-                    <h3>Solution Architecture</h3>
-                    <p>Designing end-to-end solutions that meet business goals and technical requirements.</p>
-                </div>
-            </div>
-        </section>
+  <section class="section" id="stack">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="num">01</span>
+        <h2>Stack</h2>
+        <p>What I reach for first, and what I reach for when the job calls for it.</p>
+      </div>
+      <div class="reveal">
+        <div class="chip-group">
+          <span class="chip-label">Core</span>
+          <div class="chips">
+            <span class="chip is-core">C#</span><span class="chip is-core">.NET</span>
+            <span class="chip is-core">ASP.NET Core</span><span class="chip is-core">Blazor</span>
+            <span class="chip is-core">EF Core</span>
+          </div>
+        </div>
+        <div class="chip-group">
+          <span class="chip-label">Toolbox</span>
+          <div class="chips">
+            <span class="chip">TypeScript</span><span class="chip">React</span><span class="chip">Angular</span>
+            <span class="chip">Vue</span><span class="chip">Azure</span><span class="chip">Docker</span>
+            <span class="chip">Kubernetes</span><span class="chip">GitHub Actions</span>
+            <span class="chip">SQL Server</span><span class="chip">PostgreSQL</span><span class="chip">Redis</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <section id="approach" class="section" style="background-color: #eef;"> <!-- Subtle background change -->
-            <div class="container">
-                <h2 class="section-title" data-aos="fade-up">My Collaborative Approach</h2>
-                <ul class="approach-list">
-                    <li class="approach-item" data-aos="fade-right">
-                        <i class="fas fa-comments icon"></i>
-                        <div class="content"><strong>Explain concepts clearly:</strong> <span>Breaking down complex topics into understandable insights.</span></div>
-                    </li>
-                    <li class="approach-item" data-aos="fade-right">
-                        <i class="fas fa-balance-scale-right icon"></i>
-                        <div class="content"><strong>Suggest options (pros/cons):</strong> <span>Empowering you with informed choices through clear analysis.</span></div>
-                    </li>
-                    <li class="approach-item" data-aos="fade-right">
-                        <i class="fas fa-code icon"></i>
-                        <div class="content"><strong>Provide quality code:</strong> <span>Delivering complete, readable, and well-commented solutions (front & back).</span></div>
-                    </li>
-                    <li class="approach-item" data-aos="fade-right">
-                        <i class="fas fa-vials icon"></i>
-                         <div class="content"><strong>Suggest testing strategies:</strong> <span>Advising on effective QA with tools like xUnit, NUnit, Moq.</span></div>
-                    </li>
-                    <li class="approach-item" data-aos="fade-right">
-                        <i class="fas fa-rocket icon"></i>
-                        <div class="content"><strong>Advise on performance:</strong> <span>Guiding optimization for speed (query opt., caching, lazy loading).</span></div>
-                    </li>
-                    <li class="approach-item" data-aos="fade-right">
-                        <i class="fas fa-user-shield icon"></i>
-                        <div class="content"><strong>Highlight security:</strong> <span>Proactively addressing vulnerabilities (XSS, CSRF, SQLi).</span></div>
-                    </li>
-                     <li class="approach-item" data-aos="fade-right">
-                        <i class="fas fa-question-circle icon"></i>
-                        <div class="content"><strong>Ask clarifying questions:</strong> <span>Ensuring full requirement alignment before implementation.</span></div>
-                    </li>
-                     <li class="approach-item" data-aos="fade-right">
-                        <i class="fas fa-handshake icon"></i>
-                        <div class="content"><strong>Professional & Friendly Tone:</strong> <span>Maintaining positive, collaborative communication, ready to elaborate.</span></div>
-                    </li>
-                </ul>
-            </div>
-        </section>
+  <section class="section" id="work">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="num">02</span>
+        <h2>What I work on</h2>
+        <p>Six areas that cover most of what a .NET application needs between an idea and production.</p>
+      </div>
+      <div class="grid">
+        <article class="card reveal">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></div>
+          <h3>Frontend</h3>
+          <p>Blazor Server and WebAssembly, or React / Angular / Vue wired to .NET APIs with typed clients generated from OpenAPI.</p>
+        </article>
+        <article class="card reveal">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01"/></svg></div>
+          <h3>Backend</h3>
+          <p>ASP.NET Core Web API and MVC on modern .NET — minimal APIs, middleware, background services, versioned contracts.</p>
+        </article>
+        <article class="card reveal">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a4 4 0 0 1-.5-7.97 5.5 5.5 0 0 1 10.6-1.2A3.75 3.75 0 0 1 17.5 18Z"/><path d="M12 12v5M9.8 14.2 12 12l2.2 2.2"/></svg></div>
+          <h3>Cloud &amp; DevOps</h3>
+          <p>Docker multi-stage builds, GitHub Actions and Azure DevOps pipelines, deployed to App Service, Functions or Container Apps.</p>
+        </article>
+        <article class="card reveal">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 18a8 8 0 1 1 16 0"/><path d="m12 14 4-4"/></svg></div>
+          <h3>Performance</h3>
+          <p>Index and query tuning from execution plans, killing N+1, caching that actually invalidates, numbers from BenchmarkDotNet.</p>
+        </article>
+        <article class="card reveal">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 5 6v6c0 4.2 2.9 7.6 7 9 4.1-1.4 7-4.8 7-9V6Z"/><path d="m9.3 12 1.9 1.9 3.5-3.6"/></svg></div>
+          <h3>Security</h3>
+          <p>ASP.NET Core Identity, JWT and cookie auth, policy-based authorisation, and defence against XSS, CSRF, SQLi and IDOR.</p>
+        </article>
+        <article class="card reveal">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v6.2L5.2 17A2 2 0 0 0 6.9 20h10.2a2 2 0 0 0 1.7-3L14 9.2V3Z"/><path d="M9 3h6M8.2 14h7.6"/></svg></div>
+          <h3>Testing</h3>
+          <p>xUnit and NUnit with Moq, integration tests through <code>WebApplicationFactory</code> and Testcontainers against a real database.</p>
+        </article>
+      </div>
+    </div>
+  </section>
 
-        <!-- Optional Contact Section -->
-         <section id="contact" class="section container" style="text-align: center;">
-             <h2 class="section-title" data-aos="fade-up">Let's Build Something Exceptional</h2>
-             <p style="max-width: 600px; margin: 0 auto 2em auto; color: var(--text-muted);">
-                 Whether you need help with a specific challenge, architectural guidance, or end-to-end development, I'm ready to partner with you.
-             </p>
-             <a href="mailto:your-email@example.com?subject=Collaboration Inquiry from GitHub Profile" class="cta-button" style="background-color: var(--primary-color); color: var(--text-light);">
-                 <i class="fas fa-envelope"></i> Get In Touch
-             </a>
-             <!-- Add LinkedIn/Other links below if desired -->
-         </section>
+  <section class="section" id="practice">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="num">03</span>
+        <h2>How I work</h2>
+        <p>Engineering habits, not personality traits.</p>
+      </div>
+      <ul class="practices reveal">
+        <li><div><strong>Measure before optimising</strong><span>An execution plan or a benchmark comes before the rewrite. "Feels slow" is a starting point, not a diagnosis.</span></div></li>
+        <li><div><strong>Small changes, green pipeline</strong><span>Focused pull requests with tests that run in CI, so a red build stops a regression instead of a reviewer having to catch it.</span></div></li>
+        <li><div><strong>Boring technology where it counts</strong><span>Proven framework features over clever abstractions in the parts of a system that are expensive to get wrong.</span></div></li>
+        <li><div><strong>Write down the why</strong><span>Comments and commit messages explain the reasoning, because the code already explains the what.</span></div></li>
+        <li><div><strong>Secure by default</strong><span>Parameterise every query, authorise every handler, keep secrets in Key Vault — not as a hardening pass at the end.</span></div></li>
+        <li><div><strong>Leave it runnable</strong><span>A README that works from a clean clone, and deployment that survives someone else pressing the button.</span></div></li>
+      </ul>
+    </div>
+  </section>
 
-    </main>
+  <!--
+  Selected work — điền 2–4 dự án thật vào đây rồi bỏ comment.
+  Mỗi card cần: tên, một câu về vấn đề nó giải quyết, stack, và link.
+  Để nguyên trong comment nếu chưa có gì: section trống còn tệ hơn không có.
 
-    <footer class="footer">
-        <!-- Optional Social Links -->
-         <!-- <div style="margin-bottom: 1em;">
-             <a href="#" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-             <a href="#" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-             <a href="#" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-         </div> -->
-        <p>&copy; 2025 Phuong (@phuongfullstack). All rights reserved.</p>
-        <p>Last Updated: 2025-04-20 10:23:34 UTC</p>
-    </footer>
+  <section class="section" id="projects">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="num">04</span>
+        <h2>Selected work</h2>
+      </div>
+      <div class="grid">
+        <a class="card reveal" href="https://github.com/phuongfullstack/REPO-NAME">
+          <h3>Repo name</h3>
+          <p>Một câu mô tả vấn đề nó giải quyết.</p>
+          <div class="chips" style="margin-top:var(--s4)">
+            <span class="chip">ASP.NET Core</span><span class="chip">EF Core</span><span class="chip">Azure</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+  -->
 
+  <section class="section" id="contact">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="num">04</span>
+        <h2>Let's talk</h2>
+        <p>Happy to talk about .NET architecture, a query that got slow, or a project you're planning.</p>
+      </div>
+      <div class="contact-actions reveal">
+        <a class="btn btn-primary" href="mailto:contact@phuongfullstack.com?subject=Hello%20from%20your%20site">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6.5h18v11H3z"/><path d="m3 7 9 6 9-6"/></svg>
+          contact@phuongfullstack.com
+        </a>
+        <a class="btn btn-ghost" href="https://linkedin.com/in/phuongfullstack">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 0 5 8.5a2.5 2.5 0 0 0-.02-5ZM3 21h4V9H3v12Zm7 0h4v-6.3c0-1.7 2.2-1.85 2.2 0V21h4v-7.2c0-5.2-5.3-5-6.2-2.45V9h-4v12Z"/></svg>
+          LinkedIn
+        </a>
+      </div>
+    </div>
+  </section>
 
-    <!-- AOS Library -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init({
-            duration: 800,
-            once: true,
-            offset: 100
-        });
-    </script>
+</main>
+
+<footer class="site-footer wrap">
+  <span>&copy; <span id="year">2026</span> Phuong</span>
+  <div class="links">
+    <a href="https://github.com/phuongfullstack">GitHub</a>
+    <a href="https://linkedin.com/in/phuongfullstack">LinkedIn</a>
+    <a href="mailto:contact@phuongfullstack.com">Email</a>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  // Theme: follow the system unless the visitor has chosen otherwise.
+  var root = document.documentElement;
+  try {
+    var saved = localStorage.getItem('theme');
+    if (saved === 'light' || saved === 'dark') root.setAttribute('data-theme', saved);
+  } catch (e) { /* private mode — fall back to the system preference */ }
+
+  document.getElementById('themeToggle').addEventListener('click', function () {
+    var systemDark = matchMedia('(prefers-color-scheme: dark)').matches;
+    var current = root.getAttribute('data-theme') || (systemDark ? 'dark' : 'light');
+    var next = current === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('theme', next); } catch (e) {}
+  });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Hairline under the header only once the page has scrolled.
+  var header = document.getElementById('siteHeader');
+  var onScroll = function () { header.dataset.stuck = window.scrollY > 8; };
+  addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Reveal on scroll, skipped entirely when the visitor asked for less motion.
+  var items = document.querySelectorAll('.reveal');
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
+    items.forEach(function (el) { el.classList.add('is-in'); });
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-in');
+      io.unobserve(entry.target);
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: .08 });
+  items.forEach(function (el, i) {
+    el.style.transitionDelay = (i % 6) * 55 + 'ms';
+    io.observe(el);
+  });
+})();
+</script>
 </body>
 </html>
