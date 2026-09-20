@@ -1,18 +1,15 @@
 <div align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:512BD4,50:0078D4,100:50E3C2&height=200&section=header&text=Phuong&fontSize=72&fontColor=ffffff&fontAlignY=34&desc=.NET%20Full-Stack%20Developer&descSize=20&descAlignY=54&animation=fadeIn" alt="Phuong — .NET Full-Stack Developer" />
+  <img src="assets/header.svg" width="100%" alt="Phuong — .NET Full-Stack Developer" />
 </div>
 
 <div align="center">
-  <a href="https://git.io/typing-svg">
-    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=1200&color=0078D4&center=true&vCenter=true&width=640&lines=ASP.NET+Core+%E2%80%A2+Blazor+%E2%80%A2+EF+Core;Azure+%E2%80%A2+Docker+%E2%80%A2+GitHub+Actions;Performance+tuning+%26+secure+by+default" alt="ASP.NET Core, Blazor, EF Core — Azure, Docker, GitHub Actions — performance tuning and secure by default" />
-  </a>
+  <img src="assets/typing.svg" alt="ASP.NET Core / Blazor / EF Core — Azure / Docker / GitHub Actions — Measure first. Cache second." />
 </div>
 
 <div align="center">
   <a href="https://linkedin.com/in/phuongfullstack"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
   <a href="mailto:contact@phuongfullstack.com"><img src="https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" /></a>
   <a href="https://phuongfullstack.com"><img src="https://img.shields.io/badge/Website-000000?style=for-the-badge&logo=aboutdotme&logoColor=white" alt="Website" /></a>
-  <img src="https://komarev.com/ghpvc/?username=phuongfullstack&style=for-the-badge&color=512BD4&label=PROFILE+VIEWS" alt="Profile views" />
 </div>
 
 <br />
@@ -39,9 +36,7 @@ public sealed record Developer(string Name, string Role)
 
 ### 🧰 Tech Stack
 
-<img src="https://skillicons.dev/icons?i=cs,dotnet,blazor,ts,js,react,angular,vue&theme=dark" alt="C#, .NET, Blazor, TypeScript, JavaScript, React, Angular, Vue" />
-<br />
-<img src="https://skillicons.dev/icons?i=azure,docker,kubernetes,githubactions,git,redis,postgres,tailwind&theme=dark" alt="Azure, Docker, Kubernetes, GitHub Actions, Git, Redis, PostgreSQL, Tailwind" />
+<img src="assets/tech-stack.svg" alt="C#, .NET, Blazor, TypeScript, React, Angular, Vue, Azure, Docker, Kubernetes, GitHub Actions, SQL Server, PostgreSQL, Redis" />
 
 </div>
 
@@ -173,6 +168,6 @@ Happy to talk about .NET architecture, a query that got slow, or a project you'r
 
 <a href="https://linkedin.com/in/phuongfullstack"><img src="https://img.shields.io/badge/Message_me_on_LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="Message me on LinkedIn" /></a>
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:50E3C2,50:0078D4,100:512BD4&height=120&section=footer" alt="" />
+<img src="assets/footer.svg" width="100%" alt="" />
 
 </div>

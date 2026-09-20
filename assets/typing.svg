@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 38" width="660" height="38" role="img" aria-label="ASP.NET Core / Blazor / EF Core — Azure / Docker / GitHub Actions — Measure first. Cache second.">
+  <clipPath id="c0"><rect x="143.84" y="0" height="38" width="372.3">
+    <animate attributeName="width" values="0;372.3;372.3;0" keyTimes="0.0000;0.3810;0.8333;1.0000"
+             dur="4.2s" begin="0.0s" repeatCount="indefinite" calcMode="linear"/>
+  </rect></clipPath>
+  <g opacity="1">
+    <animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.3333;0.3333;1"
+             dur="12.600000000000001s" begin="0.0s" repeatCount="indefinite"/>
+    <text x="143.84" y="24" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,DejaVu Sans Mono,monospace" font-size="20" font-weight="600"
+          fill="#0078D4" clip-path="url(#c0)" xml:space="preserve">ASP.NET Core / Blazor / EF Core</text>
+    <rect y="6" width="2.5" height="20" fill="#0078D4" x="516.2">
+      <animate attributeName="x" values="143.84;516.2;516.2;143.84" keyTimes="0.0000;0.3810;0.8333;1.0000"
+               dur="4.2s" begin="0.0s" repeatCount="indefinite" calcMode="linear"/>
+      <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>
+    </rect>
+  </g>
+  <clipPath id="c1"><rect x="143.84" y="0" height="38" width="0">
+    <animate attributeName="width" values="0;372.3;372.3;0" keyTimes="0.0000;0.3810;0.8333;1.0000"
+             dur="4.2s" begin="4.2s" repeatCount="indefinite" calcMode="linear"/>
+  </rect></clipPath>
+  <g opacity="0">
+    <animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.3333;0.3333;1"
+             dur="12.600000000000001s" begin="4.2s" repeatCount="indefinite"/>
+    <text x="143.84" y="24" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,DejaVu Sans Mono,monospace" font-size="20" font-weight="600"
+          fill="#0078D4" clip-path="url(#c1)" xml:space="preserve">Azure / Docker / GitHub Actions</text>
+    <rect y="6" width="2.5" height="20" fill="#0078D4" x="143.8">
+      <animate attributeName="x" values="143.84;516.2;516.2;143.84" keyTimes="0.0000;0.3810;0.8333;1.0000"
+               dur="4.2s" begin="4.2s" repeatCount="indefinite" calcMode="linear"/>
+      <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>
+    </rect>
+  </g>
+  <clipPath id="c2"><rect x="161.86" y="0" height="38" width="0">
+    <animate attributeName="width" values="0;336.3;336.3;0" keyTimes="0.0000;0.3810;0.8333;1.0000"
+             dur="4.2s" begin="8.4s" repeatCount="indefinite" calcMode="linear"/>
+  </rect></clipPath>
+  <g opacity="0">
+    <animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.3333;0.3333;1"
+             dur="12.600000000000001s" begin="8.4s" repeatCount="indefinite"/>
+    <text x="161.86" y="24" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,DejaVu Sans Mono,monospace" font-size="20" font-weight="600"
+          fill="#0078D4" clip-path="url(#c2)" xml:space="preserve">Measure first. Cache second.</text>
+    <rect y="6" width="2.5" height="20" fill="#0078D4" x="161.9">
+      <animate attributeName="x" values="161.86;498.1;498.1;161.86" keyTimes="0.0000;0.3810;0.8333;1.0000"
+               dur="4.2s" begin="8.4s" repeatCount="indefinite" calcMode="linear"/>
+      <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>
+    </rect>
+  </g>
+</svg>
