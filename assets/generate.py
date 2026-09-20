@@ -106,8 +106,8 @@ def build_hero(path="hero.svg"):
     W, H = 1280, 328
     PAD = 72
     lines = [
-        "ASP.NET Core / Blazor / EF Core",
-        "Azure / Docker / GitHub Actions",
+        "ASP.NET Core / Angular / EF Core",
+        "Azure / AWS / Docker / Terraform",
         "Measure first. Cache second.",
     ]
 
@@ -194,10 +194,11 @@ def chips(groups, *, width=1280, pad=56, size=14, h=36, gap=9, row_gap=10,
 
 def build_stack(path="stack.svg"):
     groups = [
-        ("CORE", ["C#", ".NET", "ASP.NET Core", "Blazor", "EF Core"], True),
-        ("TOOLBOX", ["TypeScript", "React", "Angular", "Vue", "Azure", "Docker",
-                     "Kubernetes", "GitHub Actions", "SQL Server", "PostgreSQL",
-                     "Redis"], False),
+        ("CORE", ["C#", ".NET", "ASP.NET Core", "EF Core"], True),
+        ("FRONTEND", ["Angular", "TypeScript", "Vue", "Svelte", "React", "WPF"], False),
+        ("DATA", ["SQL Server", "PostgreSQL", "MongoDB", "Cosmos DB", "Redis"], False),
+        ("CLOUD & OPS", ["Azure", "AWS", "Docker", "Terraform", "GitHub Actions",
+                         "RabbitMQ"], False),
     ]
     W = 1280
     blocks, H = chips(groups, width=W)
@@ -231,6 +232,78 @@ def _arrow(x1, y1, x2, y2, *, accent=False, both=False, dashed=False):
             f' stroke="{stroke}" stroke-width="1.5"{dash}{attrs}/>')
 
 
+
+def build_experience(path="experience.svg"):
+    """Seven years as a picture rather than a paragraph: a KPI strip, one
+    timeline track, and the domains worked in. Segments run older to newer in
+    increasing weight, and each is labelled inside, so colour carries emphasis
+    rather than identity."""
+    W, PAD = 1280, 56
+    track_w = W - PAD * 2
+
+    kpis = [("~7", "YEARS"), ("15", "PROJECTS"), ("4", "COMPANIES"), ("12", "LARGEST TEAM")]
+    roles = [("Enclave", 2019.0, 2021.0), ("Axon Active", 2021.0, 2022.0),
+             ("FPT Software", 2022.0, 2024.0), ("Propel Ventures", 2024.0, 2025.5)]
+    domains = ["Healthcare", "Fintech", "Fund management", "Education",
+               "Property tax", "Real estate", "Gaming"]
+
+    start, end = roles[0][1], roles[-1][2]
+    span = end - start
+    bar_y, bar_h, gap = 196, 44, 2
+
+    parts = []
+    col = track_w / len(kpis)
+    for i, (value, label) in enumerate(kpis):
+        x = PAD + col * i
+        parts.append(
+            f'    <text x="{x:.0f}" y="96" font-family="{SANS}" font-size="34"'
+            f' font-weight="700" fill="{T["text"]}" letter-spacing="-1.1">{esc(value)}</text>'
+            f'<text x="{x:.0f}" y="118" font-family="{MONO}" font-size="10.5"'
+            f' font-weight="600" fill="{T["text-faint"]}" letter-spacing="1.8">{esc(label)}</text>')
+
+    parts.append(f'    <text x="{PAD}" y="170" font-family="{MONO}" font-size="11.5"'
+                 f' font-weight="600" fill="{T["text-faint"]}" letter-spacing="2.6">EXPERIENCE</text>')
+
+    weights = [0.28, 0.44, 0.66, 1.0]
+    for i, (name, a, b) in enumerate(roles):
+        x = PAD + (a - start) / span * track_w + (gap if i else 0)
+        w = (b - a) / span * track_w - (gap if i else 0)
+        ink = T["on-accent"] if weights[i] == 1.0 else T["text"]
+        parts.append(
+            f'    <rect x="{x:.1f}" y="{bar_y}" width="{w:.1f}" height="{bar_h}" rx="{R["sm"]}"'
+            f' fill="{T["accent"]}" fill-opacity="{weights[i]}"/>'
+            f'<text x="{x + w/2:.1f}" y="{bar_y + bar_h/2 + 5}" text-anchor="middle"'
+            f' font-family="{SANS}" font-size="13.5" font-weight="600" fill="{ink}">{esc(name)}</text>')
+
+    for year in range(int(start), int(end) + 1):
+        x = PAD + (year - start) / span * track_w
+        # the first tick sits on the padding edge; centring it would hang outside
+        anchor = "start" if year == int(start) else "middle"
+        parts.append(f'    <text x="{x:.1f}" y="{bar_y + bar_h + 24}" text-anchor="{anchor}"'
+                     f' font-family="{MONO}" font-size="11" fill="{T["text-faint"]}">{year}</text>')
+
+    parts.append(f'    <text x="{PAD}" y="{bar_y + bar_h + 66}" font-family="{MONO}"'
+                 f' font-size="11.5" font-weight="600" fill="{T["text-faint"]}"'
+                 f' letter-spacing="2.6">DOMAINS</text>')
+    cy, ch = bar_y + bar_h + 84, 32
+    x = PAD
+    for d in domains:
+        cw = round(len(d) * 14 * SANS_CH + 30, 1)
+        parts.append(
+            f'    <rect x="{x:.1f}" y="{cy}" width="{cw}" height="{ch}" rx="{R["sm"]+2}"'
+            f' fill="{T["bg-subtle"]}" stroke="{T["border-strong"]}" stroke-width="1"/>'
+            f'<text x="{x + cw/2:.1f}" y="{cy + ch/2 + 4.8:.1f}" text-anchor="middle"'
+            f' font-family="{SANS}" font-size="13" font-weight="500"'
+            f' fill="{T["text-muted"]}">{esc(d)}</text>')
+        x += cw + 9
+
+    H = cy + ch + PAD
+    alt = ("Seven years, fifteen projects, four companies, largest team twelve. "
+           + "Timeline: " + "; ".join(f"{n} {int(a)}–{int(b)}" for n, a, b in roles)
+           + ". Domains: " + ", ".join(domains) + ".")
+    (OUT / path).write_text(card(W, H, "\n".join(parts), label=alt))
+
+
 def build_architecture(path="architecture.svg"):
     """What a typical application I build actually looks like. A profile can
     list technologies; a diagram shows how they fit together, which is the
@@ -255,7 +328,7 @@ def build_architecture(path="architecture.svg"):
                 f' font-weight="600" fill="{T["text-faint"]}" letter-spacing="2.6">{text}</text>')
 
     parts = [label(PAD, PAD + 4, "REQUEST PATH")]
-    boxes = [("Browser / Blazor", "razor components"),
+    boxes = [("Angular SPA", "typescript"),
              ("ASP.NET Core", "middleware · endpoints"),
              ("EF Core", "compiled queries"),
              ("SQL Server", "indexed · pooled")]
@@ -300,6 +373,7 @@ if __name__ == "__main__":
         f.unlink()
     build_hero()
     build_stack()
+    build_experience()
     build_architecture()
     for f in sorted(OUT.glob("*.svg")):
         print(f"{f.name:14} {f.stat().st_size:>6} bytes")

@@ -1,23 +1,14 @@
-<img src="assets/hero.svg" width="100%" alt="Phuong — full-stack developer. ASP.NET Core, Blazor, EF Core. Azure, Docker, GitHub Actions." />
+<img src="assets/hero.svg" width="100%" alt="Phuong — full-stack developer. ASP.NET Core, Angular, EF Core. Azure, AWS, Docker, Terraform." />
 
-I build web applications on **ASP.NET Core** — APIs and data access on the backend, Blazor or a JS framework on the frontend, containerised and shipped to Azure.
+Full-stack engineer, seven years on **.NET** — backend systems, Angular front-ends, and cloud-native delivery on Azure and AWS.
 
-Most of my work sits in the Microsoft ecosystem, and most of my attention goes to the parts that are easy to get wrong: query performance, cache invalidation, and authorisation.
+<img src="assets/experience.svg" width="100%" alt="Seven years, fifteen projects, four companies, largest team twelve. Timeline: Enclave 2019-2021, Axon Active 2021-2022, FPT Software 2022-2024, Propel Ventures 2024-2025. Domains: healthcare, fintech, fund management, education, property tax, real estate, gaming." />
 
-<img src="assets/stack.svg" width="100%" alt="Core: C#, .NET, ASP.NET Core, Blazor, EF Core. Toolbox: TypeScript, React, Angular, Vue, Azure, Docker, Kubernetes, GitHub Actions, SQL Server, PostgreSQL, Redis." />
+<img src="assets/stack.svg" width="100%" alt="Core: C#, .NET, ASP.NET Core, EF Core. Frontend: Angular, TypeScript, Vue, Svelte, React, WPF. Data: SQL Server, PostgreSQL, MongoDB, Cosmos DB, Redis. Cloud and ops: Azure, AWS, Docker, Terraform, GitHub Actions, RabbitMQ." />
 
 ## How I build it
 
-<img src="assets/architecture.svg" width="100%" alt="Request path from browser or Blazor through ASP.NET Core to EF Core and SQL Server, with Redis as a cache aside the application. Delivery: GitHub Actions builds, tests and scans, producing a container image deployed to Azure Container Apps." />
-
-```csharp
-public sealed record Developer(string Name, string Role)
-{
-    public static Developer Me => new("Phuong", ".NET Full-Stack Developer");
-
-    public string Philosophy => "Measure first. Cache second. Never trust user input.";
-}
-```
+<img src="assets/architecture.svg" width="100%" alt="Request path from an Angular SPA through ASP.NET Core to EF Core and SQL Server, with Redis as a cache aside the application. Delivery: GitHub Actions builds, tests and scans, producing a container image deployed to Azure Container Apps." />
 
 ## What I work on
 
@@ -31,10 +22,10 @@ public sealed record Developer(string Name, string Role)
 </details>
 
 <details>
-<summary><b>Frontend</b> — Blazor, React, Angular, Vue</summary>
+<summary><b>Frontend</b> — Angular, Vue, Svelte, React</summary>
 
-- **Blazor** Server & WebAssembly — component design, render modes, JS interop
-- **React / Angular / Vue** wired to .NET APIs with typed clients generated from OpenAPI
+- **Angular** as the default, plus Vue, Svelte and React — wired to .NET APIs with typed clients from OpenAPI
+- **WPF / WinForms** where the product is a desktop application
 - HTML5, CSS3, **TypeScript**, responsive layouts and accessible markup
 
 </details>
