@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 270" width="1280" height="270" role="img" aria-label="CORE: C#, .NET, ASP.NET Core, Blazor, EF Core; TOOLBOX: TypeScript, React, Angular, Vue, Azure, Docker, Kubernetes, GitHub Actions, SQL Server, PostgreSQL, Redis">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0 L0 0 0 40" fill="none" stroke="#26262F" stroke-width="1" opacity="0.55"/>
+    </pattern>
+    <radialGradient id="glow" cx="0.82" cy="0.12" r="0.65">
+      <stop offset="0%" stop-color="#A78BFA" stop-opacity="0.20"/>
+      <stop offset="60%" stop-color="#A78BFA" stop-opacity="0.04"/>
+      <stop offset="100%" stop-color="#A78BFA" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="cardclip">
+      <rect x="0" y="0" width="1280" height="270" rx="20"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#cardclip)">
+    <rect width="1280" height="270" fill="#0C0C10"/>
+    <rect width="1280" height="270" fill="url(#grid)"/>
+    <rect width="1280" height="270" fill="url(#glow)"/>
+    <text x="56" y="66" font-family="JetBrains Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,DejaVu Sans Mono,monospace" font-size="11.5" font-weight="600" fill="#6E6E80" letter-spacing="2.6">CORE</text>
+    <g><rect x="56.0" y="82" width="49.1" height="36" rx="8" fill="#1E1533" stroke="#A78BFA" stroke-opacity="0.55" stroke-width="1"/><text x="80.5" y="104.9" text-anchor="middle" font-family="Inter,Segoe UI,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,sans-serif" font-size="14" font-weight="600" fill="#C4B5FD">C#</text></g>
+    <g><rect x="114.1" y="82" width="64.2" height="36" rx="8" fill="#1E1533" stroke="#A78BFA" stroke-opacity="0.55" stroke-width="1"/><text x="146.2" y="104.9" text-anchor="middle" font-family="Inter,Segoe UI,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,sans-serif" font-size="14" font-weight="600" fill="#C4B5FD">.NET</text></g>
+    <g><rect x="187.3" y="82" width="124.7" height="36" rx="8" fill="#1E1533" stroke="#A78BFA" stroke-opacity="0.55" stroke-width="1"/><text x="249.7" y="104.9" text-anchor="middle" font-family="Inter,Segoe UI,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,sans-serif" font-size="14" font-weight="600" fill="#C4B5FD">ASP.NET Core</text></g>
+    <g><rect x="321.0" y="82" width="79.4" height="36" rx="8" fill="#1E1533" stroke="#A78BFA" stroke-opacity="0.55" stroke-width="1"/><text x="360.7" y="104.9" text-anchor="middle" font-family="Inter,Segoe UI,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,sans-serif" font-size="14" font-weight="600" fill="#C4B5FD">Blazor</text></g>
+    <g><rect x="409.4" y="82" width="86.9" height="36" rx="8" fill="#1E1533" stroke="#A78BFA" stroke-opacity="0.55" stroke-width="1"/><text x="452.8" y="104.9" text-anchor="middle" font-family="Inter,Segoe UI,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,sans-serif" font-size="14" font-weight="600" fill="#C4B5FD">EF Core</text></g>
+    <text x="56" y="162" font-family="JetBrains Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,DejaVu Sans Mono,monospace" font-size="11.5" font-weight="600" fill="#6E6E80" letter-spacing="2.6">TOOLBOX</text>
+    <g><rect x="56.0" y="178" width="109.6" height="36" rx="8" fill="#16161D" stroke="#3A3A47" stroke-opacity="1" stroke-width="1"/><text x="110.8" y="200.9" text-anchor="middle" font-family="Inter,Segoe UI,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,sans-serif" font-size="14" font-weight="500" fill="#9E9EB0">TypeScript</text></g>
+    <g><rect x="174.6" y="178" width="71.8" height="36" rx="8" fill="#16161D" stroke="#3A3A47" stroke-opacity="1" stroke-width="1"/><text x="210.5" y="200.9" text-anchor="middle" font-family="Inter,Segoe UI,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,sans-serif" font-size="14" font-weight="500" fill="#9E9EB0">React</text></g>
+    <g><rect x="255.4" y="178" width="86.9" height="36" rx="8" fill="#16161D" stroke="#3A3A47" stroke-opacity="1" stroke-width="1"/><text x="298.8" y="200.9" text-anchor="middle" font-family="Inter,Segoe UI,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,sans-serif" font-size="14" font-weight="500" fill="#9E9EB0">Angular</text></g>
+    <g><rect x="351.3" y="178" width="56.7" height="36" rx="8" fill="#16161D" stroke="#3A3A47" stroke-opacity="1" stroke-width="1"/><text x="379.6" y="200.9" text-anchor="middle" font-family="Inter,Segoe UI,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,sans-serif" font-size="14" font-weight="500" fill="#9E9EB0">Vue</text></g>
+    <g><rect x="417.0" y="178" width="71.8" height="36" rx="8" fill="#16161D" stroke="#3A3A47" stroke-opacity="1" stroke-width="1"/><text x="452.9" y="200.9" text-anchor="middle" font-family="Inter,Segoe UI,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,sans-serif" font-size="14" font-weight="500" fill="#9E9EB0">Azure</text></g>
+    <g><rect x="497.8" y="178" width="79.4" height="36" rx="8" fill="#16161D" stroke="#3A3A47" stroke-opacity="1" stroke-width="1"/><text x="537.5" y="200.9" text-anchor="middle" font-family="Inter,Segoe UI,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,sans-serif" font-size="14" font-weight="500" fill="#9E9EB0">Docker</text></g>
+    <g><rect x="586.2" y="178" width="109.6" height="36" rx="8" fill="#16161D" stroke="#3A3A47" stroke-opacity="1" stroke-width="1"/><text x="641.0" y="200.9" text-anchor="middle" font-family="Inter,Segoe UI,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,sans-serif" font-size="14" font-weight="500" fill="#9E9EB0">Kubernetes</text></g>
+    <g><rect x="704.8" y="178" width="139.8" height="36" rx="8" fill="#16161D" stroke="#3A3A47" stroke-opacity="1" stroke-width="1"/><text x="774.7" y="200.9" text-anchor="middle" font-family="Inter,Segoe UI,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,sans-serif" font-size="14" font-weight="500" fill="#9E9EB0">GitHub Actions</text></g>
+    <g><rect x="853.6" y="178" width="109.6" height="36" rx="8" fill="#16161D" stroke="#3A3A47" stroke-opacity="1" stroke-width="1"/><text x="908.4" y="200.9" text-anchor="middle" font-family="Inter,Segoe UI,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,sans-serif" font-size="14" font-weight="500" fill="#9E9EB0">SQL Server</text></g>
+    <g><rect x="972.2" y="178" width="109.6" height="36" rx="8" fill="#16161D" stroke="#3A3A47" stroke-opacity="1" stroke-width="1"/><text x="1027.0" y="200.9" text-anchor="middle" font-family="Inter,Segoe UI,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,sans-serif" font-size="14" font-weight="500" fill="#9E9EB0">PostgreSQL</text></g>
+    <g><rect x="1090.8" y="178" width="71.8" height="36" rx="8" fill="#16161D" stroke="#3A3A47" stroke-opacity="1" stroke-width="1"/><text x="1126.7" y="200.9" text-anchor="middle" font-family="Inter,Segoe UI,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,sans-serif" font-size="14" font-weight="500" fill="#9E9EB0">Redis</text></g>
+  </g>
+  <rect x="0.5" y="0.5" width="1279" height="269" rx="20"
+        fill="none" stroke="#26262F" stroke-width="1"/>
+</svg>

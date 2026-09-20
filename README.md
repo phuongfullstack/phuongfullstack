@@ -1,87 +1,106 @@
-# 👋 Hello there! I'm Phuong (@phuongfullstack) - Your .NET Full-Spectrum Digital Architect! 🚀
+<img src="assets/hero.svg" width="100%" alt="Phuong — full-stack developer. ASP.NET Core, Blazor, EF Core. Azure, Docker, GitHub Actions." />
 
-<p align="center">
-  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3VwZXd2Y3R1bGlidXQ1djQ1d3JqN3N6b25wMHJvbzRkbG42aXB6dCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/RbDKaczqWovIugyJmW/giphy.gif" width="250"/>
-</p>
+I build web applications on **ASP.NET Core** — APIs and data access on the backend, Blazor or a JS framework on the frontend, containerised and shipped to Azure.
 
-Welcome! I'm a passionate **.NET Full-Stack Developer** transforming complex visions into **elegant**, **high-performance**, and **secure** web applications. If you need expert help across the stack – from frontend to backend, DevOps, performance, and security – you've come to the right place! ✨
+Most of my work sits in the Microsoft ecosystem, and most of my attention goes to the parts that are easy to get wrong: query performance, cache invalidation, and authorisation.
 
----
+<img src="assets/stack.svg" width="100%" alt="Core: C#, .NET, ASP.NET Core, Blazor, EF Core. Toolbox: TypeScript, React, Angular, Vue, Azure, Docker, Kubernetes, GitHub Actions, SQL Server, PostgreSQL, Redis." />
 
-## 🛠️ My .NET Expertise & How I Can Help 🛠️
+```csharp
+public sealed record Developer(string Name, string Role)
+{
+    public static Developer Me => new("Phuong", ".NET Full-Stack Developer");
 
-<p align="center">
-  <img src="https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=c-sharp&logoColor=white" alt="C#" />
-  <img src="https://img.shields.io/badge/.NET-512BD4?style=for-the-badge&logo=dotnet&logoColor=white" alt=".NET" />
-  <img src="https://img.shields.io/badge/Azure-0078D4?style=for-the-badge&logo=microsoft-azure&logoColor=white" alt="Azure" />
-  <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker" />
-  <img src="https://img.shields.io/badge/SQL_Server-CC2927?style=for-the-badge&logo=microsoft-sql-server&logoColor=white" alt="SQL Server" />
-  <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React" />
-  <img src="https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white" alt="Angular" />
-  <img src="https://img.shields.io/badge/Vue.js-4FC08D?style=for-the-badge&logo=vue.js&logoColor=white" alt="Vue.js" />
-</p>
+    public string Philosophy => "Measure first. Cache second. Never trust user input.";
+}
+```
 
+## What I work on
 
-I specialize in the **Microsoft ecosystem** and related technologies:
+<details>
+<summary><b>Backend</b> — ASP.NET Core, EF Core, API design</summary>
 
-*   **Backend:** Building scalable **ASP.NET Core (MVC, Web API)** applications (.NET 6/7/8+) with clean **C#**, optimized **Entity Framework Core** (SQL Server, PostgreSQL), and robust API design.
-*   **Frontend:** Crafting interactive UIs with **Blazor**, or integrating **React/Angular/Vue** with .NET APIs using **HTML5, CSS3, JS/TS**.
-*   **DevOps & Cloud:** Streamlining workflows with **Azure DevOps/GitHub Actions**, containerizing with **Docker**, and deploying on **Microsoft Azure** (App Services, Functions, etc.).
-*   ⚡ **Performance Tuning:**
-    *   Advising on and implementing **database query optimization** (indexing, analysis).
-    *   Implementing **Lazy Loading** strategies effectively.
-    *   Setting up **Caching** mechanisms (e.g., `IDistributedCache`, Redis).
-*   🛡️ **Security Hardening:**
-    *   Implementing **ASP.NET Core Identity** for AuthN/AuthZ.
-    *   Highlighting and mitigating risks like **XSS, CSRF, and SQL Injection** using framework features and best practices.
+- **ASP.NET Core** (Web API & MVC) on modern .NET — minimal APIs, middleware, background services
+- **EF Core** against SQL Server and PostgreSQL — migrations, compiled queries, split queries, killing N+1
+- **API design** — versioning, FluentValidation, ProblemDetails, OpenAPI contracts clients can trust
 
----
+</details>
 
-## 🤝 My Commitment to Collaboration 🤝
+<details>
+<summary><b>Frontend</b> — Blazor, React, Angular, Vue</summary>
 
-When we work together, you can expect me to:
+- **Blazor** Server & WebAssembly — component design, render modes, JS interop
+- **React / Angular / Vue** wired to .NET APIs with typed clients generated from OpenAPI
+- HTML5, CSS3, **TypeScript**, responsive layouts and accessible markup
 
-*   💡 **Explain concepts clearly:** Breaking down complexities into understandable terms.
-*   ⚖️ **Suggest options (pros/cons):** Helping you make informed decisions.
-*   ✍️ **Provide complete, readable, commented code:** Delivering quality for both frontend and backend.
-*   🧪 **Suggest testing strategies/tools:** Advising on effective quality assurance using frameworks like xUnit, NUnit, Moq, etc.
-*   🚀 **Advise on performance:** Offering specific guidance on query optimization, lazy loading, caching, and more.
-*   🛡️ **Highlight security considerations:** Proactively addressing potential vulnerabilities like XSS, CSRF, and SQL injection.
-*   🤔 **Ask clarifying questions:** Ensuring I fully understand your requirements before proceeding.
-*   😊 **Maintain a professional, friendly tone:** Always ready to elaborate and ensure a positive collaboration.
+</details>
 
----
+<details>
+<summary><b>Cloud &amp; DevOps</b> — Azure, Docker, CI/CD</summary>
 
-## 🚀 Let's Build Something Powerful! 🚀
+- **Azure** — App Service, Functions, Container Apps, Key Vault, Application Insights
+- **Docker** multi-stage builds — slim runtime images, health checks, sane layer caching
+- **CI/CD** with GitHub Actions and Azure DevOps — build, test, scan, deploy on every push
 
-Facing a challenge? Need to architect a new feature? Let's connect and leverage the power of .NET to create exceptional solutions.
+</details>
 
-## 📫 Connect with Me
+<details>
+<summary><b>Performance</b> — the part most people skip</summary>
 
-<p align="center">
-  <a href="https://linkedin.com/in/phuongfullstack" target="_blank">
-    <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
-  </a>
-  <a href="mailto:contact@phuongfullstack.com" target="_blank">
-    <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" />
-  </a>
-  <a href="https://phuongfullstack.com" target="_blank">
-    <img src="https://img.shields.io/badge/Website-000000?style=for-the-badge&logo=About.me&logoColor=white" alt="Website" />
-  </a>
-</p>
+- Query and **index tuning** driven by execution plans, not guesswork
+- Fixing **N+1** and over-eager `Include` chains before they reach production
+- **Caching** layers that actually invalidate — output caching, `IDistributedCache`, Redis
+- Benchmarking with **BenchmarkDotNet**, so "faster" is a number rather than a feeling
 
-## 📊 GitHub Stats
+</details>
 
-<p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=phuongfullstack&show_icons=true&theme=dracula&rank_icon=github&border_radius=10" alt="phuongfullstack :: GitHub Stats" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=phuongfullstack&layout=compact&theme=dracula&border_radius=10" alt="phuongfullstack :: Top Langs" />
-</p>
-<p align="center">
-  <a href="https://github.com/ryo-ma/github-profile-trophy">
-    <img src="https://github-profile-trophy.vercel.app/?username=phuongfullstack&theme=radical&no-frame=true&row=1&column=7" alt="phuongfullstack Trophies" />
-  </a>
-</p>
+<details>
+<summary><b>Security</b> — secure by default</summary>
 
+- **ASP.NET Core Identity**, JWT and cookie auth, policy-based authorisation
+- Defence against **XSS, CSRF, SQL injection** and IDOR — parameterise everything, authorise every handler
+- Secrets in **Key Vault**, never in `appsettings.json`
 
----
-*Last Updated: 2025-04-20 10:19:52 UTC*
+</details>
+
+<details>
+<summary><b>Testing</b> — so refactors aren't scary</summary>
+
+- **xUnit / NUnit** with **Moq** or NSubstitute for unit tests
+- Integration tests via **`WebApplicationFactory`** and **Testcontainers** against a real database
+- Tests wired into CI — a red build blocks the merge
+
+</details>
+
+<!--
+## Selected work
+
+Điền 2–4 repo tiêu biểu vào đây rồi bỏ comment block này. Card tự render
+tên repo, mô tả và ngôn ngữ — chỉ cần đổi `repo=`. Màu đã khớp sẵn với
+hệ thiết kế trong assets/tokens.json.
+
+Nếu chưa có gì để khoe thì cứ để nguyên trong comment: một section trống
+còn tệ hơn là không có section.
+
+<a href="https://github.com/phuongfullstack/REPO-NAME">
+  <img src="https://github-readme-stats.vercel.app/api/pin/?username=phuongfullstack&repo=REPO-NAME&bg_color=0C0C10&title_color=A78BFA&text_color=9E9EB0&icon_color=A78BFA&border_color=26262F&border_radius=20" alt="REPO-NAME" />
+</a>
+<a href="https://github.com/phuongfullstack/OTHER-REPO">
+  <img src="https://github-readme-stats.vercel.app/api/pin/?username=phuongfullstack&repo=OTHER-REPO&bg_color=0C0C10&title_color=A78BFA&text_color=9E9EB0&icon_color=A78BFA&border_color=26262F&border_radius=20" alt="OTHER-REPO" />
+</a>
+-->
+
+## GitHub
+
+<img src="https://github-readme-stats.vercel.app/api?username=phuongfullstack&show_icons=true&rank_icon=github&bg_color=0C0C10&title_color=A78BFA&text_color=9E9EB0&icon_color=A78BFA&border_color=26262F&border_radius=20" alt="GitHub stats for phuongfullstack" />
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=phuongfullstack&layout=compact&langs_count=8&bg_color=0C0C10&title_color=A78BFA&text_color=9E9EB0&icon_color=A78BFA&border_color=26262F&border_radius=20" alt="Most used languages by phuongfullstack" />
+
+<img src="https://raw.githubusercontent.com/phuongfullstack/phuongfullstack/output/github-snake.svg" width="100%" alt="Snake eating the contribution graph of phuongfullstack" />
+
+## Contact
+
+Happy to talk about .NET architecture, a query that got slow, or a project you're planning.
+
+<a href="https://linkedin.com/in/nhatphuongcse"><img src="https://img.shields.io/badge/LinkedIn-5B2BD9?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
+<a href="mailto:nhatphuongb1@gmail.com"><img src="https://img.shields.io/badge/Email-5B2BD9?style=flat-square&logo=gmail&logoColor=white" alt="Email" /></a>
+<a href="https://github.com/phuongfullstack"><img src="https://img.shields.io/badge/GitHub-5B2BD9?style=flat-square&logo=github&logoColor=white" alt="GitHub" /></a>
