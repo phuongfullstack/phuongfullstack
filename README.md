@@ -6,7 +6,13 @@ Most of my work sits in the Microsoft ecosystem, and I increasingly own systems 
 
 **Right now:** architect engineer on an AI-driven enterprise procurement platform, team of ten. Azure infrastructure as code, .NET services, an Angular front end, OAuth2/OIDC at every service boundary, and observability wired in from the start across four isolated environments.
 
+<img src="assets/numbers.svg" width="100%" alt="By the numbers: 113 months of .NET in production, 16 projects delivered end to end, 10 domains from fintech through gaming, 12 people in the largest team worked in." />
+
+## What I work with
+
 <img src="assets/stack.svg" width="100%" alt="Core: C#, .NET, ASP.NET Web API, EF Core, Angular. Toolbox: TypeScript, Vue 3, Svelte, React, Next.js, Azure, AWS, Docker, Terraform, GitHub Actions, SQL Server, PostgreSQL, MongoDB, Redis, RabbitMQ, Auth0, Serilog, Playwright, k6, WPF." />
+
+<img src="assets/depth.svg" width="100%" alt="Months of project time per technology: .NET / C# 113, TypeScript 68, Angular 65, Entity Framework 55, Azure 52, SQL Server 49, GitHub Actions 34, Terraform 26." />
 
 ## How I build it
 
@@ -102,17 +108,49 @@ public sealed record Developer(string Name, string Role)
 
 </details>
 
-<!--
-## Selected work
+## What I've built
 
-Điền 2–4 repo tiêu biểu vào bảng rồi bỏ comment block này. Dùng bảng thay
-cho card pin của github-readme-stats: dịch vụ đó hay bị rate-limit và card
-sẽ hỏng, còn bảng thì không bao giờ.
+Client and product work under NDA, so this is the shape of it rather than a list of names.
 
-| Project | What it does | Stack |
+| Domain | When | Time | Built with |
+| --- | --- | --- | --- |
+| **Enterprise procurement SaaS** | 2025 – now | 16 mo | `.NET` `Angular` `Next.js` `Azure` `Terraform` `Auth0` |
+| Consumer subscription apps | 2024 – 2025 | 18 mo | `Java` `Ember` `AWS` `Stripe` |
+| Fintech &amp; fund management | 2024 | 10 mo | `.NET` `Angular` `SQL Server` `Terraform` |
+| Gaming systems | 2024 – 2025 | 3 mo | `.NET Core` `VanillaJS` `WebSocket` `Docker` |
+| AI &amp; PropTech | 2025 | 5 mo | `.NET Core` `Vue 3` `Postgres` `Redis` |
+| Healthcare | 2023 – 2024 | 13 mo | `.NET` `Angular` `Azure Serverless` |
+| Public sector | 2022 – 2023 | 13 mo | `.NET` `ASP.NET Web API` `SQL Server` `Serilog` |
+| Data platforms &amp; ETL | 2022 – 2023 | 15 mo | `.NET` `OrientDB` `Svelte` `WPF` |
+| Education &amp; enterprise web | 2019 – 2021 | 30 mo | `.NET` `Angular` `SQL Server` `VB.NET` |
+| Blockchain | 2018 – 2019 | 11 mo | `Solidity` `React` `Ethereum` |
+
+A few of them, concretely:
+
+- **Procurement platform** — architected the Azure infrastructure in Terraform, bootstrapped the
+  codebase, and set the layered design and coding standards a team of ten builds on. Integration
+  contracts are bidirectional REST plus event-based publish/subscribe; every service boundary is
+  behind OAuth2/OIDC. Four isolated environments, so a release is promoted rather than rebuilt.
+- **Consumer photo-sharing app** — Java APIs and an Ember web app for a platform with millions of
+  users, with Stripe, Apple In-App Purchase, Google Play Billing and TaxJar all resolving to one
+  subscription state.
+- **Gaming kiosk module** — re-architected a legacy terminal module onto modern .NET, mapped the
+  existing hardware protocols, and drove the touchscreen over a WebSocket so the screen never polls.
+- **Legacy system modelling** — sole developer on a tool that ETLs a codebase into a graph model and
+  draws it, so analysts can see an undocumented architecture before planning a migration.
+
+## Experience
+
+| Years | Setting | Role |
 | --- | --- | --- |
-| [repo-name](https://github.com/phuongfullstack/repo-name) | Một câu về vấn đề nó giải quyết. | ASP.NET Core, EF Core, Azure |
--->
+| **2025 – now** | Enterprise procurement platform | Architect Engineer — full-stack &amp; DevOps |
+| **2024 – 2025** | Product delivery partner | Full-stack Developer, lead on one build |
+| **2022 – 2024** | Enterprise software services | Full-stack Developer, code review &amp; mentoring |
+| **2021 – 2022** | Offshore product engineering | Full-stack Developer |
+| **2019 – 2021** | Software outsourcing studio | Full-stack Developer |
+| **2018 – 2019** | Blockchain startup | Scrum Master &amp; Frontend |
+
+🎓 **Duy Tan University** — B.Eng. Software Engineering &nbsp;·&nbsp; 🗣 English: upper intermediate (B2)
 
 ## GitHub
 

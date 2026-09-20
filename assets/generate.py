@@ -295,12 +295,90 @@ def build_architecture(path="architecture.svg"):
     (OUT / path).write_text(card(W, round(H), "\n".join(parts),
                                  label=alt, extra_defs=defs))
 
+def build_numbers(path="numbers.svg"):
+    """Four figures, each counted from the dated project history in the CV.
+    A profile can claim seniority; a number is checkable."""
+    W, PAD, H = 1280, 56, 290
+    stats = [("113", "months", "of .NET in production"),
+             ("16", "projects", "delivered end to end"),
+             ("10", "domains", "fintech through gaming"),
+             ("12", "people", "largest team worked in")]
+    gap = 22
+    bw = (W - PAD * 2 - gap * 3) / 4
+    top, bh = PAD + 56, 116
+
+    parts = [f'    <text x="{PAD}" y="{PAD + 4}" font-family="{MONO}" font-size="11.5"'
+             f' font-weight="600" fill="{T["text-faint"]}" letter-spacing="2.6">BY THE NUMBERS</text>']
+
+    for i, (val, unit, cap) in enumerate(stats):
+        x = PAD + (bw + gap) * i
+        parts.append(
+            f'    <g opacity="0">\n'
+            f'      <animate attributeName="opacity" from="0" to="1" begin="{i * 0.12:.2f}s"'
+            f' dur="0.5s" fill="freeze"/>\n'
+            f'      <rect x="{x:.1f}" y="{top}" width="{bw:.1f}" height="{bh}" rx="{R["lg"]}"'
+            f' fill="{T["bg-subtle"]}" stroke="{T["border"]}" stroke-width="1"/>\n'
+            f'      <text x="{x + 24:.1f}" y="{top + 58}" font-family="{SANS}" font-size="46"'
+            f' font-weight="700" fill="{T["accent"]}" letter-spacing="-1.6">{val}</text>\n'
+            f'      <text x="{x + 26 + len(val) * 27:.1f}" y="{top + 58}" font-family="{MONO}"'
+            f' font-size="13" fill="{T["text-muted"]}">{unit}</text>\n'
+            f'      <text x="{x + 24:.1f}" y="{top + 88}" font-family="{SANS}" font-size="13.5"'
+            f' fill="{T["text-muted"]}">{esc(cap)}</text>\n'
+            f'    </g>')
+
+    parts.append(f'    <text x="{PAD}" y="{H - 30}" font-family="{MONO}" font-size="11"'
+                 f' fill="{T["text-faint"]}">Parallel projects mean months sum past the'
+                 f' 98-month span.</text>')
+    alt = "By the numbers: " + "; ".join(f"{v} {u} {c}" for v, u, c in stats)
+    (OUT / path).write_text(card(W, H, "\n".join(parts), label=alt))
+
+
+def build_depth(path="depth.svg"):
+    """Months of project time per technology — the same figures the portfolio
+    charts, so a claim of depth has a length attached to it."""
+    rows = [(".NET / C#", 113), ("TypeScript", 68), ("Angular", 65),
+            ("Entity Framework", 55), ("Azure", 52), ("SQL Server", 49),
+            ("GitHub Actions", 34), ("Terraform", 26)]
+    W, PAD = 1280, 56
+    keyw, valw, rh, gap = 190, 44, 26, 12
+    x0 = PAD + keyw + 18
+    track = W - PAD - valw - 14 - x0
+    top = PAD + 46
+    H = top + len(rows) * (rh + gap) + PAD - gap
+    hi = max(v for _, v in rows)
+
+    parts = [f'    <text x="{PAD}" y="{PAD + 4}" font-family="{MONO}" font-size="11.5"'
+             f' font-weight="600" fill="{T["text-faint"]}" letter-spacing="2.6">'
+             f'DEPTH PER TECHNOLOGY &#183; MONTHS</text>']
+
+    for i, (key, val) in enumerate(rows):
+        y = top + i * (rh + gap)
+        w = track * val / hi
+        parts.append(
+            f'    <text x="{x0 - 18}" y="{y + 18}" text-anchor="end" font-family="{SANS}"'
+            f' font-size="13.5" fill="{T["text-muted"]}">{esc(key)}</text>\n'
+            f'    <rect x="{x0}" y="{y}" width="{track:.1f}" height="{rh}" rx="{R["sm"]}"'
+            f' fill="{T["bg-inset"]}"/>\n'
+            f'    <rect x="{x0}" y="{y}" width="0" height="{rh}" rx="{R["sm"]}"'
+            f' fill="{T["accent"]}">\n'
+            f'      <animate attributeName="width" from="0" to="{w:.1f}"'
+            f' begin="{i * 0.08:.2f}s" dur="0.9s" fill="freeze"'
+            f' calcMode="spline" keySplines="0.2 0.8 0.3 1"/>\n'
+            f'    </rect>\n'
+            f'    <text x="{W - PAD}" y="{y + 18}" text-anchor="end" font-family="{MONO}"'
+            f' font-size="13" fill="{T["text"]}">{val}</text>')
+
+    alt = ("Months of project time per technology: "
+           + ", ".join(f"{k} {v}" for k, v in rows))
+    (OUT / path).write_text(card(W, round(H), "\n".join(parts), label=alt))
 
 if __name__ == "__main__":
     for f in OUT.glob("*.svg"):
         f.unlink()
     build_hero()
     build_stack()
+    build_numbers()
+    build_depth()
     build_architecture()
     for f in sorted(OUT.glob("*.svg")):
         print(f"{f.name:14} {f.stat().st_size:>6} bytes")

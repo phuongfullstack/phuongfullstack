@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 290" width="1280" height="290" role="img" aria-label="By the numbers: 113 months of .NET in production; 16 projects delivered end to end; 10 domains fintech through gaming; 12 people largest team worked in">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0 L0 0 0 40" fill="none" stroke="#26262F" stroke-width="1" opacity="0.55"/>
+    </pattern>
+    <radialGradient id="glow" cx="0.82" cy="0.12" r="0.65">
+      <stop offset="0%" stop-color="#A78BFA" stop-opacity="0.20"/>
+      <stop offset="60%" stop-color="#A78BFA" stop-opacity="0.04"/>
+      <stop offset="100%" stop-color="#A78BFA" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="cardclip">
+      <rect x="0" y="0" width="1280" height="290" rx="20"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#cardclip)">
+    <rect width="1280" height="290" fill="#0C0C10"/>
+    <rect width="1280" height="290" fill="url(#grid)"/>
+    <rect width="1280" height="290" fill="url(#glow)"/>
+    <text x="56" y="60" font-family="JetBrains Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,DejaVu Sans Mono,monospace" font-size="11.5" font-weight="600" fill="#6E6E80" letter-spacing="2.6">BY THE NUMBERS</text>
+    <g opacity="0">
+      <animate attributeName="opacity" from="0" to="1" begin="0.00s" dur="0.5s" fill="freeze"/>
+      <rect x="56.0" y="112" width="275.5" height="116" rx="14" fill="#16161D" stroke="#26262F" stroke-width="1"/>
+      <text x="80.0" y="170" font-family="Inter,Segoe UI,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,sans-serif" font-size="46" font-weight="700" fill="#A78BFA" letter-spacing="-1.6">113</text>
+      <text x="163.0" y="170" font-family="JetBrains Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,DejaVu Sans Mono,monospace" font-size="13" fill="#9E9EB0">months</text>
+      <text x="80.0" y="200" font-family="Inter,Segoe UI,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,sans-serif" font-size="13.5" fill="#9E9EB0">of .NET in production</text>
+    </g>
+    <g opacity="0">
+      <animate attributeName="opacity" from="0" to="1" begin="0.12s" dur="0.5s" fill="freeze"/>
+      <rect x="353.5" y="112" width="275.5" height="116" rx="14" fill="#16161D" stroke="#26262F" stroke-width="1"/>
+      <text x="377.5" y="170" font-family="Inter,Segoe UI,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,sans-serif" font-size="46" font-weight="700" fill="#A78BFA" letter-spacing="-1.6">16</text>
+      <text x="433.5" y="170" font-family="JetBrains Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,DejaVu Sans Mono,monospace" font-size="13" fill="#9E9EB0">projects</text>
+      <text x="377.5" y="200" font-family="Inter,Segoe UI,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,sans-serif" font-size="13.5" fill="#9E9EB0">delivered end to end</text>
+    </g>
+    <g opacity="0">
+      <animate attributeName="opacity" from="0" to="1" begin="0.24s" dur="0.5s" fill="freeze"/>
+      <rect x="651.0" y="112" width="275.5" height="116" rx="14" fill="#16161D" stroke="#26262F" stroke-width="1"/>
+      <text x="675.0" y="170" font-family="Inter,Segoe UI,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,sans-serif" font-size="46" font-weight="700" fill="#A78BFA" letter-spacing="-1.6">10</text>
+      <text x="731.0" y="170" font-family="JetBrains Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,DejaVu Sans Mono,monospace" font-size="13" fill="#9E9EB0">domains</text>
+      <text x="675.0" y="200" font-family="Inter,Segoe UI,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,sans-serif" font-size="13.5" fill="#9E9EB0">fintech through gaming</text>
+    </g>
+    <g opacity="0">
+      <animate attributeName="opacity" from="0" to="1" begin="0.36s" dur="0.5s" fill="freeze"/>
+      <rect x="948.5" y="112" width="275.5" height="116" rx="14" fill="#16161D" stroke="#26262F" stroke-width="1"/>
+      <text x="972.5" y="170" font-family="Inter,Segoe UI,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,sans-serif" font-size="46" font-weight="700" fill="#A78BFA" letter-spacing="-1.6">12</text>
+      <text x="1028.5" y="170" font-family="JetBrains Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,DejaVu Sans Mono,monospace" font-size="13" fill="#9E9EB0">people</text>
+      <text x="972.5" y="200" font-family="Inter,Segoe UI,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,sans-serif" font-size="13.5" fill="#9E9EB0">largest team worked in</text>
+    </g>
+    <text x="56" y="260" font-family="JetBrains Mono,ui-monospace,SFMono-Regular,Menlo,Consolas,DejaVu Sans Mono,monospace" font-size="11" fill="#6E6E80">Parallel projects mean months sum past the 98-month span.</text>
+  </g>
+  <rect x="0.5" y="0.5" width="1279" height="289" rx="20"
+        fill="none" stroke="#26262F" stroke-width="1"/>
+</svg>
