@@ -1,19 +1,26 @@
-<img src="assets/hero.svg" width="100%" alt="Phuong — full-stack developer. ASP.NET Core, Blazor, EF Core. Azure, Docker, GitHub Actions." />
+<img src="assets/hero.svg" width="100%" alt="Phuong — senior full-stack developer. .NET, Angular, EF Core. Azure, Terraform, GitHub Actions." />
 
-I build web applications on **ASP.NET Core** — APIs and data access on the backend, Blazor or a JS framework on the frontend, containerised and shipped to Azure.
+Eight years building production web and desktop systems — **.NET** on the backend, **Angular** (or whichever framework the product already has) on the frontend, provisioned with **Terraform** and shipped to **Azure**.
 
-Most of my work sits in the Microsoft ecosystem, and most of my attention goes to the parts that are easy to get wrong: query performance, cache invalidation, and authorisation.
+Most of my work sits in the Microsoft ecosystem, and I increasingly own systems end to end: infrastructure and architecture through backend, frontend and DevOps. Most of my attention goes to the parts that are easy to get wrong — query performance, cache invalidation, and authorisation.
 
-<img src="assets/stack.svg" width="100%" alt="Core: C#, .NET, ASP.NET Core, Blazor, EF Core. Toolbox: TypeScript, React, Angular, Vue, Azure, Docker, Kubernetes, GitHub Actions, SQL Server, PostgreSQL, Redis." />
+**Right now:** architect engineer on an AI-driven enterprise procurement platform, team of ten. Azure infrastructure as code, .NET services, an Angular front end, OAuth2/OIDC at every service boundary, and observability wired in from the start across four isolated environments.
+
+<img src="assets/stack.svg" width="100%" alt="Core: C#, .NET, ASP.NET Web API, EF Core, Angular. Toolbox: TypeScript, Vue 3, Svelte, React, Next.js, Azure, AWS, Docker, Terraform, GitHub Actions, SQL Server, PostgreSQL, MongoDB, Redis, RabbitMQ, Auth0, Serilog, Playwright, k6, WPF." />
 
 ## How I build it
 
-<img src="assets/architecture.svg" width="100%" alt="Request path from browser or Blazor through ASP.NET Core to EF Core and SQL Server, with Redis as a cache aside the application. Delivery: GitHub Actions builds, tests and scans, producing a container image deployed to Azure Container Apps." />
+<img src="assets/architecture.svg" width="100%" alt="Request path from an Angular SPA through an ASP.NET Web API to EF Core and SQL Server or Postgres, with Redis alongside for caching and queues. Delivery: GitHub Actions builds, tests and scans, Terraform provisions four environments, and the result runs on Azure." />
 
 ```csharp
 public sealed record Developer(string Name, string Role)
 {
-    public static Developer Me => new("Phuong", ".NET Full-Stack Developer");
+    public static Developer Me => new("Phuong", "Senior Full-Stack Developer");
+
+    public int      Years      => 8;
+    public string   Now        => "Architect Engineer — procurement platform, team of 10";
+    public string[] Domains    => ["Healthcare", "Fintech", "Procurement SaaS",
+                                   "Public Sector", "Education", "Gaming"];
 
     public string Philosophy => "Measure first. Cache second. Never trust user input.";
 }
@@ -22,57 +29,76 @@ public sealed record Developer(string Name, string Role)
 ## What I work on
 
 <details>
-<summary><b>Backend</b> — ASP.NET Core, EF Core, API design</summary>
+<summary><b>Backend</b> — ASP.NET Web API, EF Core, API design</summary>
 
-- **ASP.NET Core** (Web API & MVC) on modern .NET — minimal APIs, middleware, background services
-- **EF Core** against SQL Server and PostgreSQL — migrations, compiled queries, split queries, killing N+1
-- **API design** — versioning, FluentValidation, ProblemDetails, OpenAPI contracts clients can trust
+- **ASP.NET Web API** on modern .NET — layered architecture, dependency injection, background workers
+- **EF Core** against SQL Server and PostgreSQL — migrations, query tuning, killing N+1
+- **Integration** — bidirectional REST contracts, event-based publish/subscribe, SignalR and raw
+  WebSockets where a UI needs live state, gRPC, and services behind a Kong API gateway
 
 </details>
 
 <details>
-<summary><b>Frontend</b> — Blazor, React, Angular, Vue</summary>
+<summary><b>Frontend</b> — Angular, Vue, React, Svelte</summary>
 
-- **Blazor** Server & WebAssembly — component design, render modes, JS interop
-- **React / Angular / Vue** wired to .NET APIs with typed clients generated from OpenAPI
-- HTML5, CSS3, **TypeScript**, responsive layouts and accessible markup
+- **Angular** is where most of the hours are — SPAs with shared base component libraries
+  (tables, forms, charts) built to speed the rest of the team up
+- **Vue 3, Svelte, Ember, Next.js and plain JavaScript** where a product already had one
+- HTML5, CSS3, **TypeScript**, Material, Bootstrap and Kendo UI; responsive, accessible markup
 
 </details>
 
 <details>
 <summary><b>Cloud &amp; DevOps</b> — Azure, Docker, CI/CD</summary>
 
-- **Azure** — App Service, Functions, Container Apps, Key Vault, Application Insights
-- **Docker** multi-stage builds — slim runtime images, health checks, sane layer caching
-- **CI/CD** with GitHub Actions and Azure DevOps — build, test, scan, deploy on every push
+- **Azure** — App Service, Functions, Service Bus, Application Insights; **AWS** — S3, SQS, SNS,
+  CloudFront, Elastic Beanstalk
+- **Terraform** (and Bicep) — infrastructure as code, four identical environments so a release is
+  promoted rather than rebuilt
+- **Docker** multi-stage builds — slim runtime images, sane layer caching
+- **CI/CD** with GitHub Actions and Azure DevOps — multi-stage pipelines with quality gates
 
 </details>
 
 <details>
-<summary><b>Performance</b> — the part most people skip</summary>
+<summary><b>Observability &amp; performance</b> — the part most people skip</summary>
 
-- Query and **index tuning** driven by execution plans, not guesswork
-- Fixing **N+1** and over-eager `Include` chains before they reach production
-- **Caching** layers that actually invalidate — output caching, `IDistributedCache`, Redis
-- Benchmarking with **BenchmarkDotNet**, so "faster" is a number rather than a feeling
+- **Structured logging** with Serilog, distributed tracing and metrics — wired in from the start,
+  not after the first SLA breach, and held against SLA / RTO / RPO targets
+- **Azure Application Insights** and Azure Monitor across service endpoints
+- Query and **index tuning** driven by execution plans, not guesswork; fixing **N+1** before production
+- **Caching and queues** on Redis, with asynchronous workers for the slow work
+- **k6** for load and performance, so "faster" is a number rather than a feeling
 
 </details>
 
 <details>
 <summary><b>Security</b> — secure by default</summary>
 
-- **ASP.NET Core Identity**, JWT and cookie auth, policy-based authorisation
+- **OAuth2 / OIDC via Auth0**, applied at every service boundary, with token handling across services
 - Defence against **XSS, CSRF, SQL injection** and IDOR — parameterise everything, authorise every handler
-- Secrets in **Key Vault**, never in `appsettings.json`
+- Secrets kept out of `appsettings.json` and out of the repository
+
+</details>
+
+<details>
+<summary><b>Architecture &amp; team</b></summary>
+
+- **Clean / layered / hexagonal** architecture and **DDD**; microservices, serverless, containerised
+  workloads; dependency injection and NuGet versioning across a shared codebase
+- Set coding standards and bootstrap codebases other engineers build on
+- Code review and mentoring on every team — lead on a team of four, architect on a team of ten
+- **AI-assisted development** with Copilot, Cursor and Claude
+- English: upper intermediate (B2)
 
 </details>
 
 <details>
 <summary><b>Testing</b> — so refactors aren't scary</summary>
 
-- **xUnit / NUnit** with **Moq** or NSubstitute for unit tests
-- Integration tests via **`WebApplicationFactory`** and **Testcontainers** against a real database
-- Tests wired into CI — a red build blocks the merge
+- **xUnit / NUnit** with **Moq** for unit tests; **Jest** and **Jasmine** on the front end
+- **Playwright** end-to-end on the flows that must not break, **k6** for load
+- **Codacy** and **Codecov** gates — a red build blocks the merge
 
 </details>
 
@@ -102,7 +128,9 @@ sẽ hỏng, còn bảng thì không bao giờ.
 
 ## Contact
 
-Happy to talk about .NET architecture, a query that got slow, or a project you're planning.
+Happy to talk about .NET architecture, infrastructure as code, a query that got slow, or a project you're planning.
+
+Full project history and seven architecture write-ups on the portfolio: **[phuongfullstack.github.io](https://phuongfullstack.github.io)**
 
 <a href="https://linkedin.com/in/nhatphuongcse"><img src="https://img.shields.io/badge/LinkedIn-5B2BD9?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
 <a href="mailto:nhatphuongb1@gmail.com"><img src="https://img.shields.io/badge/Email-5B2BD9?style=flat-square&logo=gmail&logoColor=white" alt="Email" /></a>

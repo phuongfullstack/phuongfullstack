@@ -106,9 +106,9 @@ def build_hero(path="hero.svg"):
     W, H = 1280, 328
     PAD = 72
     lines = [
-        "ASP.NET Core / Blazor / EF Core",
-        "Azure / Docker / GitHub Actions",
-        "Measure first. Cache second.",
+        ".NET / Angular / EF Core",
+        "Azure / Terraform / GitHub Actions",
+        "Own it end to end.",
     ]
 
     # Concentric rounded squares: an abstract mark that reads as layered
@@ -131,7 +131,7 @@ def build_hero(path="hero.svg"):
 
     body = f'''{mark}
     <text x="{PAD}" y="86" font-family="{MONO}" font-size="13" font-weight="600"
-          fill="{T['accent']}" letter-spacing="3.4">FULL-STACK DEVELOPER</text>
+          fill="{T['accent']}" letter-spacing="3.4">SENIOR FULL-STACK DEVELOPER</text>
     <text x="{PAD}" y="166" font-family="{SANS}" font-size="78" font-weight="700"
           fill="{T['text']}" letter-spacing="-2.4">Phuong</text>
     <rect x="{PAD}" y="198" width="56" height="3" rx="1.5" fill="{T['accent']}"/>
@@ -194,10 +194,11 @@ def chips(groups, *, width=1280, pad=56, size=14, h=36, gap=9, row_gap=10,
 
 def build_stack(path="stack.svg"):
     groups = [
-        ("CORE", ["C#", ".NET", "ASP.NET Core", "Blazor", "EF Core"], True),
-        ("TOOLBOX", ["TypeScript", "React", "Angular", "Vue", "Azure", "Docker",
-                     "Kubernetes", "GitHub Actions", "SQL Server", "PostgreSQL",
-                     "Redis"], False),
+        ("CORE", ["C#", ".NET", "ASP.NET Web API", "EF Core", "Angular"], True),
+        ("TOOLBOX", ["TypeScript", "Vue 3", "Svelte", "React", "Next.js",
+                     "Azure", "AWS", "Docker", "Terraform", "GitHub Actions",
+                     "SQL Server", "PostgreSQL", "MongoDB", "Redis", "RabbitMQ",
+                     "Auth0", "Serilog", "Playwright", "k6", "WPF"], False),
     ]
     W = 1280
     blocks, H = chips(groups, width=W)
@@ -255,10 +256,10 @@ def build_architecture(path="architecture.svg"):
                 f' font-weight="600" fill="{T["text-faint"]}" letter-spacing="2.6">{text}</text>')
 
     parts = [label(PAD, PAD + 4, "REQUEST PATH")]
-    boxes = [("Browser / Blazor", "razor components"),
-             ("ASP.NET Core", "middleware · endpoints"),
-             ("EF Core", "compiled queries"),
-             ("SQL Server", "indexed · pooled")]
+    boxes = [("Angular SPA", "shared components"),
+             ("ASP.NET Web API", "layered · DI"),
+             ("EF Core", "migrations · queries"),
+             ("SQL Server / Postgres", "indexed · pooled")]
     for i, (title, sub) in enumerate(boxes):
         parts.append(_box(xs[i], row1, bw, bh, title, sub, accent=(i == 1)))
         if i:
@@ -267,13 +268,13 @@ def build_architecture(path="architecture.svg"):
 
     # cache-aside hangs off the application, not off the database
     cx = xs[1] + bw / 2
-    parts.append(_box(xs[1], cache_y, bw, cache_h, "Redis", "cache-aside"))
+    parts.append(_box(xs[1], cache_y, bw, cache_h, "Redis", "cache · queues"))
     parts.append(_arrow(cx, row1 + bh + 6, cx, cache_y - 8, accent=True, both=True))
 
     parts.append(label(PAD, lane2, "DELIVERY"))
     ship = [("GitHub Actions", "build · test · scan"),
-            ("Container image", "multi-stage build"),
-            ("Azure", "container apps")]
+            ("Terraform", "four environments"),
+            ("Azure", "app service · functions")]
     for i, (title, sub) in enumerate(ship):
         parts.append(_box(xs2[i], row2, bw2, bh, title, sub, accent=(i == 2)))
         if i:
@@ -287,10 +288,10 @@ def build_architecture(path="architecture.svg"):
             f' markerWidth="5" markerHeight="5" orient="auto-start-reverse">'
             f'<path d="M0 0 L10 5 L0 10 Z" fill="{T["accent"]}"/></marker>\n')
 
-    alt = ("How I build: request path from browser or Blazor through ASP.NET Core "
-           "to EF Core and SQL Server, with Redis as a cache aside the application. "
-           "Delivery: GitHub Actions builds, tests and scans, producing a container "
-           "image deployed to Azure Container Apps.")
+    alt = ("How I build: request path from an Angular SPA through an ASP.NET Web API "
+           "to EF Core and SQL Server or Postgres, with Redis alongside the application "
+           "for caching and queues. Delivery: GitHub Actions builds, tests and scans, "
+           "Terraform provisions four environments, and the result runs on Azure.")
     (OUT / path).write_text(card(W, round(H), "\n".join(parts),
                                  label=alt, extra_defs=defs))
 
