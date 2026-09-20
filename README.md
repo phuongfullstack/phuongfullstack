@@ -101,6 +101,6 @@ còn tệ hơn là không có section.
 
 Happy to talk about .NET architecture, a query that got slow, or a project you're planning.
 
-<a href="https://linkedin.com/in/phuongfullstack"><img src="https://img.shields.io/badge/LinkedIn-5B2BD9?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
-<a href="mailto:contact@phuongfullstack.com"><img src="https://img.shields.io/badge/Email-5B2BD9?style=flat-square&logo=maildotru&logoColor=white" alt="Email" /></a>
-<a href="https://phuongfullstack.com"><img src="https://img.shields.io/badge/Website-5B2BD9?style=flat-square&logo=googlechrome&logoColor=white" alt="Website" /></a>
+<a href="https://linkedin.com/in/nhatphuongcse"><img src="https://img.shields.io/badge/LinkedIn-5B2BD9?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
+<a href="mailto:nhatphuongb1@gmail.com"><img src="https://img.shields.io/badge/Email-5B2BD9?style=flat-square&logo=gmail&logoColor=white" alt="Email" /></a>
+<a href="https://github.com/phuongfullstack"><img src="https://img.shields.io/badge/GitHub-5B2BD9?style=flat-square&logo=github&logoColor=white" alt="GitHub" /></a>
